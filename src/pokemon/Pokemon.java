@@ -2,7 +2,7 @@ package pokemon;
 
 public class Pokemon {
 
-	a
+	private int level;
 	
 	
 }
