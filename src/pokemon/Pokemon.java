@@ -3,6 +3,6 @@ package pokemon;
 public class Pokemon {
 
 	private int level;
-	
-	
+	private String nombre;
+
 }
