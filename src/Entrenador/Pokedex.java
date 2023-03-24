@@ -1,4 +1,5 @@
-package Entrenador;
+package entrenador;
+
 
 public class Pokedex {
 

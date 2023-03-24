@@ -1,0 +1,21 @@
+package pokemon;
+
+public enum Tipo {
+
+	AGUA,
+	BICHO,
+	DRAGON,
+	ELECTRICO,
+	FANTASMA,
+	FUEGO,
+	HIElO,
+	LUCHA,
+	NORMAL,
+	PLANTA,
+	PSQUICO,
+	ROCA,
+	TIERRA,
+	VENENO,
+	VOLADOR;	
+	
+}
