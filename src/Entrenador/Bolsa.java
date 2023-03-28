@@ -1,4 +1,4 @@
-package Entrenador;
+package entrenador;
 
 import objeto.Objeto;
 import java.util.ArrayList;

@@ -1,4 +1,5 @@
-package Tipo;
+package tipo;
+
 
 public class Tipo {
 	

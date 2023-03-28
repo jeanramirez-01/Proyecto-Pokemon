@@ -1,4 +1,4 @@
-package Objeto;
+package objeto;
 
 public class Objeto {
 
