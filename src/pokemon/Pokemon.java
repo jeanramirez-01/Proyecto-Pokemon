@@ -17,7 +17,7 @@ public class Pokemon {
 	// private Movimiento[] movimiento = new Movimiento[4]
 	private int fertilidad;
 	private char sexo;
-	// private HashMap <Tipo> tipo = new HashMap <Tipo>();
+	private Tipo[] tipos = new Tipo[2];
 	// private HashMap <Estado> estado = new HashMap <Estado>();
 	private Objeto objeto;
 
