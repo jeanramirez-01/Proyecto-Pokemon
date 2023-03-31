@@ -48,7 +48,7 @@ public class Estado extends Pokemon{
 		return turnos;
 	}
 
-	//ESTADOS PERSISTENTES
+	//ESTADOS PERSISTENTES---------------------------------------------------
 	
 	public void paralizado(int ataque, int velocidad) {
 
@@ -137,28 +137,24 @@ public class Estado extends Pokemon{
 		
 	}
 	
-	public boolean dormido
+//	public boolean dormido
 	
-	//ESTADOS TEMPORALES
+	//ESTADOS TEMPORALES---------------------------------------------------
 	
-	public boolean confuso
+//	public boolean confuso
 	
 //	public boolean enamorado
 	
 //	public boolean atrapado
 	
-//	public boolean maldito (int vitalidad, String tipo) {
-//		
-//		
-//		
-//	}		
+//	public boolean maldito (int vitalidad, String tipo) 		
 	
-	public boolean drenadoras
+//	public boolean drenadoras
 	
 //	public boolean cantoMortal
 	
 //	public boolean centroDeAtencion
 	
-	public boolean amedrentado
+//	public boolean amedrentado
 	
 }

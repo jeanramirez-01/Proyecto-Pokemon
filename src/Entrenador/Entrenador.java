@@ -1,14 +1,14 @@
 package entrenador;
 
-
 import java.util.ArrayList;
+import pokemon.Pokemon;
 
 public class Entrenador {
-	
-	private int[] equipo = new int[6];
+
+	private Pokemon[] equipo = new Pokemon[6];
 	private String nombre;
 	private int pkd;
-	ArrayList <Bolsa> bolsa = new ArrayList<Bolsa>();
+	ArrayList<Bolsa> bolsa = new ArrayList<Bolsa>();
 
-	//Métodos mover equipo, capturar y combatir.
+	// Métodos mover equipo, capturar y combatir.
 }
