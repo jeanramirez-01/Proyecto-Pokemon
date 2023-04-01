@@ -137,9 +137,8 @@ public class Estado extends Pokemon{
 		
 	}
 	
-<<<<<<< Updated upstream
 //	public boolean dormido
-=======
+
 	public boolean dormido () {
 		
 		// 1 a 3 turnos dormido y sin atacar
@@ -147,13 +146,13 @@ public class Estado extends Pokemon{
 		return false;
 		
 	}
->>>>>>> Stashed changes
+
 	
 	//ESTADOS TEMPORALES---------------------------------------------------
 	
-<<<<<<< Updated upstream
+
 //	public boolean confuso
-=======
+
 	public boolean confuso () {
 		
 		// 0.33 de herirse a sí mismo
@@ -161,7 +160,7 @@ public class Estado extends Pokemon{
 		return false;
 		
 	}
->>>>>>> Stashed changes
+
 	
 //	public boolean enamorado
 	
@@ -169,9 +168,9 @@ public class Estado extends Pokemon{
 	
 //	public boolean maldito (int vitalidad, String tipo) 		
 	
-<<<<<<< Updated upstream
+
 //	public boolean drenadoras
-=======
+
 	public boolean drenadoras () {
 		
 		// 1/8 de ps totales perdidos y recuperados por rival
@@ -179,15 +178,15 @@ public class Estado extends Pokemon{
 		return false;
 		
 	}
->>>>>>> Stashed changes
+
 	
 //	public boolean cantoMortal
 	
 //	public boolean centroDeAtencion
 	
-<<<<<<< Updated upstream
+
 //	public boolean amedrentado
-=======
+
 	public boolean amedrentado () {
 		
 		// retrocede y no ataca
@@ -195,6 +194,5 @@ public class Estado extends Pokemon{
 		return false;
 		
 	}
->>>>>>> Stashed changes
 	
 }
