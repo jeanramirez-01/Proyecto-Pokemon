@@ -1,4 +1,4 @@
-package tipo;
+package pokemon;
 
 
 public class Tipo {

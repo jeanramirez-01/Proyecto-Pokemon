@@ -1,4 +1,4 @@
-package tipo;
+package combate;
 
 
 public class Eficacias {
