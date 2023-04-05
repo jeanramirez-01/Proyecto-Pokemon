@@ -1,4 +1,4 @@
-package pokemon;
+package combate;
 
 public class Estado {
 

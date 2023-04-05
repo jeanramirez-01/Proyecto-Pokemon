@@ -1,78 +1,78 @@
 package pokemon;
 
+import combate.Estado;
 import combate.Movimiento;
 import entrenador.Objeto;
 
 public class Pokemon {
 
-	protected String nombre;
-	protected String mote;
-	protected int vitalidadMaxima;
-	protected int vitalidadActual;
-	protected int ataque;
-	protected int defensa;
-	protected int ataqueEspecial;
-	protected int defensaEspecial;
-	protected int velocidad;
-	protected int estaminaMaxima;
-	protected int estaminaActual;
-	protected int nivel;
-	protected Movimiento[] movimiento;
-	protected int fertilidad;
-	protected char sexo;
-	protected Tipo[] tipos;
-	protected Estado estado;
-	protected Objeto objeto;
-	protected int experiencia;
+	private String nombre;
+	private String mote;
+	private int vitalidadMaxima;
+	private int vitalidadActual;
+	private int ataque;
+	private int defensa;
+	private int ataqueEspecial;
+	private int defensaEspecial;
+	private int velocidad;
+	private int estaminaMaxima;
+	private int estaminaActual;
+	private int nivel;
+	private Movimiento[] movimiento;
+	private int fertilidad;
+	private char sexo;
+	private Tipo[] tipos;
+	private Estado estado;
+	private Objeto objeto;
+	private int experienciaActual;
+	private int experienciaTotal;
 
 	public Pokemon() {
 
 		generarEstadisticas();
-		this.nombre = "";
-		this.mote = "";
+		this.nombre = "Pikachu";
+		this.mote = "Pulga";
 		this.vitalidadActual = vitalidadMaxima;
 		this.estaminaMaxima = 100;
 		this.estaminaActual = estaminaMaxima;
 		this.nivel = 1;
 //		this.movimiento = new Movimiento[4];
 		this.fertilidad = 5;
-		this.sexo = ' ';
+		this.sexo = 'M';
 //		this.tipos = new Tipo[2];
 //		this.estado = new Estado();
 //		this.objeto = new Objeto();
-		this.experiencia = 0;
+		this.experienciaActual = 1;
 
 	}
 
 	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, Objeto objeto, int ataque, int defensa, int ataqueEspecial, int defensaEspecial,
-			int velocidad) {
+	public Pokemon(String nombre, int nivel, Objeto objeto, int experienciaActual) {
+
+		generarEstadisticas();
+		this.vitalidadActual = this.vitalidadMaxima;
 		this.nombre = nombre;
+		this.nivel = nivel;
 		this.objeto = objeto;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataqueEspecial = ataqueEspecial;
-		this.defensaEspecial = defensaEspecial;
-		this.velocidad = velocidad;
+		this.experienciaActual = experienciaActual;
 
 	}
 
-	public Pokemon(String nombre, String mote, int vitalidadActual, int vitalidadMaxima, int ataque, int defensa,
-			int ataqueEspecial, int defensaEspecial, int velocidad, int estaminaActual, int estaminaMaxima, int nivel,
-			Movimiento[] movimiento, int fertilidad, char sexo, Tipo[] tipos, Estado estado, Objeto objeto,
-			int experiencia) {
+	public Pokemon(String nombre, String mote, int vitalidadMaxima, int ataque, int defensa, int ataqueEspecial,
+			int defensaEspecial, int velocidad, int estaminaMaxima, int nivel, Movimiento[] movimiento, int fertilidad,
+			char sexo, Tipo[] tipos, Estado estado, Objeto objeto, int experienciaActual) {
 		super();
 		this.nombre = nombre;
 		this.mote = mote;
 		this.vitalidadMaxima = vitalidadMaxima;
-		this.vitalidadActual = vitalidadActual;
+		this.vitalidadActual = vitalidadMaxima;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.ataqueEspecial = ataqueEspecial;
 		this.defensaEspecial = defensaEspecial;
 		this.velocidad = velocidad;
 		this.estaminaMaxima = estaminaMaxima;
-		this.estaminaActual = estaminaActual;
+		this.estaminaActual = estaminaMaxima;
 		this.nivel = nivel;
 		this.movimiento = movimiento;
 		this.fertilidad = fertilidad;
@@ -80,7 +80,7 @@ public class Pokemon {
 		this.tipos = tipos;
 		this.estado = estado;
 		this.objeto = objeto;
-		this.experiencia = experiencia;
+		this.experienciaActual = experienciaActual;
 	}
 
 	public String getNombre() {
@@ -227,64 +227,126 @@ public class Pokemon {
 		this.objeto = objeto;
 	}
 
-	public int getExperiencia() {
-		return experiencia;
+	public int getExperienciaActual() {
+		return experienciaActual;
 	}
 
-	public void setExperiencia(int experiencia) {
-		this.experiencia = experiencia;
+	public void setExperienciaActual(int experienciaActual) {
+		this.experienciaActual = experienciaActual;
+	}
+
+	public int getExperienciaTotal() {
+		return experienciaTotal + (int) Math.pow(this.nivel, 3);
+	}
+
+	public void setExperienciaTotal(int experienciaTotal) {
+		this.experienciaTotal = experienciaTotal;
 	}
 
 	// Metodos de pokemon-----------------------------------------------------------
 
 	/**
-	 * Es el metodo de aplicar el objeto. Le pasamos el nombre del objeto de tipo
-	 * string para que cada caso del switch analize que objeto tiene el pokemon
+	 * Metodo en el que comprobamos que el pokemon tiene un objeto
 	 * 
-	 * @param pokemon
+	 * @return que mientras el pokemon no tenga un objeto, devuelve true y si no
+	 *         false
 	 */
-	public void aplicarObjeto(Pokemon pokemon) {
 
-		switch (this.objeto.getNombreObjeto()) {
-		case "PESA":
-			this.objeto.aplicarPesa(pokemon);
-			break;
-		case "PLUMA":
-			this.objeto.aplicarPluma(pokemon);
-			break;
-		case "CHALECO":
-			this.objeto.aplicarChaleco(pokemon);
-			break;
-		case "BASTON":
-			this.objeto.aplicarBaston(pokemon);
-			break;
-		case "PILAS":
-			this.objeto.consumirPilas(pokemon);
-			break;
-		}
+	public boolean tieneObjeto() {
+		return this.objeto != null;
 	}
 
 	/**
-	 * Metodo de subir nivel en el cual si la experiencia del pokemon es al nivel
-	 * del pokemon * 10, entonces lo primero sube de nivel y luego aplica a todas
-	 * las estadisticas un aumento de 1 entre 5
+	 * Es el metodo de aplicar el efecto del objeto. Cada vez que llamemos a un
+	 * objeto de tipo pokemon, le pasariamos este metodo y en el switch si es que
+	 * tiene un objeto entonces, buscaria que objeto tendria y le aplicaria el
+	 * cambio de estadisticas
 	 * 
+	 */
+
+	public void aplicarEfectoObjeto() {
+
+		if (tieneObjeto()) {
+
+			switch (this.objeto.getTipo()) {
+			case PESA:
+
+				this.ataque = (int) (this.ataque + (this.ataque * 0.20));
+				this.defensa = (int) (this.defensa + (this.defensa * 0.20));
+
+				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.20));
+				break;
+			case PLUMA:
+
+				this.velocidad = (int) (this.velocidad + (this.velocidad * 0.30));
+
+				this.defensa = (int) (this.defensa - (this.defensa * 0.20));
+				this.defensaEspecial = (int) (this.defensaEspecial - (this.defensaEspecial * 0.20));
+				break;
+			case CHALECO:
+
+				this.defensa = (int) (this.defensa + (this.defensa * 0.20));
+				this.defensaEspecial = (int) (this.defensaEspecial + (this.defensaEspecial * 0.20));
+
+				this.ataque = (int) (this.ataque - (this.ataque * 0.15));
+				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.15));
+				break;
+			case BASTON:
+
+				this.estaminaMaxima = (int) (this.estaminaMaxima + (this.estaminaMaxima * 0.20));
+
+				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.15));
+				break;
+			case PILAS:
+
+				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaMaxima * 0.50));
+
+				this.defensaEspecial = (int) (this.defensaEspecial - (this.defensaEspecial * 0.30));
+				break;
+			}
+
+		}
+
+	}
+
+	/**
+	 * Metodo subir nivel en el cual, tenemos de condicion que si la experiencia
+	 * actual del pokemon es mayor o igual que la experiencia total requirida para
+	 * subir de nivel en la que le pasamos el total con el getExperienciaTotal(), en
+	 * el mensaje nos mostrara la experiencia faltante para subir de nivel.
+	 * 
+	 * Si es que cumple la condicion entonces nos mostrara no un mensaje con el
+	 * nombre del pokemon que ha subido de nivel y nos sumara las estadisticas con
+	 * un numero aleatorio de 1 entre 5 y en el caso que si la experiencia actual es
+	 * mayor que la experiencia requerida para subir de nivel, entonces se hara el
+	 * calculo del resto de la experiencia actual a la experiencia total y nos
+	 * mostrara la experiencia que tiene el pokemon
 	 */
 	public void subirNivel() {
 
-		if (this.experiencia == this.nivel * 10) {
+		if (this.experienciaActual >= getExperienciaTotal()) {
+
+			System.out.println(this.nombre + " ha subido de nivel!");
+
+			this.vitalidadMaxima = this.vitalidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.ataque = (int) (this.ataque + (Math.random() * (5 - 1)) + 1);
+			this.defensa = this.defensa + (int) (Math.random() * (5 - 1)) + 1;
+			this.ataqueEspecial = this.ataqueEspecial + (int) (Math.random() * (5 - 1)) + 1;
+			this.defensaEspecial = this.defensaEspecial + (int) (Math.random() * (5 - 1)) + 1;
+			this.velocidad = this.velocidad + (int) (Math.random() * (5 - 1)) + 1;
+
+			if (this.experienciaActual >= getExperienciaTotal()) {
+
+				this.experienciaActual = this.experienciaActual - getExperienciaTotal();
+				System.out.println("La experiencia de " + this.nombre + " es de: " + getExperienciaActual());
+
+			}
 
 			this.nivel++;
-			this.vitalidadMaxima = (int) (Math.random() * (5 - 1)) + 1;
-			this.ataque = (int) (Math.random() * (5 - 1)) + 1;
-			this.defensa = (int) (Math.random() * (5 - 1)) + 1;
-			this.ataqueEspecial = (int) (Math.random() * (5 - 1)) + 1;
-			this.defensaEspecial = (int) (Math.random() * (5 - 1)) + 1;
-			this.velocidad = (int) (Math.random() * (5 - 1)) + 1;
+
 		} else {
-			int experienciatotal = this.nivel * 10;
-			int experienciarestante = this.experiencia - experienciatotal;
-			System.out.println("Le queda " + experienciarestante + " para subir de nivel");
+			System.out.println("Le queda " + (getExperienciaTotal() - getExperienciaActual())
+					+ " puntos de experiencia para subir de nivel");
 		}
 
 	}

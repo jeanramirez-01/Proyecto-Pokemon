@@ -20,17 +20,28 @@ public class Tipo {
 		SINIESTRO (12),
 		TIERRA (13),
 		VENENO (14),
-		VOLADOR (15);
-		
+		VOLADOR(15);
+
 		private int indice;
-		
-		private TipoPokemon (int indice) {
+
+		private TipoPokemon(int indice) {
 			this.indice = indice;
 		}
-		
-		public int getIndice () {
+
+		public int getIndice() {
 			return indice;
 		}
+	}
+	
+	private TipoPokemon tipo;
+
+	public Tipo(TipoPokemon tipo) {
+		super();
+		this.tipo = tipo;
+	}
+
+	public TipoPokemon getTipo() {
+		return tipo;
 	}
 
 }
