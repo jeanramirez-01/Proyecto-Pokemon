@@ -2,10 +2,13 @@ package combate;
 
 public class Estado {
 
-	public enum estadoPersistente {
+	public enum EstadoPersistente {
 
 		PARALIZADO, // 0.25 No atacar
-		QUEMADO, ENVENENADO, GRAVEMENTE_ENVENENADO, DORMIDO, // No atacar
+		QUEMADO, 
+		ENVENENADO, 
+		GRAVEMENTE_ENVENENADO, 
+		DORMIDO, // No atacar
 		CONGELADO, // 0.5 no atacar
 		HELADO,
 //		SOMNOLIENTO,
@@ -13,7 +16,7 @@ public class Estado {
 
 	}
 
-	public enum estadoTemporal {
+	public enum EstadoTemporal {
 
 		CONFUSO,
 //		ENAMORADO, 
@@ -27,11 +30,11 @@ public class Estado {
 	}
 
 	private String mensaje;
-	private int turnos; // Clase turnos.
+	private Turno turnos; // Clase turnos.
 
-	void EstadoPokemon(String mensaje, int turnos) {
+	void EstadoPokemon(String mensaje, Turno turnos) {
 		this.mensaje = mensaje;
-		this.turnos = turnos;
+		this.turnos = new Turno();
 
 	}
 
@@ -39,7 +42,7 @@ public class Estado {
 		return mensaje;
 	}
 
-	public int getTurnos() {
+	public Turno getTurnos() {
 		return turnos;
 	}
 

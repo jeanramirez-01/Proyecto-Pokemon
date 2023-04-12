@@ -95,6 +95,16 @@ public class Entrenador {
 		}
 
 	}
+	
+	public void curarEquipo() {
+		
+		for (int i = 0; i < equipo.length; i++) {
+			if (this.equipo[i] != null) {
+				this.equipo[i].recuperarTotal();;
+			}
+		}
+		
+	}
 
 	/**
 	 * 
@@ -108,8 +118,8 @@ public class Entrenador {
 	public void moverEquipoPokemon(int indiceOrigen, int indiceDestino) {
 
 		// Verificar que el índice destino u el origen sea válido
-		if (indiceDestino < 0 || indiceDestino >= this.equipo.length || indiceOrigen < 0
-				|| indiceOrigen >= this.equipo.length) {
+		if ((indiceDestino < 0 || indiceDestino >= this.equipo.length)
+				|| (indiceOrigen < 0 || indiceOrigen >= this.equipo.length)) {
 			System.out.println("El índice de origen o destino no es inválido.");
 			return;
 		} else if (this.equipo[indiceOrigen] == null) { // Verificar que haya un pokemon en el índice de origen
@@ -149,9 +159,11 @@ public class Entrenador {
 	 * realizar el entranamiento. Seguido tenemos un bucle en el cual se repetira el
 	 * entrenamiento el numero de x veces que el jugador nos pase
 	 * 
-	 * @param indicePokemon: el numero del array del equipo pokemon del jugador
-	 * @param tipoEntrenamiento: sera el entranamiento que nos pase
-	 * @param numEntramientoVeces: el numero de entranamientos que quiere volver a realizar
+	 * @param indicePokemon:       el numero del array del equipo pokemon del
+	 *                             jugador
+	 * @param tipoEntrenamiento:   sera el entranamiento que nos pase
+	 * @param numEntramientoVeces: el numero de entranamientos que quiere volver a
+	 *                             realizar
 	 */
 
 	public void entrenarPokemon(int indicePokemon, Entrenamiento tipoEntrenamiento, int numEntramientoVeces) {
@@ -178,9 +190,11 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setDefensa(puntosAumento);
-						this.equipo[indicePokemon].setDefensaEspecial(puntosAumento);
-						this.equipo[indicePokemon].setVitalidadMaxima(puntosAumento);
+						this.equipo[indicePokemon].setDefensa(this.equipo[indicePokemon].getDefensa() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setDefensaEspecial(this.equipo[indicePokemon].getDefensaEspecial() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}
@@ -195,9 +209,11 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaque(puntosAumento);
-						this.equipo[indicePokemon].setAtaqueEspecial(puntosAumento);
-						this.equipo[indicePokemon].setVelocidad(puntosAumento);
+						this.equipo[indicePokemon].setAtaque(this.equipo[indicePokemon].getAtaque() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setAtaqueEspecial(this.equipo[indicePokemon].getAtaqueEspecial() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}
@@ -212,10 +228,12 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaque(puntosAumento);
-						this.equipo[indicePokemon].setDefensa(puntosAumento);
-						this.equipo[indicePokemon].setVitalidadMaxima(puntosAumento);
-						this.equipo[indicePokemon].setVelocidad(puntosAumento);
+						this.equipo[indicePokemon].setAtaque(this.equipo[indicePokemon].getAtaque() + puntosAumento);
+						this.equipo[indicePokemon].setDefensa(this.equipo[indicePokemon].getDefensa() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}
@@ -230,10 +248,14 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaqueEspecial(puntosAumento);
-						this.equipo[indicePokemon].setDefensaEspecial(puntosAumento);
-						this.equipo[indicePokemon].setVitalidadMaxima(puntosAumento);
-						this.equipo[indicePokemon].setVelocidad(puntosAumento);
+						this.equipo[indicePokemon]
+								.setAtaqueEspecial(this.equipo[indicePokemon].getAtaqueEspecial() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setDefensaEspecial(this.equipo[indicePokemon].getDefensaEspecial() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}

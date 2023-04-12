@@ -17,10 +17,9 @@ public class Tipo {
 		PLANTA (9),
 		PSIQUICO (10),
 		ROCA (11),
-		SINIESTRO (12),
-		TIERRA (13),
-		VENENO (14),
-		VOLADOR(15);
+		TIERRA (12),
+		VENENO (13),
+		VOLADOR(14);
 
 		private int indice;
 
@@ -43,5 +42,5 @@ public class Tipo {
 	public TipoPokemon getTipo() {
 		return tipo;
 	}
-
+	
 }
