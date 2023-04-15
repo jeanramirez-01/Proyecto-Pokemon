@@ -4,186 +4,123 @@ public class Estado {
 
 	public enum EstadoPersistente {
 
-		PARALIZADO, // 0.25 No atacar
-		QUEMADO, 
-		ENVENENADO, 
-		GRAVEMENTE_ENVENENADO, 
-		DORMIDO, // No atacar
-		CONGELADO, // 0.5 no atacar
-		HELADO,
+		PARALIZADO("Paralizado"), // 0.25 No atacar
+		QUEMADO("Quemado"), 
+		ENVENENADO("Envenenador"), 
+		GRAVEMENTE_ENVENENADO("Gravemente envenedado"),
+		CONGELADO("Congelado"), 
+		NORMAL("Estado normal"); // 0.5 no atacar
+//		HELADO,
 //		SOMNOLIENTO,
-		DEBILITADO,
+
+		private String mensaje;
+
+		private EstadoPersistente(String mensaje) {
+			this.mensaje = mensaje;
+		}
+
+		public String getMensaje() {
+			return mensaje;
+		}
 
 	}
 
 	public enum EstadoTemporal {
 
-		CONFUSO,
+		CONFUSO("Confuso", 4),
 //		ENAMORADO, 
 //		ATRAPADO, 
 //		MALDITO, 
-		DRENADORAS,
+		DRENADORAS("Drenadoras", 10), DORMIDO("Dormido", 3), // No atacar
 //		CANTO_MORTAL, 
 //		CENTRO_DE_ATENCION, 
-		AMEDRENTADO,
+		AMEDRENTADO("Amedrentado", 1);
+
+		private String mensaje;
+
+		private int turno;
+
+		private EstadoTemporal(String mensaje, int turno) {
+			this.mensaje = mensaje;
+			this.turno = turno;
+		}
+
+		public String getMensaje() {
+			return mensaje;
+		}
+
+		public int getTurno() {
+			return turno;
+		}
 
 	}
 
-	private String mensaje;
+	public enum OtrosEstados {
+
+		DEBILITADO("Debilitado");
+
+		private String mensaje;
+
+		private OtrosEstados(String mensaje) {
+			this.mensaje = mensaje;
+		}
+
+		public String getMensaje() {
+			return mensaje;
+		}
+
+	}
+
+	private EstadoPersistente persistente;
+	private EstadoTemporal temporal;
+	private OtrosEstados otros;
 	private Turno turnos; // Clase turnos.
 
-	void EstadoPokemon(String mensaje, Turno turnos) {
-		this.mensaje = mensaje;
-		this.turnos = new Turno();
-
+	public Estado(EstadoPersistente persistente) {
+		super();
+		this.persistente = persistente;
 	}
 
-	public String getMensaje() {
-		return mensaje;
+	public Estado(EstadoTemporal temporal) {
+		super();
+		this.temporal = temporal;
+	}
+
+	public Estado(OtrosEstados otros) {
+		super();
+		this.otros = otros;
+	}
+
+	public EstadoPersistente getPersistente() {
+		return persistente;
+	}
+
+	public void setPersistente(EstadoPersistente persistente) {
+		this.persistente = persistente;
+	}
+
+	public EstadoTemporal getTemporal() {
+		return temporal;
+	}
+
+	public void setTemporal(EstadoTemporal temporal) {
+		this.temporal = temporal;
+	}
+
+	public OtrosEstados getOtros() {
+		return otros;
+	}
+
+	public void setOtros(OtrosEstados otros) {
+		this.otros = otros;
 	}
 
 	public Turno getTurnos() {
 		return turnos;
 	}
 
-	// ESTADOS PERSISTENTES---------------------------------------------------
-
-//	public void paralizado(Pokemon pokemon) {
-//
-//		// 0.25 de probabilidad de no atacar.
-//
-//		pokemon.setVelocidad((int) (pokemon.getVelocidad() * 0.5));
-//
-//	}
-//
-//	public boolean quemado(int vitalidad, int ataque) {
-//
-//		if (true) {
-//
-//			this.ataque = (int) (ataque * 0.5);
-//
-//			this.vitalidadActual = (int) (vitalidad - (vitalidad * 0.0625));
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-//	public boolean envenenado(int vitalidad) {
-//
-//		if (true) {
-//
-//			this.vitalidadActual = (int) (vitalidad - (vitalidad * 0.125));
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-//	public boolean gravementeEnvenenado(int vitalidad, int ataque) {
-//
-//		if (true) {
-//
-//			this.vitalidadActual = (int) (vitalidad - (vitalidad * 0.125));
-//			this.ataque = (int) (ataque + ataque * 0.0625);
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-//	public boolean helado(int vitalidad, int ataqueEspecial) {
-//
-//		if (true) {
-//
-//			this.ataqueEspecial = (int) (ataqueEspecial * 0.5);
-//
-//			this.vitalidadActual = (int) (vitalidad - (vitalidad * 0.0625));
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-//	public boolean debilitado(int vitalidad) {
-//
-//		if (true) {
-//
-//			this.vitalidadActual = 0;
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-//	public boolean congelado(int defensa, int defensaEspecial) {
-//
-//		if (true) {
-//
-//			this.defensa = (int) (defensa - (defensa * 0.25));
-//			this.defensaEspecial = (int) (defensa - (defensa * 0.25));
-//
-//		}
-//
-//		return false;
-//
-//	}
-//
-////	public boolean dormido
-//
-//	public boolean dormido() {
-//
-//		// 1 a 3 turnos dormido y sin atacar
-//
-//		return false;
-//
-//	}
-//
-//	// ESTADOS TEMPORALES---------------------------------------------------
-//
-////	public boolean confuso
-//
-//	public boolean confuso() {
-//
-//		// 0.33 de herirse a sí mismo
-//
-//		return false;
-//
-//	}
-//
-////	public boolean enamorado
-//
-////	public boolean atrapado
-//
-////	public boolean maldito (int vitalidad, String tipo) 		
-//
-////	public boolean drenadoras
-//
-//	public boolean drenadoras() {
-//
-//		// 1/8 de ps totales perdidos y recuperados por rival
-//
-//		return false;
-//
-//	}
-//
-////	public boolean cantoMortal
-//
-////	public boolean centroDeAtencion
-//
-////	public boolean amedrentado
-//
-//	public boolean amedrentado() {
-//
-//		// retrocede y no ataca
-//
-//		return false;
-//
-//	}
+	public void setTurnos(Turno turnos) {
+		this.turnos = turnos;
+	}
 
 }

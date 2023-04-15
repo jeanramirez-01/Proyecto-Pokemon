@@ -1,12 +1,18 @@
 package pokemon;
 
+import java.util.Iterator;
+
 import combate.Eficacias;
 import combate.Eficacias.EficaciasPokemon;
 import combate.Estado;
+import combate.Estado.EstadoPersistente;
+import combate.Estado.EstadoTemporal;
+import combate.Estado.OtrosEstados;
 import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
 import combate.Movimiento.TipoAtaque;
 import entrenador.Objeto;
+import pokemon.Tipo.TipoPokemon;
 
 public class Pokemon {
 
@@ -14,11 +20,16 @@ public class Pokemon {
 	private String mote;
 	private int vitalidadMaxima;
 	private int vitalidadActual;
-	private int ataque;
-	private int defensa;
-	private int ataqueEspecial;
-	private int defensaEspecial;
-	private int velocidad;
+	private int ataqueMaxima;
+	private int ataqueActual;
+	private int defensaMaxima;
+	private int defensaActual;
+	private int ataqueEspecialMaxima;
+	private int ataqueEspecialActual;
+	private int defensaEspecialMaxima;
+	private int defensaEspecialActual;
+	private int velocidadMaxima;
+	private int velocidadActual;
 	private int estaminaMaxima;
 	private int estaminaActual;
 	private int nivel;
@@ -34,6 +45,7 @@ public class Pokemon {
 	// Constructor por defecto
 	public Pokemon() {
 
+		generarIVS();
 		this.nombre = "Pikachu";
 		this.mote = "Pulga";
 		this.vitalidadActual = vitalidadMaxima;
@@ -47,45 +59,28 @@ public class Pokemon {
 		this.estado = null;
 		this.objeto = null;
 		this.experienciaActual = 1;
-		generarIVS();
 
+	}
+
+	public Pokemon(String nombre) {
+
+		generarIVS();
+		this.nombre = nombre;
+		this.tipo = new Tipo(TipoPokemon.NORMAL);
+		this.estaminaMaxima = 150;
+		
 	}
 
 	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, int nivel, Objeto objeto, int experienciaActual, int vitalidadActual) {
+	public Pokemon(String nombre, int nivel, Objeto objeto, int experienciaActual) {
 
-		this.nombre = nombre;
-		this.nivel = nivel;
-		this.objeto = objeto;
-		this.experienciaActual = experienciaActual;
-		this.vitalidadActual = vitalidadActual;
 		generarIVS();
-
-	}
-
-	public Pokemon(String nombre, String mote, int vitalidadMaxima, int ataque, int defensa, int ataqueEspecial,
-			int defensaEspecial, int velocidad, int estaminaMaxima, int nivel, Movimiento[] movimiento, int fertilidad,
-			char sexo, Tipo tipo, Estado estado, Objeto objeto, int experienciaActual) {
-		super();
 		this.nombre = nombre;
-		this.mote = mote;
-		this.vitalidadMaxima = vitalidadMaxima;
-		this.vitalidadActual = vitalidadMaxima;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataqueEspecial = ataqueEspecial;
-		this.defensaEspecial = defensaEspecial;
-		this.velocidad = velocidad;
-		this.estaminaMaxima = estaminaMaxima;
-		this.estaminaActual = estaminaMaxima;
 		this.nivel = nivel;
-		this.movimientos = movimiento;
-		this.fertilidad = fertilidad;
-		this.sexo = sexo;
-		this.tipo = tipo;
-		this.estado = estado;
 		this.objeto = objeto;
 		this.experienciaActual = experienciaActual;
+		this.vitalidadActual = vitalidadMaxima;
+
 	}
 
 	public String getNombre() {
@@ -104,14 +99,6 @@ public class Pokemon {
 		this.mote = mote;
 	}
 
-	public int getVitalidadActual() {
-		return vitalidadActual;
-	}
-
-	public void setVitalidadActual(int vitalidadActual) {
-		this.vitalidadActual = vitalidadActual;
-	}
-
 	public int getVitalidadMaxima() {
 		return vitalidadMaxima;
 	}
@@ -120,44 +107,92 @@ public class Pokemon {
 		this.vitalidadMaxima = vitalidadMaxima;
 	}
 
-	public int getAtaque() {
-		return ataque;
+	public int getVitalidadActual() {
+		return vitalidadActual;
 	}
 
-	public void setAtaque(int ataque) {
-		this.ataque = ataque;
+	public void setVitalidadActual(int vitalidadActual) {
+		this.vitalidadActual = vitalidadActual;
 	}
 
-	public int getDefensa() {
-		return defensa;
+	public int getAtaqueMaxima() {
+		return ataqueMaxima;
 	}
 
-	public void setDefensa(int defensa) {
-		this.defensa = defensa;
+	public void setAtaqueMaxima(int ataqueMaxima) {
+		this.ataqueMaxima = ataqueMaxima;
 	}
 
-	public int getAtaqueEspecial() {
-		return ataqueEspecial;
+	public int getAtaqueActual() {
+		return ataqueActual;
 	}
 
-	public void setAtaqueEspecial(int ataqueEspecial) {
-		this.ataqueEspecial = ataqueEspecial;
+	public void setAtaqueActual(int ataqueActual) {
+		this.ataqueActual = ataqueActual;
 	}
 
-	public int getDefensaEspecial() {
-		return defensaEspecial;
+	public int getDefensaMaxima() {
+		return defensaMaxima;
 	}
 
-	public void setDefensaEspecial(int defensaEspecial) {
-		this.defensaEspecial = defensaEspecial;
+	public void setDefensaMaxima(int defensaMaxima) {
+		this.defensaMaxima = defensaMaxima;
 	}
 
-	public int getVelocidad() {
-		return velocidad;
+	public int getDefensaActual() {
+		return defensaActual;
 	}
 
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
+	public void setDefensaActual(int defensaActual) {
+		this.defensaActual = defensaActual;
+	}
+
+	public int getAtaqueEspecialMaxima() {
+		return ataqueEspecialMaxima;
+	}
+
+	public void setAtaqueEspecialMaxima(int ataqueEspecialMaxima) {
+		this.ataqueEspecialMaxima = ataqueEspecialMaxima;
+	}
+
+	public int getAtaqueEspecialActual() {
+		return ataqueEspecialActual;
+	}
+
+	public void setAtaqueEspecialActual(int ataqueEspecialActual) {
+		this.ataqueEspecialActual = ataqueEspecialActual;
+	}
+
+	public int getDefensaEspecialMaxima() {
+		return defensaEspecialMaxima;
+	}
+
+	public void setDefensaEspecialMaxima(int defensaEspecialMaxima) {
+		this.defensaEspecialMaxima = defensaEspecialMaxima;
+	}
+
+	public int getDefensaEspecialActual() {
+		return defensaEspecialActual;
+	}
+
+	public void setDefensaEspecialActual(int defensaEspecialActual) {
+		this.defensaEspecialActual = defensaEspecialActual;
+	}
+
+	public int getVelocidadMaxima() {
+		return velocidadMaxima;
+	}
+
+	public void setVelocidadMaxima(int velocidadMaxima) {
+		this.velocidadMaxima = velocidadMaxima;
+	}
+
+	public int getVelocidadActual() {
+		return velocidadActual;
+	}
+
+	public void setVelocidadActual(int velocidadActual) {
+		this.velocidadActual = velocidadActual;
 	}
 
 	public int getEstaminaActual() {
@@ -184,11 +219,11 @@ public class Pokemon {
 		this.nivel = nivel;
 	}
 
-	public Movimiento[] getMovimiento() {
+	public Movimiento[] getMovimientos() {
 		return movimientos;
 	}
 
-	public void setMovimiento(Movimiento[] movimiento) {
+	public void setMovimientos(Movimiento[] movimiento) {
 		this.movimientos = movimiento;
 	}
 
@@ -273,43 +308,211 @@ public class Pokemon {
 
 		if (tieneObjeto()) {
 
-			switch (this.objeto.getTipo()) {
+			switch (this.objeto.getTipoObjeto()) {
 			case PESA:
 
-				this.ataque = (int) (this.ataque + (this.ataque * 0.20));
-				this.defensa = (int) (this.defensa + (this.defensa * 0.20));
+				this.ataqueMaxima = (int) (this.ataqueMaxima + (this.ataqueMaxima * 0.20));
+				this.defensaMaxima = (int) (this.defensaMaxima + (this.defensaMaxima * 0.20));
 
-				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.20));
+				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.20));
 				break;
 			case PLUMA:
 
-				this.velocidad = (int) (this.velocidad + (this.velocidad * 0.30));
+				this.velocidadMaxima = (int) (this.velocidadMaxima + (this.velocidadMaxima * 0.30));
 
-				this.defensa = (int) (this.defensa - (this.defensa * 0.20));
-				this.defensaEspecial = (int) (this.defensaEspecial - (this.defensaEspecial * 0.20));
+				this.defensaMaxima = (int) (this.defensaMaxima - (this.defensaMaxima * 0.20));
+				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima - (this.defensaEspecialMaxima * 0.20));
 				break;
 			case CHALECO:
 
-				this.defensa = (int) (this.defensa + (this.defensa * 0.20));
-				this.defensaEspecial = (int) (this.defensaEspecial + (this.defensaEspecial * 0.20));
+				this.defensaMaxima = (int) (this.defensaMaxima + (this.defensaMaxima * 0.20));
+				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima + (this.defensaEspecialMaxima * 0.20));
 
-				this.ataque = (int) (this.ataque - (this.ataque * 0.15));
-				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.15));
+				this.ataqueMaxima = (int) (this.ataqueMaxima - (this.ataqueMaxima * 0.15));
+				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.15));
 				break;
 			case BASTON:
 
 				this.estaminaMaxima = (int) (this.estaminaMaxima + (this.estaminaMaxima * 0.20));
 
-				this.velocidad = (int) (this.velocidad - (this.velocidad * 0.15));
+				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.15));
 				break;
 			case PILAS:
 
 				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaMaxima * 0.50));
 
-				this.defensaEspecial = (int) (this.defensaEspecial - (this.defensaEspecial * 0.30));
+				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima - (this.defensaEspecialMaxima * 0.30));
 				break;
 			}
 
+		}
+
+	}
+
+	public void ponerEstado() {
+
+		EstadoPersistente persistente = null;
+		EstadoTemporal temporal = null;
+
+		boolean estaPersistente = this.estado.getPersistente() != null;
+		if (estaPersistente && this.estado.getPersistente() != EstadoPersistente.NORMAL) {
+			System.out.println("No se puede cambiar el estado de " + this.nombre + " dado que esta "
+					+ this.estado.getPersistente().getMensaje());
+			return;
+		}
+
+		for (Movimiento movimiento : movimientos) {
+			if (this.estado.getTemporal() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
+				EstadoPersistente estadoMovimiento = movimiento.getEstado().getPersistente();
+				if (estadoMovimiento == EstadoPersistente.PARALIZADO || estadoMovimiento == EstadoPersistente.QUEMADO
+						|| estadoMovimiento == EstadoPersistente.ENVENENADO
+						|| estadoMovimiento == EstadoPersistente.GRAVEMENTE_ENVENENADO
+						|| estadoMovimiento == EstadoPersistente.CONGELADO) {
+
+					if (estaPersistente) {
+						return;
+					}
+
+					persistente = estadoMovimiento;
+					setEstado(new Estado(persistente));
+					break;
+				}
+			}
+			if (this.estado.getPersistente() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
+				EstadoTemporal estadoMovimiento2 = movimiento.getEstado().getTemporal();
+				if (estadoMovimiento2 == EstadoTemporal.CONFUSO || estadoMovimiento2 == EstadoTemporal.DORMIDO
+						|| estadoMovimiento2 == EstadoTemporal.AMEDRENTADO
+						|| estadoMovimiento2 == EstadoTemporal.DRENADORAS) {
+					temporal = estadoMovimiento2;
+					setEstado(new Estado(temporal));
+					break;
+				}
+			}
+		}
+
+		if (this.vitalidadActual == 0) {
+			setEstado(new Estado(OtrosEstados.DEBILITADO));
+			System.out.println(this.nombre + " se ha debilitado.");
+		}
+
+	}
+
+	public void aplicarEstado() {
+
+		boolean estadoAplicado = false;
+		int random = 0;
+
+		switch (this.estado.getPersistente()) {
+		case PARALIZADO:
+
+			System.out.println(this.nombre + this.estado.getPersistente().getMensaje());
+
+			boolean paralizado = false;
+			for (int i = 0; i < 1; i++) {
+				paralizado = (int) (Math.random() * 5 + 1) == 0;
+			}
+			if (paralizado) {
+				System.out.println(this.nombre + " no puede atacar, esta paralizado");
+				break;
+			}
+
+			if (!estadoAplicado) {
+				this.velocidadMaxima = (int) this.velocidadMaxima - (this.velocidadMaxima / 2);
+				estadoAplicado = true;
+			}
+			break;
+
+		case QUEMADO:
+
+			System.out.println(this.nombre + " se ha quemado");
+
+			if (!estadoAplicado) {
+				this.ataqueMaxima = this.ataqueMaxima - (this.ataqueMaxima / 2);
+				estadoAplicado = true;
+			}
+
+			for (int i = 0; i < 1; i++) {
+				random = (int) (Math.random() * 16 - 1) + 1;
+			}
+
+			System.out.println(this.nombre + " se ha quemado");
+			this.vitalidadActual = this.vitalidadActual - random;
+
+			break;
+
+		case ENVENENADO:
+
+			System.out.println(this.nombre + " se ha envenenado");
+
+			for (int i = 0; i < 1; i++) {
+				random = (int) (Math.random() * 8 - 1) + 1;
+			}
+
+			this.vitalidadActual = this.vitalidadActual - random;
+
+			break;
+
+		case GRAVEMENTE_ENVENENADO:
+
+			System.out.println(this.nombre + " se ha envenenado gravemente");
+
+			int valor = 0;
+			for (int i = 0; i < 1; i++) {
+				random = (int) (Math.random() * 8 - 1) + 1;
+				valor++;
+			}
+			if (!estadoAplicado) {
+				this.vitalidadActual = this.vitalidadActual - random;
+				estadoAplicado = true;
+			}
+
+			int danio = (int) (this.vitalidadMaxima / 8.0 + (this.vitalidadMaxima / 16.0) * (valor - 1));
+
+			for (int i = 0; i < 1; i++) {
+				this.vitalidadActual -= danio;
+
+			}
+			break;
+
+		case CONGELADO:
+
+			boolean descongelado = false;
+			for (int i = 0; i < 1; i++) {
+				descongelado = (int) (Math.random() * 5 + 1) == 0;
+			}
+
+			if (descongelado) {
+				System.out.println(this.nombre + " se ha descongelado");
+				setEstado(new Estado(EstadoPersistente.NORMAL));
+			} else {
+				System.out.println(this.nombre + " está congelado y no puede atacar");
+				break;
+			}
+
+			break;
+		default:
+
+			break;
+
+		}
+
+		switch (this.estado.getTemporal()) {
+		case CONFUSO:
+
+			break;
+		case DORMIDO:
+
+			estadoAplicado = true;
+			break;
+		case AMEDRENTADO:
+
+			break;
+
+		case DRENADORAS:
+
+			break;
+		default:
+			break;
 		}
 
 	}
@@ -327,35 +530,39 @@ public class Pokemon {
 	 * calculo del resto de la experiencia actual a la experiencia total y nos
 	 * mostrara la experiencia que tiene el pokemon
 	 */
+
 	public void subirNivel() {
-		
+
 		if (this.nivel == 100) {
 			return;
 		}
-		if (this.experienciaActual >= getExperienciaTotal()) {
+		int experienciaRequerida = getExperienciaTotal();
 
-			System.out.println(this.nombre + " ha subido de nivel!");
+		while (this.experienciaActual >= experienciaRequerida) {
 
-			this.vitalidadMaxima = this.vitalidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
-			this.ataque = (int) (this.ataque + (Math.random() * (5 - 1)) + 1);
-			this.defensa = this.defensa + (int) (Math.random() * (5 - 1)) + 1;
-			this.ataqueEspecial = this.ataqueEspecial + (int) (Math.random() * (5 - 1)) + 1;
-			this.defensaEspecial = this.defensaEspecial + (int) (Math.random() * (5 - 1)) + 1;
-			this.velocidad = this.velocidad + (int) (Math.random() * (5 - 1)) + 1;
+			if (this.vitalidadActual < vitalidadMaxima) {
 
-			if (this.experienciaActual > getExperienciaTotal()) {
-
-				this.experienciaActual = this.experienciaActual - getExperienciaTotal();
-				System.out.println("La experiencia de " + this.nombre + " es : " + this.experienciaActual);
+				this.vitalidadActual = this.vitalidadActual + 2;
 
 			}
 
+			this.vitalidadMaxima = this.vitalidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.ataqueMaxima = (int) (this.ataqueMaxima + (Math.random() * (5 - 1)) + 1);
+			this.defensaMaxima = this.defensaMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.ataqueEspecialMaxima = this.ataqueEspecialMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.defensaEspecialMaxima = this.defensaEspecialMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.velocidadMaxima = this.velocidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
+
+			this.experienciaActual = this.experienciaActual - experienciaRequerida;
 			this.nivel++;
 
-		} else {
-			System.out.println("Le queda a " + this.nombre + ", " + (getExperienciaTotal() - this.experienciaActual)
-					+ " puntos de experiencia para subir de nivel.");
+			experienciaRequerida = getExperienciaTotal();
+
+			System.out.println(this.nombre + " ha subido a nivel " + this.nivel);
 		}
+
+		System.out.println("Le queda a " + this.nombre + ", " + (experienciaRequerida - this.experienciaActual)
+				+ " puntos de experiencia para subir de nivel.");
 
 	}
 
@@ -366,11 +573,17 @@ public class Pokemon {
 	/**
 	 * Metodo de curar la vitalidad actual y estamina actual
 	 */
-	
+
 	public void recuperarTotal() {
 
 		this.vitalidadActual = this.vitalidadMaxima;
 		this.estaminaActual = this.estaminaMaxima;
+
+	}
+
+	public void recuperarEstadisticas() {
+
+		this.ataqueActual = this.ataqueMaxima;
 
 	}
 
@@ -387,11 +600,11 @@ public class Pokemon {
 	private void generarIVS() {
 
 		this.vitalidadMaxima = (int) (Math.random() * (31 - 10)) + 10;
-		this.ataque = (int) (Math.random() * (31 - 5)) + 5;
-		this.defensa = (int) (Math.random() * (31 - 5)) + 5;
-		this.ataqueEspecial = (int) (Math.random() * (31 - 5)) + 5;
-		this.defensaEspecial = (int) (Math.random() * (31 - 5)) + 5;
-		this.velocidad = (int) (Math.random() * (31 - 5)) + 5;
+		this.ataqueMaxima = (int) (Math.random() * (31 - 5)) + 5;
+		this.defensaMaxima = (int) (Math.random() * (31 - 5)) + 5;
+		this.ataqueEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
+		this.defensaEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
+		this.velocidadMaxima = (int) (Math.random() * (31 - 5)) + 5;
 
 		// Cosas de prueba en la main
 //		int factor = (int) ((int) nivel * 2.5);
@@ -458,11 +671,11 @@ public class Pokemon {
 		P = movimientos[indiceMovimiento].getPotencia();
 
 		if (movimientos[indiceMovimiento].getTipo() == TipoAtaque.FISICO) {
-			A = this.ataque;
-			D = rival.defensa;
+			A = this.ataqueActual;
+			D = rival.defensaActual;
 		} else {
-			A = this.ataqueEspecial;
-			D = rival.defensaEspecial;
+			A = this.ataqueEspecialActual;
+			D = rival.defensaEspecialActual;
 		}
 
 		int formula = (int) ((0.01 * B * E * V) * (((0.2 * N + 1) * A * P) / (25 * D)) + 2);
@@ -684,15 +897,13 @@ public class Pokemon {
 		return eficacia;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Pokemon [nombre=" + nombre + ", mote=" + mote + ", vitalidadActual=" + vitalidadActual
-				+ ", vitalidadMaxima=" + vitalidadMaxima + ", ataque=" + ataque + ", defensa=" + defensa
-				+ ", ataqueEspecial=" + ataqueEspecial + ", defensaEspecial=" + defensaEspecial + ", velocidad="
-				+ velocidad + ", estaminaActual=" + estaminaActual + ", estaminaMaxima=" + estaminaMaxima + ", nivel="
-				+ nivel + ", fertilidad=" + fertilidad + ", sexo=" + sexo + "]";
+				+ ", vitalidadMaxima=" + vitalidadMaxima + ", ataque=" + ataqueMaxima + ", defensa=" + defensaMaxima
+				+ ", ataqueEspecial=" + ataqueEspecialMaxima + ", defensaEspecial=" + defensaEspecialMaxima
+				+ ", velocidad=" + velocidadMaxima + ", estaminaActual=" + estaminaActual + ", estaminaMaxima="
+				+ estaminaMaxima + ", nivel=" + nivel + ", fertilidad=" + fertilidad + ", sexo=" + sexo + "]";
 	}
 
 }

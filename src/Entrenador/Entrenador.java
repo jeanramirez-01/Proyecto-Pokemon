@@ -95,15 +95,16 @@ public class Entrenador {
 		}
 
 	}
-	
+
 	public void curarEquipo() {
-		
+
 		for (int i = 0; i < equipo.length; i++) {
 			if (this.equipo[i] != null) {
-				this.equipo[i].recuperarTotal();;
+				this.equipo[i].recuperarTotal();
+				;
 			}
 		}
-		
+
 	}
 
 	/**
@@ -190,9 +191,10 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setDefensa(this.equipo[indicePokemon].getDefensa() + puntosAumento);
 						this.equipo[indicePokemon]
-								.setDefensaEspecial(this.equipo[indicePokemon].getDefensaEspecial() + puntosAumento);
+								.setDefensaMaxima(this.equipo[indicePokemon].getDefensaMaxima() + puntosAumento);
+						this.equipo[indicePokemon].setDefensaEspecialMaxima(
+								this.equipo[indicePokemon].getDefensaEspecialMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
 								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
@@ -209,11 +211,12 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaque(this.equipo[indicePokemon].getAtaque() + puntosAumento);
 						this.equipo[indicePokemon]
-								.setAtaqueEspecial(this.equipo[indicePokemon].getAtaqueEspecial() + puntosAumento);
+								.setAtaqueMaxima(this.equipo[indicePokemon].getAtaqueMaxima() + puntosAumento);
+						this.equipo[indicePokemon].setAtaqueEspecialMaxima(
+								this.equipo[indicePokemon].getAtaqueEspecialMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
-								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
+								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}
@@ -228,12 +231,14 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaque(this.equipo[indicePokemon].getAtaque() + puntosAumento);
-						this.equipo[indicePokemon].setDefensa(this.equipo[indicePokemon].getDefensa() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setAtaqueMaxima(this.equipo[indicePokemon].getAtaqueMaxima() + puntosAumento);
+						this.equipo[indicePokemon]
+								.setDefensaMaxima(this.equipo[indicePokemon].getDefensaMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
 								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
-								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
+								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}
@@ -248,14 +253,14 @@ public class Entrenador {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon]
-								.setAtaqueEspecial(this.equipo[indicePokemon].getAtaqueEspecial() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setDefensaEspecial(this.equipo[indicePokemon].getDefensaEspecial() + puntosAumento);
+						this.equipo[indicePokemon].setAtaqueEspecialMaxima(
+								this.equipo[indicePokemon].getAtaqueEspecialMaxima() + puntosAumento);
+						this.equipo[indicePokemon].setDefensaEspecialMaxima(
+								this.equipo[indicePokemon].getDefensaEspecialMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
 								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
 						this.equipo[indicePokemon]
-								.setVelocidad(this.equipo[indicePokemon].getVelocidad() + puntosAumento);
+								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						break;
 					}

@@ -27,12 +27,17 @@ public class Main {
 
 		Movimiento destructor = new Movimiento("Destructor", normal, fisico, 40);
 
-		Pokemon pk1 = new Pokemon("Pokachu", 1, obj1, 8001, 20);
-		Pokemon pk2 = new Pokemon("Charmander", 20, obj2, 8000, 20);
-		Pokemon pk3 = new Pokemon("Squirtle", 20, obj3, 8000, 20);
-		Pokemon pk4 = new Pokemon("Bulbasur", 20, obj4, 8000, 20);
-		Pokemon pk5 = new Pokemon("Dragonite", 100, null, 8000, 20);
-		Pokemon pk6 = new Pokemon("Mew", 40, obj1, 8000, 20);
+		Movimiento[] setAtaques = new Movimiento[4];
+
+		setAtaques[1] = destructor;
+	
+
+		Pokemon pk1 = new Pokemon("Pokachu", 1, obj1, 8000);
+		Pokemon pk2 = new Pokemon("Charmander", 20, obj2, 8000);
+		Pokemon pk3 = new Pokemon("Squirtle", 20, obj3, 8000);
+		Pokemon pk4 = new Pokemon("Bulbasur", 20, obj4, 8000);
+		Pokemon pk5 = new Pokemon("Dragonite", 100, null, 8000);
+		Pokemon pk6 = new Pokemon("Mew", 40, obj1, 8000);
 
 		Pokemon[] equipo = new Pokemon[6];
 
@@ -43,6 +48,8 @@ public class Main {
 		equipo[4] = pk5;
 		equipo[5] = pk6;
 
+		pk1.setMovimientos(setAtaques);
+		
 		Bolsa bolsa = new Bolsa();
 		PcPokemon pc = new PcPokemon();
 
@@ -95,32 +102,32 @@ public class Main {
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
 
-//		System.out.println(pk1.toString());
-//		System.out.println(pk2.toString());
-//		System.out.println(pk3.toString());
-//		System.out.println(pk4.toString());
-//		System.out.println(pk5.toString());
-//		System.out.println(pk6.toString());
-//
-//		System.out.println();
-//		jugador.curarEquipo();
-//
-////		pk1.subirNivel();
-////		pk2.subirNivel();
-////		pk3.subirNivel();
-////		pk4.subirNivel();
-////		pk5.subirNivel();
-////		pk6.subirNivel();
-////
-//		System.out.println(pk1.toString());
-//		System.out.println(pk2.toString());
-//		System.out.println(pk3.toString());
-//		System.out.println(pk4.toString());
-//		System.out.println(pk5.toString());
-//		System.out.println(pk6.toString());
+		System.out.println(pk1.toString());
+		System.out.println(pk2.toString());
+		System.out.println(pk3.toString());
+		System.out.println(pk4.toString());
+		System.out.println(pk5.toString());
+		System.out.println(pk6.toString());
 
-		System.out.println(destructor.toString());
-		
+		System.out.println();
+		jugador.curarEquipo();
+
+		pk1.subirNivel();
+		pk2.subirNivel();
+		pk3.subirNivel();
+		pk4.subirNivel();
+		pk5.subirNivel();
+		pk6.subirNivel();
+
+		System.out.println(pk1.toString());
+		System.out.println(pk2.toString());
+		System.out.println(pk3.toString());
+		System.out.println(pk4.toString());
+		System.out.println(pk5.toString());
+		System.out.println(pk6.toString());
+
+//		System.out.println(destructor.toString());
+
 	}
 
 }

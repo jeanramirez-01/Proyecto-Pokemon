@@ -1,18 +1,21 @@
 package opcionesEntrenador;
 
-
 public class Pokedex {
 
-	private void descripcionPokemon () {
+	public void descripcionPokemon() {
+
 	}
-	
-	private void pokemonCapturado () {
+
+	public void pokemonCapturado() {
+
 	}
-	
-	private void pokemonDescubierto () {
+
+	public void pokemonDescubierto() {
+
 	}
-	
-	private void pokemonSinCapturar () {
+
+	public void pokemonSinCapturar() {
+
 	}
-	
+
 }

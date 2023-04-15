@@ -1,5 +1,6 @@
 package combate;
 
+import pokemon.Pokemon;
 import pokemon.Tipo;
 
 public class Movimiento {
@@ -24,6 +25,9 @@ public class Movimiento {
 	private int duracionMejora;
 	private int costoEstamina;
 
+	
+	
+	
 	public Movimiento(TipoAtaque tipo) {
 		this.tipoAtaque = tipo;
 	}
@@ -37,7 +41,16 @@ public class Movimiento {
 		this.costoEstamina = potenciaAtaque / 2;
 	}
 
-	// Constructor para movimientos de Estado
+	// Constructor para movimientos de Estado persistente
+		public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, Estado estado) {
+			this.nombre = nombre;
+			this.tipoMovimiento = tipoMovimiento;
+			this.tipoAtaque = tipoAtaque;
+			this.estado = estado;
+			this.costoEstamina = 30;
+		}
+	
+	// Constructor para movimientos de Estado temporal
 	public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, Estado estado, int duracionEstado) {
 		this.nombre = nombre;
 		this.tipoMovimiento = tipoMovimiento;
@@ -129,10 +142,15 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Movimiento [Nombre=" + nombre + ", Tipo de Movimiento=" + tipoMovimiento.getTipo() + ", Tipo de Ataque="
 				+ tipoAtaque + ", Potencia=" + potencia + ", Costo de la estamina=" + costoEstamina + "]";
 	}
-
+	
+	
+	
+	
 }

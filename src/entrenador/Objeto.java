@@ -22,15 +22,15 @@ public class Objeto {
 
     }
 
-    private TipoObjeto tipo;
+    private TipoObjeto tipoObjeto;
 
-    public Objeto(TipoObjeto tipo) {
+    public Objeto(TipoObjeto tipoObjeto) {
         super();
-        this.tipo = tipo;
+        this.tipoObjeto = tipoObjeto;
     }
 
-    public TipoObjeto getTipo() {
-        return tipo;
+    public TipoObjeto getTipoObjeto() {
+        return tipoObjeto;
     }
 
 
