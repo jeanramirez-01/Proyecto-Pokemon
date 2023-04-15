@@ -1,6 +1,6 @@
-package entrenador;
+package tienda;
 
-public class Objeto {
+public class ObjetoEquipable {
 
     public enum TipoObjeto {
 
@@ -24,7 +24,7 @@ public class Objeto {
 
     private TipoObjeto tipoObjeto;
 
-    public Objeto(TipoObjeto tipoObjeto) {
+    public ObjetoEquipable(TipoObjeto tipoObjeto) {
         super();
         this.tipoObjeto = tipoObjeto;
     }

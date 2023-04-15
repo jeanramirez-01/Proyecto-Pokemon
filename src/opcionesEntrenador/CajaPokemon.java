@@ -51,4 +51,6 @@ public class CajaPokemon {
 		this.caja[posicion] = null;
 	}
 
+	
+	
 }
