@@ -1,7 +1,4 @@
 package pokemon;
-
-
-public class Tipo {
 	
 	public enum TipoPokemon {
 		
@@ -30,17 +27,10 @@ public class Tipo {
 		public int getIndice() {
 			return indice;
 		}
-	}
-	
-	private TipoPokemon tipo;
 
-	public Tipo(TipoPokemon tipo) {
-		super();
-		this.tipo = tipo;
+		public TipoPokemon getTipo() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 
-	public TipoPokemon getTipo() {
-		return tipo;
-	}
-	
-}

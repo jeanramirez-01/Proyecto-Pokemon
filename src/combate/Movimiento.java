@@ -1,7 +1,8 @@
 package combate;
 
 import pokemon.Pokemon;
-import pokemon.Tipo;
+
+import pokemon.TipoPokemon;
 
 public class Movimiento {
 
@@ -17,7 +18,7 @@ public class Movimiento {
 
 	private TipoAtaque tipoAtaque;
 	private String nombre;
-	private Tipo tipoMovimiento;
+	private TipoPokemon tipoMovimiento;
 	private int potencia;
 	private Estado estado;
 	private int duracionEstado;
@@ -25,15 +26,12 @@ public class Movimiento {
 	private int duracionMejora;
 	private int costoEstamina;
 
-	
-	
-	
 	public Movimiento(TipoAtaque tipo) {
 		this.tipoAtaque = tipo;
 	}
 
 	// Constructor para movimientos de tipo Fisico o Especial
-	public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, int potenciaAtaque) {
+	public Movimiento(String nombre, TipoPokemon tipoMovimiento, TipoAtaque tipoAtaque, int potenciaAtaque) {
 		this.nombre = nombre;
 		this.tipoMovimiento = tipoMovimiento;
 		this.tipoAtaque = tipoAtaque;
@@ -42,16 +40,17 @@ public class Movimiento {
 	}
 
 	// Constructor para movimientos de Estado persistente
-		public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, Estado estado) {
-			this.nombre = nombre;
-			this.tipoMovimiento = tipoMovimiento;
-			this.tipoAtaque = tipoAtaque;
-			this.estado = estado;
-			this.costoEstamina = 30;
-		}
-	
+	public Movimiento(String nombre, TipoPokemon tipoMovimiento, TipoAtaque tipoAtaque, Estado estado) {
+		this.nombre = nombre;
+		this.tipoMovimiento = tipoMovimiento;
+		this.tipoAtaque = tipoAtaque;
+		this.estado = estado;
+		this.costoEstamina = 30;
+	}
+
 	// Constructor para movimientos de Estado temporal
-	public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, Estado estado, int duracionEstado) {
+	public Movimiento(String nombre, TipoPokemon tipoMovimiento, TipoAtaque tipoAtaque, Estado estado,
+			int duracionEstado) {
 		this.nombre = nombre;
 		this.tipoMovimiento = tipoMovimiento;
 		this.tipoAtaque = tipoAtaque;
@@ -61,7 +60,8 @@ public class Movimiento {
 	}
 
 	// Constructor para movimientos de Mejora
-	public Movimiento(String nombre, Tipo tipoMovimiento, TipoAtaque tipoAtaque, Mejora mejora, int duracionMejora) {
+	public Movimiento(String nombre, TipoPokemon tipoMovimiento, TipoAtaque tipoAtaque, Mejora mejora,
+			int duracionMejora) {
 		this.nombre = nombre;
 		this.tipoMovimiento = tipoMovimiento;
 		this.tipoAtaque = tipoAtaque;
@@ -86,11 +86,11 @@ public class Movimiento {
 		this.nombre = nombre;
 	}
 
-	public Tipo getTipoMovimiento() {
+	public TipoPokemon getTipoMovimiento() {
 		return tipoMovimiento;
 	}
 
-	public void setTipoMovimiento(Tipo tipoMovimiento) {
+	public void setTipoMovimiento(TipoPokemon tipoMovimiento) {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 
@@ -142,15 +142,10 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "Movimiento [Nombre=" + nombre + ", Tipo de Movimiento=" + tipoMovimiento.getTipo() + ", Tipo de Ataque="
 				+ tipoAtaque + ", Potencia=" + potencia + ", Costo de la estamina=" + costoEstamina + "]";
 	}
-	
-	
-	
-	
+
 }

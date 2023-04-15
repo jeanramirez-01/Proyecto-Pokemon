@@ -1,7 +1,6 @@
 package pokemon;
 
-import java.util.Iterator;
-
+import java.util.Random;
 import combate.Eficacias;
 import combate.Eficacias.EficaciasPokemon;
 import combate.Estado;
@@ -10,9 +9,8 @@ import combate.Estado.EstadoTemporal;
 import combate.Estado.OtrosEstados;
 import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
-import combate.Movimiento.TipoAtaque;
-import entrenador.Objeto;
-import pokemon.Tipo.TipoPokemon;
+import tienda.ObjetoEquipable;
+import pokemon.TipoPokemon;
 
 public class Pokemon {
 
@@ -34,11 +32,11 @@ public class Pokemon {
 	private int estaminaActual;
 	private int nivel;
 	private Movimiento[] movimientos;
-	private int fertilidad;
+	private int fertilidad = 5;
 	private char sexo;
-	private Tipo tipo;
+	private TipoPokemon tipo;
 	private Estado estado;
-	private Objeto objeto;
+	private ObjetoEquipable objeto;
 	private int experienciaActual;
 	private int experienciaTotal;
 
@@ -64,21 +62,27 @@ public class Pokemon {
 
 	public Pokemon(String nombre) {
 
-		generarIVS();
 		this.nombre = nombre;
-		this.tipo = new Tipo(TipoPokemon.NORMAL);
+		this.tipo = TipoPokemon.ROCA;
+		this.vitalidadActual = 1000;
 		this.estaminaMaxima = 150;
-		
+		this.nivel = 100;
+		this.defensaMaxima = 450;
+		this.defensaActual = defensaMaxima;
+
 	}
 
 	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, int nivel, Objeto objeto, int experienciaActual) {
-
-		generarIVS();
+	public Pokemon(String nombre, ObjetoEquipable objeto, int experienciaActual) {
 		this.nombre = nombre;
-		this.nivel = nivel;
+		this.nivel = 100;
+		this.vitalidadActual = 1000;
+		this.ataqueMaxima = 410;
+		this.ataqueActual = ataqueMaxima;
 		this.objeto = objeto;
+		this.tipo = TipoPokemon.NORMAL;
 		this.experienciaActual = experienciaActual;
+		this.estaminaActual = 1000;
 		this.vitalidadActual = vitalidadMaxima;
 
 	}
@@ -243,11 +247,11 @@ public class Pokemon {
 		this.sexo = sexo;
 	}
 
-	public Tipo getTipo() {
+	public TipoPokemon getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Tipo tipo) {
+	public void setTipo(TipoPokemon tipo) {
 		this.tipo = tipo;
 	}
 
@@ -259,11 +263,11 @@ public class Pokemon {
 		this.estado = estado;
 	}
 
-	public Objeto getObjeto() {
+	public ObjetoEquipable getObjetoEquipable() {
 		return objeto;
 	}
 
-	public void setObjeto(Objeto objeto) {
+	public void setObjetoEquipable(ObjetoEquipable objeto) {
 		this.objeto = objeto;
 	}
 
@@ -311,25 +315,25 @@ public class Pokemon {
 			switch (this.objeto.getTipoObjeto()) {
 			case PESA:
 
-				this.ataqueMaxima = (int) (this.ataqueMaxima + (this.ataqueMaxima * 0.20));
-				this.defensaMaxima = (int) (this.defensaMaxima + (this.defensaMaxima * 0.20));
+				this.ataqueActual = (int) (this.ataqueActual + (this.ataqueActual * 0.20));
+				this.defensaActual = (int) (this.defensaActual + (this.defensaActual * 0.20));
 
-				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.20));
+				this.velocidadActual = (int) (this.velocidadActual - (this.velocidadActual * 0.20));
 				break;
 			case PLUMA:
 
-				this.velocidadMaxima = (int) (this.velocidadMaxima + (this.velocidadMaxima * 0.30));
+				this.velocidadActual = (int) (this.velocidadActual + (this.velocidadActual * 0.30));
 
-				this.defensaMaxima = (int) (this.defensaMaxima - (this.defensaMaxima * 0.20));
-				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima - (this.defensaEspecialMaxima * 0.20));
+				this.defensaActual = (int) (this.defensaActual - (this.defensaActual * 0.20));
+				this.defensaEspecialActual = (int) (this.defensaEspecialActual - (this.defensaEspecialActual * 0.20));
 				break;
 			case CHALECO:
 
-				this.defensaMaxima = (int) (this.defensaMaxima + (this.defensaMaxima * 0.20));
-				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima + (this.defensaEspecialMaxima * 0.20));
+				this.defensaActual = (int) (this.defensaActual + (this.defensaActual * 0.20));
+				this.defensaEspecialActual = (int) (this.defensaEspecialActual + (this.defensaEspecialActual * 0.20));
 
-				this.ataqueMaxima = (int) (this.ataqueMaxima - (this.ataqueMaxima * 0.15));
-				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.15));
+				this.ataqueActual = (int) (this.ataqueActual - (this.ataqueActual * 0.15));
+				this.velocidadActual = (int) (this.velocidadMaxima - (this.velocidadActual * 0.15));
 				break;
 			case BASTON:
 
@@ -348,6 +352,10 @@ public class Pokemon {
 		}
 
 	}
+
+	/**
+	 * 
+	 */
 
 	public void ponerEstado() {
 
@@ -396,6 +404,10 @@ public class Pokemon {
 		}
 
 	}
+
+	/**
+	 * 
+	 */
 
 	public void aplicarEstado() {
 
@@ -566,7 +578,26 @@ public class Pokemon {
 
 	}
 
-	public void atacarPokemon() {
+	public void atacarPokemon(int indiceAtaque, Pokemon rival) {
+
+		aplicarEfectoObjeto();
+
+		if (this.estaminaActual < this.movimientos[indiceAtaque].getCostoEstamina()) {
+			System.out.println(this.nombre + " no tiene suficiente estamina para atacar");
+			return;
+		} else {
+			System.out.println("!" + this.nombre + " uso " + this.movimientos[indiceAtaque].getNombre() + "¡");
+
+			this.estaminaActual = this.estaminaActual - this.movimientos[indiceAtaque].getCostoEstamina();
+
+			if (formulaDanio(indiceAtaque, rival) >= rival.getVitalidadActual()) {
+				rival.setVitalidadActual(0);
+			} else {
+				rival.setVitalidadActual(rival.getVitalidadActual() - formulaDanio(indiceAtaque, rival));
+			}
+
+			System.out.println("La vida de " + rival.getNombre() + " es de " + rival.getVitalidadActual());
+		}
 
 	}
 
@@ -581,9 +612,16 @@ public class Pokemon {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void recuperarEstadisticas() {
 
 		this.ataqueActual = this.ataqueMaxima;
+		this.defensaActual = this.defensaMaxima;
+		this.ataqueEspecialActual = this.ataqueEspecialMaxima;
+		this.defensaEspecialActual = this.defensaEspecialMaxima;
+		this.velocidadActual = this.velocidadMaxima;
 
 	}
 
@@ -599,21 +637,21 @@ public class Pokemon {
 	 */
 	private void generarIVS() {
 
-		this.vitalidadMaxima = (int) (Math.random() * (31 - 10)) + 10;
-		this.ataqueMaxima = (int) (Math.random() * (31 - 5)) + 5;
-		this.defensaMaxima = (int) (Math.random() * (31 - 5)) + 5;
-		this.ataqueEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
-		this.defensaEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
-		this.velocidadMaxima = (int) (Math.random() * (31 - 5)) + 5;
+//		this.vitalidadMaxima = (int) (Math.random() * (31 - 10)) + 10;
+//		this.ataqueMaxima = (int) (Math.random() * (31 - 5)) + 5;
+//		this.defensaMaxima = (int) (Math.random() * (31 - 5)) + 5;
+//		this.ataqueEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
+//		this.defensaEspecialMaxima = (int) (Math.random() * (31 - 5)) + 5;
+//		this.velocidadMaxima = (int) (Math.random() * (31 - 5)) + 5;
 
 		// Cosas de prueba en la main
-//		int factor = (int) ((int) nivel * 2.5);
-//		this.vitalidadMaxima = (int) (Math.random() * ((31 - 10)) + 10) + factor;
-//		this.ataque = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//		this.defensa = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//		this.ataqueEspecial = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//		this.defensaEspecial = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//		this.velocidad = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+		int factor = (int) ((int) this.nivel * 2.5);
+		this.vitalidadMaxima = (int) (Math.random() * ((31 - 10)) + 10) + factor;
+		this.ataqueMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+		this.defensaMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+		this.ataqueEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+		this.defensaEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+		this.velocidadMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
 	}
 
 	/**
@@ -642,18 +680,18 @@ public class Pokemon {
 	 * que hemos utilizado es especial, se coge la cantidad de defensa especial del
 	 * Pokémon rival.
 	 * 
-	 * @param indiceMovimiento es el numero de movimiento, de los movimientos
-	 *                         disponibles del pokemon del jugador
-	 * @param jugador          le pasamos el pokemon que esta atacando
+	 * @param indiceMovimiento es el indice del movimiento disponible del pokemon
+	 *                         del jugador
 	 * @param rival            el pokemon rival al que vamos atacar
 	 * 
 	 * @return nos devuelve el ataque en base a las estadisticas de los dos pokemon
 	 */
 
-	private int formulaDanio(int indiceMovimiento, Pokemon jugador, Pokemon rival) {
+	private int formulaDanio(int indiceMovimiento, Pokemon rival) {
 
+		Random random = new Random();
 		double B, E;
-		int V, N, A, D, P;
+		int V = 85, N, A, D, P;
 //		E = calcularEfectividad(movimiento[indiceMovimiento].getTipoMovimiento(), rival.tipo);
 
 		if (movimientos[indiceMovimiento].getTipoMovimiento() == this.tipo) {
@@ -662,13 +700,11 @@ public class Pokemon {
 			B = 1.0;
 		}
 
-		E = sacarEficacia(jugador.getTipo(), rival.getTipo());
-
-		V = (int) (Math.random() * 100 - 85) + 85;
+		E = sacarEficacia(this.tipo, rival.getTipo());
 
 		N = this.nivel;
 
-		P = movimientos[indiceMovimiento].getPotencia();
+		P = this.movimientos[indiceMovimiento].getPotencia();
 
 		if (movimientos[indiceMovimiento].getTipo() == TipoAtaque.FISICO) {
 			A = this.ataqueActual;
@@ -678,203 +714,9 @@ public class Pokemon {
 			D = rival.defensaEspecialActual;
 		}
 
-		int formula = (int) ((0.01 * B * E * V) * (((0.2 * N + 1) * A * P) / (25 * D)) + 2);
+		int formula = (int) (0.01 * B * E * V * ((0.2 * N + 1) * A * P / (25 * D)) + 2);
 
 		return formula;
-	}
-
-	/**
-	 * Tenemos un metodo en el cual le pasamos por parametros los tipo del pokemon
-	 * del jugador y del pokemon rival, para que luego con un switch tendremos todos
-	 * los tipos posibles y en el caso que coincida con el tipo del rival, entonces
-	 * nos devolveria el valor de efectividad para el calculo de la formula de daño
-	 * 
-	 * @param tipoMovimiento del pokemon del jugador
-	 * @param tipoRival      de movimiento del pokemon rival
-	 * @return nos devuelve el valor en double de la efectividad en base del pokemon
-	 *         del jugador y del pokemon rival
-	 */
-
-	private double calcularEfectividad(Tipo tipoMovimiento, Tipo tipoRival) {
-
-		// Cogemos de referencia la tabla de tipos de segunda generacion pero sin
-		// utilizar los tipos acero y siniestro para la tabla
-
-		double efectividad = 0;
-
-		switch (tipoMovimiento.getTipo()) {
-		case NORMAL:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 0.5;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FANTASMA) {
-				efectividad = 0.0;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case FUEGO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA || tipoRival.getTipo() == Tipo.TipoPokemon.HIELO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.AGUA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA || tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case AGUA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.AGUA || tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case PLANTA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.AGUA || tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR || tipoRival.getTipo() == Tipo.TipoPokemon.VENENO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case ELECTRICO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.AGUA || tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.ELECTRICO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 0.5;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA) {
-				efectividad = 0.0;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case HIELO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA || tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.AGUA || tipoRival.getTipo() == Tipo.TipoPokemon.HIELO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case LUCHA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.NORMAL || tipoRival.getTipo() == Tipo.TipoPokemon.HIELO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.VENENO || tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.PSIQUICO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO) {
-				efectividad = 0.5;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FANTASMA) {
-				efectividad = 0.0;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case VENENO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.VENENO || tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.FANTASMA) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case TIERRA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.ELECTRICO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.VENENO || tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO) {
-				efectividad = 0.5;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR) {
-				efectividad = 0.0;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case VOLADOR:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA || tipoRival.getTipo() == Tipo.TipoPokemon.LUCHA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.ELECTRICO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case PSIQUICO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.LUCHA || tipoRival.getTipo() == Tipo.TipoPokemon.VENENO) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.PSIQUICO) {
-				efectividad = 0.5;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FANTASMA) {
-				efectividad = 0.0;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case BICHO:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PLANTA || tipoRival.getTipo() == Tipo.TipoPokemon.PSIQUICO) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.LUCHA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.ROCA) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case ROCA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.FUEGO || tipoRival.getTipo() == Tipo.TipoPokemon.HIELO
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.VOLADOR
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.BICHO) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.LUCHA
-					|| tipoRival.getTipo() == Tipo.TipoPokemon.TIERRA) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-			break;
-		case FANTASMA:
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.PSIQUICO || tipoRival.getTipo() == Tipo.TipoPokemon.FANTASMA) {
-				efectividad = 2.0;
-			} else if (tipoRival.getTipo() == Tipo.TipoPokemon.NORMAL) {
-				efectividad = 0.5;
-			} else {
-				efectividad = 1.0;
-			}
-
-		case DRAGON:
-
-			if (tipoRival.getTipo() == Tipo.TipoPokemon.DRAGON) {
-				efectividad = 2.0;
-			} else {
-				efectividad = 1.0;
-			}
-
-		}
-
-		return efectividad;
 	}
 
 	/**
@@ -884,14 +726,14 @@ public class Pokemon {
 	 * objetivo para guardar el valor del matriz en una variable de tipo double y
 	 * despues devolverla con un return
 	 * 
-	 * @param atacante es el tipo del pokemon atacante
-	 * @param objetivo es el tipo del pokemon objetivo
+	 * @param tipoAtacante es el tipo del pokemon atacante
+	 * @param tipoRival    es el tipo del pokemon objetivo
 	 * @return nos devuelve el valor de la efecacia en double
 	 */
 
-	private double sacarEficacia(Tipo atacante, Tipo objetivo) {
-		int indiceAtacante = atacante.getTipo().getIndice();
-		int indiceObjetivo = objetivo.getTipo().getIndice();
+	private double sacarEficacia(TipoPokemon tipoAtacante, TipoPokemon tipoRival) {
+		int indiceAtacante = tipoAtacante.getIndice();
+		int indiceObjetivo = tipoRival.getIndice();
 		double eficacia = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
 
 		return eficacia;
@@ -899,11 +741,11 @@ public class Pokemon {
 
 	@Override
 	public String toString() {
-		return "Pokemon [nombre=" + nombre + ", mote=" + mote + ", vitalidadActual=" + vitalidadActual
-				+ ", vitalidadMaxima=" + vitalidadMaxima + ", ataque=" + ataqueMaxima + ", defensa=" + defensaMaxima
-				+ ", ataqueEspecial=" + ataqueEspecialMaxima + ", defensaEspecial=" + defensaEspecialMaxima
-				+ ", velocidad=" + velocidadMaxima + ", estaminaActual=" + estaminaActual + ", estaminaMaxima="
-				+ estaminaMaxima + ", nivel=" + nivel + ", fertilidad=" + fertilidad + ", sexo=" + sexo + "]";
+		return "Pokemon [nombre=" + nombre + ", nivel=" + nivel + " ,tipo=" + getTipo() + ", vitalidadActual="
+				+ vitalidadActual + ", vitalidadMaxima=" + vitalidadMaxima + ", ataque=" + ataqueMaxima + ", defensa="
+				+ defensaMaxima + ", ataqueEspecial=" + ataqueEspecialMaxima + ", defensaEspecial="
+				+ defensaEspecialMaxima + ", velocidad=" + velocidadMaxima + ", estaminaActual=" + estaminaActual
+				+ ", estaminaMaxima=" + estaminaMaxima + ", fertilidad=" + fertilidad + ", sexo=" + sexo + "]";
 	}
 
 }

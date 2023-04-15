@@ -1,30 +1,34 @@
 package opcionesEntrenador;
 
 import java.util.ArrayList;
-import entrenador.Objeto;
-import pokemon.Pokemon;
+import tienda.ObjetoConsumible;
+import tienda.ObjetoEquipable;
 
 public class Bolsa {
 
 	private int cantidadObjetos;
 	private String nombre;
 	private String descripcion;
-	private ArrayList<Objeto> objeto;
+	private ArrayList<ObjetoEquipable> objetoEquipable;
+	private ArrayList<ObjetoConsumible> objetoConsumible;
 
 	public Bolsa() {
 		super();
 		this.cantidadObjetos = 0;
 		this.nombre = "";
 		this.descripcion = "";
-		this.objeto = new ArrayList<Objeto>();
+		this.objetoEquipable = new ArrayList<ObjetoEquipable>();
+		this.objetoConsumible = new ArrayList<ObjetoConsumible>();
 	}
 
-	public Bolsa(int cantidadObjetos, String nombre, String descripcion, ArrayList<Objeto> objeto) {
+	public Bolsa(int cantidadObjetos, String nombre, String descripcion, ArrayList<ObjetoEquipable> objetoEquipable,
+			ArrayList<ObjetoConsumible> objetoConsumible) {
 		super();
 		this.cantidadObjetos = cantidadObjetos;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.objeto = objeto;
+		this.objetoEquipable = objetoEquipable;
+		this.objetoConsumible = objetoConsumible;
 	}
 
 	public int getCantidadObjetos() {
@@ -51,15 +55,25 @@ public class Bolsa {
 		this.descripcion = descripcion;
 	}
 
-	public ArrayList<Objeto> getObjeto() {
-		return objeto;
+	public ArrayList<ObjetoEquipable> getObjetoEquipable() {
+		return objetoEquipable;
 	}
-	
+
+	public void setObjetoEquipable(ArrayList<ObjetoEquipable> objetoEquipable) {
+		this.objetoEquipable = objetoEquipable;
+	}
+
+	public ArrayList<ObjetoConsumible> getObjetoConsumible() {
+		return objetoConsumible;
+	}
+
+	public void setObjetoConsumible(ArrayList<ObjetoConsumible> objetoConsumible) {
+		this.objetoConsumible = objetoConsumible;
+	}
+
 	// Métodos equipar y quitar Objeto.
-	
-	 public void agregarObjeto(Objeto objeto) {
-	        this.objeto.add(objeto);
-	    }
-	
-	
+	public void agregarObjeto(ObjetoEquipable objeto) {
+		this.objetoEquipable.add(objeto);
+	}
+
 }

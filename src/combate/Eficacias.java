@@ -13,7 +13,7 @@ public class Eficacias {
 		private String mensaje;
 		private double eficacia;
 
-		EficaciasPokemon(String mensaje, double eficacia) {
+		private EficaciasPokemon(String mensaje, double eficacia) {
 			this.mensaje = mensaje;
 			this.eficacia = eficacia;
 			

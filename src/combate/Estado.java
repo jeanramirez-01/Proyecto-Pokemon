@@ -31,7 +31,8 @@ public class Estado {
 //		ENAMORADO, 
 //		ATRAPADO, 
 //		MALDITO, 
-		DRENADORAS("Drenadoras", 10), DORMIDO("Dormido", 3), // No atacar
+		DRENADORAS("Drenadoras", 10), 
+		DORMIDO("Dormido", 3), // No atacar
 //		CANTO_MORTAL, 
 //		CENTRO_DE_ATENCION, 
 		AMEDRENTADO("Amedrentado", 1);

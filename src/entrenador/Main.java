@@ -6,7 +6,7 @@ import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
 import opcionesEntrenador.*;
 import pokemon.*;
-import pokemon.Tipo.TipoPokemon;
+import pokemon.TipoPokemon;
 import opcionesEntrenador.Entrenamiento.TipoEntrenamiento;
 import tienda.ObjetoEquipable;
 import tienda.ObjetoEquipable.TipoObjeto;
@@ -23,22 +23,21 @@ public class Main {
 		ObjetoEquipable obj4 = new ObjetoEquipable(TipoObjeto.BASTON);
 		Entrenamiento pesao = new Entrenamiento(TipoEntrenamiento.PESADO);
 
-		Tipo normal = new Tipo(TipoPokemon.NORMAL);
+		TipoPokemon normal = TipoPokemon.NORMAL;
 		TipoAtaque fisico = TipoAtaque.FISICO;
 
-		Movimiento destructor = new Movimiento("Destructor", normal, fisico, 40);
+		Movimiento destructor = new Movimiento("Destructor", normal, fisico, 150);
 
 		Movimiento[] setAtaques = new Movimiento[4];
 
-		setAtaques[1] = destructor;
-	
+		setAtaques[0] = destructor;
 
-		Pokemon pk1 = new Pokemon("Pokachu", 1, obj1, 8000);
-		Pokemon pk2 = new Pokemon("Charmander", 20, obj2, 8000);
-		Pokemon pk3 = new Pokemon("Squirtle", 20, obj3, 8000);
-		Pokemon pk4 = new Pokemon("Bulbasur", 20, obj4, 8000);
-		Pokemon pk5 = new Pokemon("Dragonite", 100, null, 8000);
-		Pokemon pk6 = new Pokemon("Mew", 40, obj1, 8000);
+		Pokemon pk1 = new Pokemon("Pokachu", null, 8000);
+		Pokemon pk2 = new Pokemon("Charmander", null, 8000);
+		Pokemon pk3 = new Pokemon("Squirtle", obj3, 8000);
+		Pokemon pk4 = new Pokemon("Bulbasur", obj4, 8000);
+		Pokemon pk5 = new Pokemon("Dragonite", null, 8000);
+		Pokemon pk6 = new Pokemon("Mew", obj1, 8000);
 
 		Pokemon[] equipo = new Pokemon[6];
 
@@ -50,9 +49,11 @@ public class Main {
 		equipo[5] = pk6;
 
 		pk1.setMovimientos(setAtaques);
-		
+
+		pk2.setMovimientos(setAtaques);
+
 		Bolsa bolsa = new Bolsa();
-		PcPokemon pc = new PcPokemon();
+		Pokemon[][] pc = new Pokemon[12][30];
 
 		Entrenador jugador = new Entrenador(equipo, "JelooX", 3000, bolsa, pc);
 		jugador.setEquipo(equipo);
@@ -103,31 +104,41 @@ public class Main {
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
 
-		System.out.println(pk1.toString());
-		System.out.println(pk2.toString());
-		System.out.println(pk3.toString());
-		System.out.println(pk4.toString());
-		System.out.println(pk5.toString());
-		System.out.println(pk6.toString());
-
-		System.out.println();
-		jugador.curarEquipo();
-
-		pk1.subirNivel();
-		pk2.subirNivel();
-		pk3.subirNivel();
-		pk4.subirNivel();
-		pk5.subirNivel();
-		pk6.subirNivel();
-
-		System.out.println(pk1.toString());
-		System.out.println(pk2.toString());
-		System.out.println(pk3.toString());
-		System.out.println(pk4.toString());
-		System.out.println(pk5.toString());
-		System.out.println(pk6.toString());
+//		System.out.println(pk1.toString());
+//		System.out.println(pk2.toString());
+//		System.out.println(pk3.toString());
+//		System.out.println(pk4.toString());
+//		System.out.println(pk5.toString());
+//		System.out.println(pk6.toString());
+//
+//		System.out.println();
+//		jugador.curarEquipo();
+//
+//		pk1.subirNivel();
+//		pk2.subirNivel();
+//		pk3.subirNivel();
+//		pk4.subirNivel();
+//		pk5.subirNivel();
+//		pk6.subirNivel();
+//
+//		System.out.println(pk1.toString());
+//		System.out.println(pk2.toString());
+//		System.out.println(pk3.toString());
+//		System.out.println(pk4.toString());
+//		System.out.println(pk5.toString());
+//		System.out.println(pk6.toString());
 
 //		System.out.println(destructor.toString());
+
+		ListaPokemonRandom lista = new ListaPokemonRandom();
+		Pokemon pkk2 = lista.generarPokemonRandom();
+		System.out.println(pkk2.toString());
+
+		pk1.atacarPokemon(0, pkk2);
+
+		System.out.println(pk2.toString());
+
+		System.out.println(pkk2.toString());
 
 	}
 
