@@ -12,7 +12,7 @@ public class Entrenador {
 	private String nombre;
 	private int pokedolares;
 	private Bolsa bolsa;
-	private PcPokemon caja;
+	private Pokemon [][] caja = new Pokemon [12][30];
 
 	public Entrenador() {
 		super();
@@ -22,7 +22,7 @@ public class Entrenador {
 		this.bolsa = new Bolsa();
 	}
 
-	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, Bolsa bolsa, PcPokemon caja) {
+	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja) {
 		super();
 		this.equipo = equipo;
 		this.nombre = nombre;
@@ -63,11 +63,11 @@ public class Entrenador {
 		this.bolsa = bolsa;
 	}
 
-	public PcPokemon getCaja() {
+	public Pokemon[][] getCaja() {
 		return caja;
 	}
 
-	public void setCaja(PcPokemon caja) {
+	public void setCaja(Pokemon[][] caja) {
 		this.caja = caja;
 	}
 
@@ -121,7 +121,7 @@ public class Entrenador {
 		// Verificar que el índice destino u el origen sea válido
 		if ((indiceDestino < 0 || indiceDestino >= this.equipo.length)
 				|| (indiceOrigen < 0 || indiceOrigen >= this.equipo.length)) {
-			System.out.println("El índice de origen o destino no es inválido.");
+			System.out.println("El índice de origen o destino no es válido.");
 			return;
 		} else if (this.equipo[indiceOrigen] == null) { // Verificar que haya un pokemon en el índice de origen
 			System.out.println("No hay un pokemon en el índice de origen.");
@@ -140,17 +140,36 @@ public class Entrenador {
 
 	}
 
-	public void meterPokemonCaja(int indicePokemon) {
+	public void meterPokemonCaja(int indicePokemon, int indicePokemonCaja) {
 
-		if (indicePokemon < 0 || indicePokemon >= this.equipo.length)
-			System.out.println("El pokemon seleccionado no es valido");
-//		}else if (condition) {
-//			
-//		}
+		if (indicePokemon < 0 || indicePokemon >= this.equipo.length) {
+			System.out.println("El pokemon seleccionado no es válido");
+		}
+
+		else if (this.caja.length == 30){
+			System.out.println("La caja está llena.");
+			
+		}
+		
 
 	}
 
-	public void sacarPokemonCaja(int indicePokemon) {
+	public void sacarPokemonCaja(int indicePokemon, int indicePokemonEquipo) {
+		
+		if (this.caja.length == 0) {
+			System.out.println("La caja está vacía.");
+		}
+		
+		else if (this.equipo.length == 6) {
+			System.out.println("El equipo está lleno.");
+			
+		}
+		
+		else if (indicePokemon < 0 || indicePokemon >= this.caja.length) {
+			System.out.println("El pokemon seleccionado no es valido");
+		}
+		
+		
 
 	}
 

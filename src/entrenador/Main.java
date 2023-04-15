@@ -8,7 +8,8 @@ import opcionesEntrenador.*;
 import pokemon.*;
 import pokemon.Tipo.TipoPokemon;
 import opcionesEntrenador.Entrenamiento.TipoEntrenamiento;
-import entrenador.Objeto.TipoObjeto;
+import tienda.ObjetoEquipable;
+import tienda.ObjetoEquipable.TipoObjeto;
 
 public class Main {
 
@@ -16,10 +17,10 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 
-		Objeto obj1 = new Objeto(TipoObjeto.PESA);
-		Objeto obj2 = new Objeto(TipoObjeto.PLUMA);
-		Objeto obj3 = new Objeto(TipoObjeto.CHALECO);
-		Objeto obj4 = new Objeto(TipoObjeto.BASTON);
+		ObjetoEquipable obj1 = new ObjetoEquipable(TipoObjeto.PESA);
+		ObjetoEquipable obj2 = new ObjetoEquipable(TipoObjeto.PLUMA);
+		ObjetoEquipable obj3 = new ObjetoEquipable(TipoObjeto.CHALECO);
+		ObjetoEquipable obj4 = new ObjetoEquipable(TipoObjeto.BASTON);
 		Entrenamiento pesao = new Entrenamiento(TipoEntrenamiento.PESADO);
 
 		Tipo normal = new Tipo(TipoPokemon.NORMAL);
