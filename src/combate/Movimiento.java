@@ -142,10 +142,4 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
-	@Override
-	public String toString() {
-		return "Movimiento [Nombre=" + nombre + ", Tipo de Movimiento=" + tipoMovimiento.getTipo() + ", Tipo de Ataque="
-				+ tipoAtaque + ", Potencia=" + potencia + ", Costo de la estamina=" + costoEstamina + "]";
-	}
-
 }

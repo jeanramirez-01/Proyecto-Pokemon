@@ -2,7 +2,6 @@ package pokemon;
 
 import java.util.Random;
 import combate.Eficacias;
-import combate.Eficacias.EficaciasPokemon;
 import combate.Estado;
 import combate.Estado.EstadoPersistente;
 import combate.Estado.EstadoTemporal;
@@ -10,7 +9,6 @@ import combate.Estado.OtrosEstados;
 import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
 import tienda.ObjetoEquipable;
-import pokemon.TipoPokemon;
 
 public class Pokemon {
 
@@ -62,8 +60,9 @@ public class Pokemon {
 
 	public Pokemon(String nombre) {
 
+		generarIVS();
 		this.nombre = nombre;
-		this.tipo = TipoPokemon.ROCA;
+		this.tipo = TipoPokemon.AGUA;
 		this.vitalidadActual = 1000;
 		this.estaminaMaxima = 150;
 		this.nivel = 100;
@@ -74,13 +73,14 @@ public class Pokemon {
 
 	// Constructor de prueba para la clase main
 	public Pokemon(String nombre, ObjetoEquipable objeto, int experienciaActual) {
+		generarIVS();
 		this.nombre = nombre;
 		this.nivel = 100;
 		this.vitalidadActual = 1000;
 		this.ataqueMaxima = 410;
 		this.ataqueActual = ataqueMaxima;
 		this.objeto = objeto;
-		this.tipo = TipoPokemon.NORMAL;
+		this.tipo = TipoPokemon.ELECTRICO;
 		this.experienciaActual = experienciaActual;
 		this.estaminaActual = 1000;
 		this.vitalidadActual = vitalidadMaxima;
@@ -333,19 +333,19 @@ public class Pokemon {
 				this.defensaEspecialActual = (int) (this.defensaEspecialActual + (this.defensaEspecialActual * 0.20));
 
 				this.ataqueActual = (int) (this.ataqueActual - (this.ataqueActual * 0.15));
-				this.velocidadActual = (int) (this.velocidadMaxima - (this.velocidadActual * 0.15));
+				this.velocidadActual = (int) (this.velocidadActual - (this.velocidadActual * 0.15));
 				break;
 			case BASTON:
 
-				this.estaminaMaxima = (int) (this.estaminaMaxima + (this.estaminaMaxima * 0.20));
+				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaActual * 0.20));
 
-				this.velocidadMaxima = (int) (this.velocidadMaxima - (this.velocidadMaxima * 0.15));
+				this.velocidadActual = (int) (this.velocidadActual - (this.velocidadActual * 0.15));
 				break;
 			case PILAS:
 
 				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaMaxima * 0.50));
 
-				this.defensaEspecialMaxima = (int) (this.defensaEspecialMaxima - (this.defensaEspecialMaxima * 0.30));
+				this.defensaEspecialActual = (int) (this.defensaEspecialActual - (this.defensaEspecialActual * 0.30));
 				break;
 			}
 
@@ -355,12 +355,15 @@ public class Pokemon {
 
 	/**
 	 * 
+	 * Ejemplo de metodo en el cual pone el estado del pokemon dependiendo del
+	 * estado del movimiento del pokemon. En este caso primero declaramos
+	 * 
 	 */
 
 	public void ponerEstado() {
 
-		EstadoPersistente persistente = null;
-		EstadoTemporal temporal = null;
+		EstadoPersistente persistente;
+		EstadoTemporal temporal;
 
 		boolean estaPersistente = this.estado.getPersistente() != null;
 		if (estaPersistente && this.estado.getPersistente() != EstadoPersistente.NORMAL) {
@@ -429,7 +432,7 @@ public class Pokemon {
 			}
 
 			if (!estadoAplicado) {
-				this.velocidadMaxima = (int) this.velocidadMaxima - (this.velocidadMaxima / 2);
+				this.velocidadActual = (int) this.velocidadActual - (this.velocidadActual / 2);
 				estadoAplicado = true;
 			}
 			break;
@@ -578,9 +581,14 @@ public class Pokemon {
 
 	}
 
-	public void atacarPokemon(int indiceAtaque, Pokemon rival) {
+	/**
+	 * 
+	 * 
+	 * @param indiceAtaque
+	 * @param rival
+	 */
 
-		aplicarEfectoObjeto();
+	public void atacarPokemon(int indiceAtaque, Pokemon rival) {
 
 		if (this.estaminaActual < this.movimientos[indiceAtaque].getCostoEstamina()) {
 			System.out.println(this.nombre + " no tiene suficiente estamina para atacar");
@@ -592,11 +600,18 @@ public class Pokemon {
 
 			if (formulaDanio(indiceAtaque, rival) >= rival.getVitalidadActual()) {
 				rival.setVitalidadActual(0);
+				rival.setEstado(new Estado(OtrosEstados.DEBILITADO));
+				System.out.println(rival.getNombre() + " se ha debilitado");
 			} else {
 				rival.setVitalidadActual(rival.getVitalidadActual() - formulaDanio(indiceAtaque, rival));
 			}
 
-			System.out.println("La vida de " + rival.getNombre() + " es de " + rival.getVitalidadActual());
+			if (formulaDanio(indiceAtaque, rival) == 0) {
+				System.out.println(rival.getNombre() + " no le afecta el ataque");
+			} else {
+				System.out.println("La vida de " + rival.getNombre() + " es de " + rival.getVitalidadActual());
+			}
+
 		}
 
 	}
@@ -609,7 +624,7 @@ public class Pokemon {
 
 		this.vitalidadActual = this.vitalidadMaxima;
 		this.estaminaActual = this.estaminaMaxima;
-
+		recuperarEstadisticas();
 	}
 
 	/**
@@ -652,6 +667,13 @@ public class Pokemon {
 		this.ataqueEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
 		this.defensaEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
 		this.velocidadMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
+
+		this.vitalidadActual = this.vitalidadMaxima;
+		this.ataqueActual = this.ataqueMaxima;
+		this.defensaActual = this.defensaMaxima;
+		this.ataqueEspecialActual = this.ataqueEspecialMaxima;
+		this.defensaEspecialActual = this.defensaEspecialMaxima;
+
 	}
 
 	/**
@@ -684,15 +706,17 @@ public class Pokemon {
 	 *                         del jugador
 	 * @param rival            el pokemon rival al que vamos atacar
 	 * 
-	 * @return nos devuelve el ataque en base a las estadisticas de los dos pokemon
+	 * @return nos devuelve el ataque en base a la s estadisticas de los dos pokemon
 	 */
 
 	private int formulaDanio(int indiceMovimiento, Pokemon rival) {
 
 		Random random = new Random();
+
 		double B, E;
-		int V = 85, N, A, D, P;
-//		E = calcularEfectividad(movimiento[indiceMovimiento].getTipoMovimiento(), rival.tipo);
+		int V, N, A, D, P;
+
+		V = random.nextInt(16) + 85;
 
 		if (movimientos[indiceMovimiento].getTipoMovimiento() == this.tipo) {
 			B = 1.5;
@@ -714,7 +738,7 @@ public class Pokemon {
 			D = rival.defensaEspecialActual;
 		}
 
-		int formula = (int) (0.01 * B * E * V * ((0.2 * N + 1) * A * P / (25 * D)) + 2);
+		int formula = (int) (0.01 * B * E * V * (((0.2 * N + 1) * A * P / (25 * D)) + 2));
 
 		return formula;
 	}
@@ -734,9 +758,8 @@ public class Pokemon {
 	private double sacarEficacia(TipoPokemon tipoAtacante, TipoPokemon tipoRival) {
 		int indiceAtacante = tipoAtacante.getIndice();
 		int indiceObjetivo = tipoRival.getIndice();
-		double eficacia = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
 
-		return eficacia;
+		return Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
 	}
 
 	@Override

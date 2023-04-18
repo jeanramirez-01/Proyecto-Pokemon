@@ -1,6 +1,5 @@
 package combate;
 
-
 public class Eficacias {
 
 	public enum EficaciasPokemon {
@@ -12,7 +11,7 @@ public class Eficacias {
 
 		private String mensaje;
 		private double eficacia;
-
+		
 		private EficaciasPokemon(String mensaje, double eficacia) {
 			this.mensaje = mensaje;
 			this.eficacia = eficacia;
@@ -50,6 +49,9 @@ public class Eficacias {
 	
 	};
 	
-	
+	public static final double[][] EFICACIAS_DOBLE= {
+			
+			
+	};
 	
 }

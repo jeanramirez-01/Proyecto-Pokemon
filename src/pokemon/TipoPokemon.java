@@ -28,9 +28,6 @@ package pokemon;
 			return indice;
 		}
 
-		public TipoPokemon getTipo() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 	}
 

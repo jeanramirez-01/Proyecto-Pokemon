@@ -15,6 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		
 		Scanner sc = new Scanner(System.in);
 
 		ObjetoEquipable obj1 = new ObjetoEquipable(TipoObjeto.PESA);
@@ -23,7 +24,7 @@ public class Main {
 		ObjetoEquipable obj4 = new ObjetoEquipable(TipoObjeto.BASTON);
 		Entrenamiento pesao = new Entrenamiento(TipoEntrenamiento.PESADO);
 
-		TipoPokemon normal = TipoPokemon.NORMAL;
+		TipoPokemon normal = TipoPokemon.ELECTRICO;
 		TipoAtaque fisico = TipoAtaque.FISICO;
 
 		Movimiento destructor = new Movimiento("Destructor", normal, fisico, 150);
