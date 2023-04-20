@@ -1,17 +1,18 @@
 package entrenador;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import opcionesEntrenador.Bolsa;
+
 import opcionesEntrenador.Entrenamiento;
-import opcionesEntrenador.PcPokemon;
 import pokemon.Pokemon;
+import tienda.Objeto;
 
 public class Entrenador {
 
 	private Pokemon[] equipo;
 	private String nombre;
 	private int pokedolares;
-	private Bolsa bolsa;
+	private ArrayList <Objeto> bolsa;
 	private Pokemon[][] caja;
 
 	public Entrenador() {
@@ -19,10 +20,10 @@ public class Entrenador {
 		this.equipo = new Pokemon[6];
 		this.nombre = "";
 		this.pokedolares = (int) (Math.random() * 1000 - 800) + 800;
-		this.bolsa = new Bolsa();
+		this.bolsa = new ArrayList<>();
 	}
 
-	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja) {
+	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, ArrayList<Objeto> bolsa, Pokemon[][] caja) {
 		super();
 		this.equipo = equipo;
 		this.nombre = nombre;
@@ -55,11 +56,11 @@ public class Entrenador {
 		this.pokedolares = pokedolares;
 	}
 
-	public Bolsa getBolsa() {
+	public ArrayList<Objeto> getBolsa() {
 		return bolsa;
 	}
 
-	public void setBolsa(Bolsa bolsa) {
+	public void setBolsa(ArrayList<Objeto> bolsa) {
 		this.bolsa = bolsa;
 	}
 
@@ -78,6 +79,11 @@ public class Entrenador {
 	}
 
 	// Metodos de entrenador--------------------------------------------------------
+
+	/*
+	 *
+	 */
+
 
 	/**
 	 * Metodo de aplicar el efecto del objeto de cada pokemon del equipo del
@@ -299,5 +305,16 @@ public class Entrenador {
 				+ this.equipo[indicePokemon].getNombre() + ".");
 		System.out.println(this.equipo[indicePokemon].getNombre() + " ha aumentado sus estadísticas.");
 	}
+
+
+	/*
+	*
+	*
+	* */
+	public void capturar(){
+
+	}
+
+
 
 }

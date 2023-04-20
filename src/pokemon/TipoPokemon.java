@@ -1,6 +1,6 @@
 package pokemon;
-	
-	public enum TipoPokemon {
+
+public enum TipoPokemon {
 		
 		AGUA (0),
 		BICHO (1),
@@ -18,7 +18,7 @@ package pokemon;
 		VENENO (13),
 		VOLADOR(14);
 
-		private int indice;
+		private final int indice;
 
 		private TipoPokemon(int indice) {
 			this.indice = indice;
@@ -28,6 +28,5 @@ package pokemon;
 			return indice;
 		}
 
-		
-	}
+}
 

@@ -37,6 +37,7 @@ public class Movimiento {
 		this.tipoAtaque = tipoAtaque;
 		this.potencia = potenciaAtaque;
 		this.costoEstamina = potenciaAtaque / 2;
+
 	}
 
 	// Constructor para movimientos de Estado persistente

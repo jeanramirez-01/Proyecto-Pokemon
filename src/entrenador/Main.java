@@ -1,15 +1,15 @@
 package entrenador;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
 import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
 import opcionesEntrenador.*;
 import pokemon.*;
 import pokemon.TipoPokemon;
 import opcionesEntrenador.Entrenamiento.TipoEntrenamiento;
-import tienda.ObjetoEquipable;
-import tienda.ObjetoEquipable.TipoObjeto;
+import tienda.Objeto;
+import tienda.Objeto.TipoObjeto;
 
 public class Main {
 
@@ -18,22 +18,21 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 
-		ObjetoEquipable obj1 = new ObjetoEquipable(TipoObjeto.PESA);
-		ObjetoEquipable obj2 = new ObjetoEquipable(TipoObjeto.PLUMA);
-		ObjetoEquipable obj3 = new ObjetoEquipable(TipoObjeto.CHALECO);
-		ObjetoEquipable obj4 = new ObjetoEquipable(TipoObjeto.BASTON);
+		Objeto obj1 = new Objeto(TipoObjeto.PESA);
+		Objeto obj2 = new Objeto(TipoObjeto.PLUMA);
+		Objeto obj3 = new Objeto(TipoObjeto.CHALECO);
+		Objeto obj4 = new Objeto(TipoObjeto.BASTON);
 		Entrenamiento pesao = new Entrenamiento(TipoEntrenamiento.PESADO);
 
-		TipoPokemon normal = TipoPokemon.ELECTRICO;
 		TipoAtaque fisico = TipoAtaque.FISICO;
 
-		Movimiento destructor = new Movimiento("Destructor", normal, fisico, 150);
+		Movimiento destructor = new Movimiento("Pistola Agua", TipoPokemon.AGUA, TipoAtaque.FISICO, 40);
 
 		Movimiento[] setAtaques = new Movimiento[4];
 
 		setAtaques[0] = destructor;
 
-		Pokemon pk1 = new Pokemon("Pokachu", null, 8000);
+		Pokemon pk1 = new Pokemon("Pokachu", obj1, 8000);
 		Pokemon pk2 = new Pokemon("Charmander", null, 8000);
 		Pokemon pk3 = new Pokemon("Squirtle", obj3, 8000);
 		Pokemon pk4 = new Pokemon("Bulbasur", obj4, 8000);
@@ -53,9 +52,10 @@ public class Main {
 
 		pk2.setMovimientos(setAtaques);
 
-		Bolsa bolsa = new Bolsa();
 		Pokemon[][] pc = new Pokemon[12][30];
 
+		ArrayList<Objeto> bolsa = null;
+		
 		Entrenador jugador = new Entrenador(equipo, "JelooX", 3000, bolsa, pc);
 		jugador.setEquipo(equipo);
 
@@ -65,10 +65,10 @@ public class Main {
 //		System.out.println(pk4.toString());
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
-//		System.out.println(
-//				"El objeto es de tipo " + obj1.getTipo() + " y su descripción es: " + obj1.getTipo().getDescripcion());
+		System.out.println(
+				"El objeto es de tipo " + obj1.getTipoObjeto() + " y su descripción es: " + obj1.getTipoObjeto().getDescripcion());
 //
-//		jugador.aplicarEfectoObjetoEquipoPokemon();
+		jugador.aplicarEfectoObjetoEquipoPokemon();
 //		System.out.println(pk1.toString());
 //		System.out.println(pk2.toString());
 //		System.out.println(pk3.toString());
@@ -105,31 +105,31 @@ public class Main {
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
 
-//		System.out.println(pk1.toString());
-//		System.out.println(pk2.toString());
-//		System.out.println(pk3.toString());
-//		System.out.println(pk4.toString());
-//		System.out.println(pk5.toString());
-//		System.out.println(pk6.toString());
-//
-//		System.out.println();
-//		jugador.curarEquipo();
-//
-//		pk1.subirNivel();
-//		pk2.subirNivel();
-//		pk3.subirNivel();
-//		pk4.subirNivel();
-//		pk5.subirNivel();
-//		pk6.subirNivel();
-//
-//		System.out.println(pk1.toString());
-//		System.out.println(pk2.toString());
-//		System.out.println(pk3.toString());
-//		System.out.println(pk4.toString());
-//		System.out.println(pk5.toString());
-//		System.out.println(pk6.toString());
+		/*System.out.println(pk1.toString());
+		System.out.println(pk2.toString());
+		System.out.println(pk3.toString());
+		System.out.println(pk4.toString());
+		System.out.println(pk5.toString());
+		System.out.println(pk6.toString());
 
-//		System.out.println(destructor.toString());
+		System.out.println();
+		jugador.curarEquipo();
+
+		pk1.subirNivel();
+		pk2.subirNivel();
+		pk3.subirNivel();
+		pk4.subirNivel();
+		pk5.subirNivel();
+		pk6.subirNivel();
+
+		System.out.println(pk1.toString());
+		System.out.println(pk2.toString());
+		System.out.println(pk3.toString());
+		System.out.println(pk4.toString());
+		System.out.println(pk5.toString());
+		System.out.println(pk6.toString());
+
+		System.out.println(destructor.toString());*/
 
 		ListaPokemonRandom lista = new ListaPokemonRandom();
 		Pokemon pkk2 = lista.generarPokemonRandom();
