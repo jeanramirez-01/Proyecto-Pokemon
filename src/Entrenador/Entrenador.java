@@ -3,16 +3,16 @@ package entrenador;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import opcionesEntrenador.Bolsa;
 import opcionesEntrenador.Entrenamiento;
 import pokemon.Pokemon;
-import tienda.Objeto;
 
 public class Entrenador {
 
 	private Pokemon[] equipo;
 	private String nombre;
 	private int pokedolares;
-	private ArrayList <Objeto> bolsa;
+	private Bolsa bolsa;
 	private Pokemon[][] caja;
 
 	public Entrenador() {
@@ -20,10 +20,10 @@ public class Entrenador {
 		this.equipo = new Pokemon[6];
 		this.nombre = "";
 		this.pokedolares = (int) (Math.random() * 1000 - 800) + 800;
-		this.bolsa = new ArrayList<>();
+		this.bolsa = new Bolsa();
 	}
 
-	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, ArrayList<Objeto> bolsa, Pokemon[][] caja) {
+	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja) {
 		super();
 		this.equipo = equipo;
 		this.nombre = nombre;
@@ -56,11 +56,11 @@ public class Entrenador {
 		this.pokedolares = pokedolares;
 	}
 
-	public ArrayList<Objeto> getBolsa() {
+	public Bolsa getBolsa() {
 		return bolsa;
 	}
 
-	public void setBolsa(ArrayList<Objeto> bolsa) {
+	public void setBolsa(Bolsa bolsa) {
 		this.bolsa = bolsa;
 	}
 
@@ -83,7 +83,6 @@ public class Entrenador {
 	/*
 	 *
 	 */
-
 
 	/**
 	 * Metodo de aplicar el efecto del objeto de cada pokemon del equipo del
@@ -150,19 +149,27 @@ public class Entrenador {
 
 	}
 
+	/**
+	 * 
+	 * @param indicePokemon
+	 * @param indicePokemonCaja
+	 */
 	public void meterPokemonCaja(int indicePokemon, int indicePokemonCaja) {
 
 		if (indicePokemon < 0 || indicePokemon >= this.equipo.length) {
 			System.out.println("El pokemon seleccionado no es válido");
-		}
-
-		else if (this.caja.length == 30) {
+		} else if (this.caja.length == 30) {
 			System.out.println("La caja está llena.");
-
 		}
-
+		
 	}
 
+	/**
+	 * 
+	 * @param indicePokemonCaja
+	 * @param indiceEspacioPokemonEquipo
+	 */
+	
 	public void sacarPokemonCaja(int indicePokemonCaja, int indiceEspacioPokemonEquipo) {
 
 		for (int i = 0; i < caja.length; i++) {
@@ -306,15 +313,12 @@ public class Entrenador {
 		System.out.println(this.equipo[indicePokemon].getNombre() + " ha aumentado sus estadísticas.");
 	}
 
-
-	/*
-	*
-	*
-	* */
-	public void capturar(){
-
+	/**
+	 * 
+	 */
+	public void capturar() {
+		int indice = 0;
+		bolsa.quitarObjeto(equipo[indice]);
 	}
-
-
 
 }

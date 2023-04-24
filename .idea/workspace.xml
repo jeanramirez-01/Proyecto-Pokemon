@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7041aa64-fe42-4d4c-9179-a848f3fdfa97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProyectoPokemon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/pokemon/Pokemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/pokemon/Pokemon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entrenador/Entrenador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entrenador/Entrenador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combate/Eficacias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combate/Eficacias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combate/Movimiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combate/Movimiento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entrenador/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrenador/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Bolsa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/CajaPokemon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/PcPokemon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pokemon/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pokemon/Pokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pokemon/TipoPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pokemon/TipoPokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tienda/ObjetoConsumible.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tienda/ObjetoEquipable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +89,7 @@
       <workItem from="1681886441193" duration="4090000" />
       <workItem from="1681890584944" duration="11486000" />
       <workItem from="1681906783168" duration="19000" />
-      <workItem from="1681973046166" duration="10260000" />
+      <workItem from="1681973046166" duration="10337000" />
     </task>
     <servers />
   </component>

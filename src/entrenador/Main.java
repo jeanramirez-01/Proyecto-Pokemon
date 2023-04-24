@@ -15,13 +15,18 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		
 		Scanner sc = new Scanner(System.in);
 
 		Objeto obj1 = new Objeto(TipoObjeto.PESA);
 		Objeto obj2 = new Objeto(TipoObjeto.PLUMA);
 		Objeto obj3 = new Objeto(TipoObjeto.CHALECO);
 		Objeto obj4 = new Objeto(TipoObjeto.BASTON);
+
+		Objeto obj5 = new Objeto(TipoObjeto.ANTIHIELO);
+		Objeto obj6 = new Objeto(TipoObjeto.POCION);
+
+		Objeto obj7 = new Objeto(TipoObjeto.POKE_BALL);
+
 		Entrenamiento pesao = new Entrenamiento(TipoEntrenamiento.PESADO);
 
 		TipoAtaque fisico = TipoAtaque.FISICO;
@@ -54,8 +59,14 @@ public class Main {
 
 		Pokemon[][] pc = new Pokemon[12][30];
 
-		ArrayList<Objeto> bolsa = null;
+		ArrayList<Objeto> objetos = new ArrayList<>();
+
+		objetos.add(obj7);
+		objetos.add(obj6);
+		objetos.add(obj1);
 		
+		Bolsa bolsa = new Bolsa(objetos);
+
 		Entrenador jugador = new Entrenador(equipo, "JelooX", 3000, bolsa, pc);
 		jugador.setEquipo(equipo);
 
@@ -65,8 +76,8 @@ public class Main {
 //		System.out.println(pk4.toString());
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
-		System.out.println(
-				"El objeto es de tipo " + obj1.getTipoObjeto() + " y su descripción es: " + obj1.getTipoObjeto().getDescripcion());
+		System.out.println("El objeto es de tipo " + obj1.getTipoObjeto() + " y su descripción es: "
+				+ obj1.getTipoObjeto().getDescripcion());
 //
 		jugador.aplicarEfectoObjetoEquipoPokemon();
 //		System.out.println(pk1.toString());
@@ -105,41 +116,42 @@ public class Main {
 //		System.out.println(pk5.toString());
 //		System.out.println(jugador.getPokedolares());
 
-		/*System.out.println(pk1.toString());
-		System.out.println(pk2.toString());
-		System.out.println(pk3.toString());
-		System.out.println(pk4.toString());
-		System.out.println(pk5.toString());
-		System.out.println(pk6.toString());
+		/*
+		 * System.out.println(pk1.toString()); System.out.println(pk2.toString());
+		 * System.out.println(pk3.toString()); System.out.println(pk4.toString());
+		 * System.out.println(pk5.toString()); System.out.println(pk6.toString());
+		 * 
+		 * System.out.println(); jugador.curarEquipo();
+		 * 
+		 * pk1.subirNivel(); pk2.subirNivel(); pk3.subirNivel(); pk4.subirNivel();
+		 * pk5.subirNivel(); pk6.subirNivel();
+		 * 
+		 * System.out.println(pk1.toString()); System.out.println(pk2.toString());
+		 * System.out.println(pk3.toString()); System.out.println(pk4.toString());
+		 * System.out.println(pk5.toString()); System.out.println(pk6.toString());
+		 * 
+		 * System.out.println(destructor.toString());
+		 */
 
+//		ListaPokemonRandom lista = new ListaPokemonRandom();
+//		Pokemon pkk2 = lista.generarPokemonRandom();
+//		System.out.println(pkk2.toString());
+//
+//		pk1.atacarPokemon(0, pkk2);
+//
+//		System.out.println(pk2.toString());
+//
+//		System.out.println(pkk2.toString());
+
+		bolsa.mostrarBolsa();
+
+//		bolsa.ponerObjeto(equipo[0]);
+		
+		bolsa.quitarObjeto(pk6);
+		
 		System.out.println();
-		jugador.curarEquipo();
-
-		pk1.subirNivel();
-		pk2.subirNivel();
-		pk3.subirNivel();
-		pk4.subirNivel();
-		pk5.subirNivel();
-		pk6.subirNivel();
-
-		System.out.println(pk1.toString());
-		System.out.println(pk2.toString());
-		System.out.println(pk3.toString());
-		System.out.println(pk4.toString());
-		System.out.println(pk5.toString());
-		System.out.println(pk6.toString());
-
-		System.out.println(destructor.toString());*/
-
-		ListaPokemonRandom lista = new ListaPokemonRandom();
-		Pokemon pkk2 = lista.generarPokemonRandom();
-		System.out.println(pkk2.toString());
-
-		pk1.atacarPokemon(0, pkk2);
-
-		System.out.println(pk2.toString());
-
-		System.out.println(pkk2.toString());
+		
+		bolsa.mostrarBolsa();
 
 	}
 

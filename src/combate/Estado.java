@@ -4,14 +4,12 @@ public class Estado {
 
 	public enum EstadoPersistente {
 
-		PARALIZADO("Paralizado"), // 0.25 No atacar
+		PARALIZADO("Paralizado"), 
 		QUEMADO("Quemado"), 
 		ENVENENADO("Envenenador"), 
 		GRAVEMENTE_ENVENENADO("Gravemente envenedado"),
 		CONGELADO("Congelado"), 
-		NORMAL("Estado normal"); // 0.5 no atacar
-//		HELADO,
-//		SOMNOLIENTO,
+		NORMAL("Estado normal"); 
 
 		private String mensaje;
 
@@ -28,13 +26,8 @@ public class Estado {
 	public enum EstadoTemporal {
 
 		CONFUSO("Confuso", 4),
-//		ENAMORADO, 
-//		ATRAPADO, 
-//		MALDITO, 
+		DORMIDO("Dormido", 3),
 		DRENADORAS("Drenadoras", 10), 
-		DORMIDO("Dormido", 3), // No atacar
-//		CANTO_MORTAL, 
-//		CENTRO_DE_ATENCION, 
 		AMEDRENTADO("Amedrentado", 1);
 
 		private String mensaje;

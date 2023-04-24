@@ -2,70 +2,106 @@ package tienda;
 
 public class Objeto {
 
-    public enum TipoObjeto {
+	public enum CategoriasBolsa {
 
-        //Objetos equipables
-        PESA("Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%", 5000, 6),
-        PLUMA("Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.", 5000, 6),
-        CHALECO("Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.", 5000, 6),
-        BASTON("Aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.", 5000, 6),
-        PILAS("Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.", 5000, 6),
+		OBJETOS, BOTIQUIN, POKEBALLS;
 
-        //Objetos consumibles de vida
-        POCION("Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.", 300, 99),
-        SUPERPOCION("Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.", 700, 99),
-        HIPERPOCION("Medicina en spray, que cura heridas y restaura 200 PS de un POKÉMON.", 1500, 99),
+	}
 
-        //Objetos consumibles de estado
-        ANTIDOTO("Medicina en spray, que cura a un POKÉMON envenenado.", 100, 99),
-        ANTIPARALIZADOR("Medicina en spray, que cura a un POKÉMON paralizado.", 200, 99),
-        DESPERTAR("Medicina en spray, que despierta a un POKÉMON dormido.", 250, 99),
-        ANTIQUEMAR("Medicina en spray, que cura a un POKÉMON quemado.", 250, 99),
-        ANTIHIELO("Medicina en spray, que descongela a un POKÉMON.", 250, 99),
+	public enum TipoObjeto {
 
-        //Tipos de pokeball
-        POKE_BALL("Sirve para atrapar POKÉMON salvajes. Parece una cápsula.", 200, 99),
-        SUPERBALL("Es buena. Tiene más índice de éxito que la POKÉ BALL.", 600, 99),
-        ULTRABALL("Es muy buena. Tiene más índice que la SUPERBALL.", 1200, 99),
-        MASTERBALL("Es la mejor. Atrapa siempre al pokémon. No falla.", 50000, 99);
+		// Objetos equipables
+		PESA("Pesa", "La PESA aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%", 5000, 6,
+				CategoriasBolsa.OBJETOS),
+		PLUMA("Pluma",
+				"La PLUMA aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.",
+				5000, 6, CategoriasBolsa.OBJETOS),
+		CHALECO("Chaleco",
+				"El chaleco aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.",
+				5000, 6, CategoriasBolsa.OBJETOS),
+		BASTON("Baston", "El baston aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.", 5000, 6,
+				CategoriasBolsa.OBJETOS),
+		PILAS("Pilas",
+				"Las pilas recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.",
+				5000, 6, CategoriasBolsa.OBJETOS),
 
-        private String descripcion;
-        private int precio;
-        private int cantidadVenta;
+		// Objetos consumibles de vida
+		POCION("Pocion", "Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.", 300, 99,
+				CategoriasBolsa.BOTIQUIN),
+		SUPERPOCION("Superpocion", "Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.", 700, 99,
+				CategoriasBolsa.BOTIQUIN),
+		HIPERPOCION("Hiperpocion", "Medicina en spray, que cura heridas y restaura 200 PS de un POKÉMON.", 1500, 99,
+				CategoriasBolsa.BOTIQUIN),
 
-        private TipoObjeto(String descripcion, int precio, int cantidadVenta) {
-            this.descripcion = descripcion;
-            this.precio = precio;
-            this.cantidadVenta = cantidadVenta;
-        }
+		// Objetos consumibles de estado
+		ANTIDOTO("Antidoto", "Medicina en spray, que cura a un POKÉMON envenenado.", 100, 99, CategoriasBolsa.BOTIQUIN),
+		ANTIPARALIZADOR("Pesa", "Medicina en spray, que cura a un POKÉMON paralizado.", 200, 99,
+				CategoriasBolsa.BOTIQUIN),
+		DESPERTAR("Despertar", "Medicina en spray, que despierta a un POKÉMON dormido.", 250, 99,
+				CategoriasBolsa.BOTIQUIN),
+		ANTIQUEMAR("Antiquemar", "Medicina en spray, que cura a un POKÉMON quemado.", 250, 99,
+				CategoriasBolsa.BOTIQUIN),
+		ANTIHIELO("Antihielo", "Medicina en spray, que descongela a un POKÉMON.", 250, 99, CategoriasBolsa.BOTIQUIN),
 
-        public String getDescripcion() {
-            return descripcion;
-        }
+		// Tipos de pokeball
+		POKE_BALL("Poke ball", "Sirve para atrapar POKÉMON salvajes. Parece una cápsula.", 200, 99,
+				CategoriasBolsa.POKEBALLS),
+		SUPERBALL("Superball", "Es buena. Tiene más índice de éxito que la POKÉ BALL.", 600, 99,
+				CategoriasBolsa.POKEBALLS),
+		ULTRABALL("Ultraball", "Es muy buena. Tiene más índice que la SUPERBALL.", 1200, 99, CategoriasBolsa.POKEBALLS),
+		MASTERBALL("Masterball", "Es la mejor. Atrapa siempre al pokémon. No falla.", 50000, 99,
+				CategoriasBolsa.POKEBALLS);
 
-        public int getPrecio() {
-            return precio;
-        }
+		private String nombre;
+		private String descripcion;
+		private int precio;
+		private int cantidadVenta;
+		private CategoriasBolsa categoria;
 
-        public void setPrecio(int precio) {
-            this.precio = precio;
-        }
+		private TipoObjeto(String nombre, String descripcion, int precio, int cantidadVenta,
+				CategoriasBolsa categorias) {
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.precio = precio;
+			this.cantidadVenta = cantidadVenta;
+			this.categoria = categorias;
+		}
 
-        public int getCantidadVenta() {
-            return cantidadVenta;
-        }
-    }
+		public String getNombre() {
+			return nombre;
+		}
 
-    private TipoObjeto tipoObjeto;
+		public String getDescripcion() {
+			return descripcion;
+		}
 
-    public Objeto(TipoObjeto tipoObjeto) {
-        super();
-        this.tipoObjeto = tipoObjeto;
-    }
+		public int getPrecio() {
+			return precio;
+		}
 
-    public TipoObjeto getTipoObjeto() {
-        return tipoObjeto;
-    }
+		public void setPrecio(int precio) {
+			this.precio = precio;
+		}
 
+		public int getCantidadVenta() {
+			return cantidadVenta;
+		}
+
+		public CategoriasBolsa getCategoria() {
+			return categoria;
+		}
+
+	}
+
+	private TipoObjeto tipoObjeto;
+
+	public Objeto(TipoObjeto tipoObjeto) {
+		super();
+		this.tipoObjeto = tipoObjeto;
+	}
+
+	public TipoObjeto getTipoObjeto() {
+		return tipoObjeto;
+	}
 
 }
