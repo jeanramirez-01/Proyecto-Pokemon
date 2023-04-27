@@ -118,9 +118,21 @@ public class Bolsa {
 	}
 
 	/**
+	 * Metodo de poner objeto, en el cual lo primero que comprueba es que si el
+	 * pokemon tiene un objeto entonces hay un return. Si en el caso el indice del
+	 * objeto que se busca no es correcto, entonces hay un return que termina el
+	 * metodo. Si en el caso que las condiciones no se cumplan, entonces lo primero
+	 * que hacemos que llamamos al indice del objeto dentro del arralyst de la bolsa
+	 * y entonces lo guardamos en una variable temporal, luego de eso llamamos al
+	 * pokemon del entrenador y le equipamos el objeto temporal. Finalizando
+	 * mostramos un mensaje con el nombre del pokemon y el nombre del objeto a que
+	 * les has equipado un objeto. Al final de todo, llamamos a la arraylyst de la
+	 * bolsa y borramos el objeto del indice en el cual le hemos pasado el objeto
 	 * 
-	 * @param equipoEntrenador
-	 * @param obj
+	 * @param equipoEntrenador el pokemon que le quiere poner un objeto el
+	 *                         entrenador
+	 * @param indice           es el indice del objeto dentro del arraylist de la
+	 *                         bolsa
 	 */
 	public void ponerObjeto(Pokemon equipoEntrenador, int indice) {
 
@@ -148,7 +160,10 @@ public class Bolsa {
 	}
 
 	/**
-	 * @param objeto
+	 * Es el metodo de tirar un objeto en el cual le pasamos el objeto que queremos
+	 * tirar
+	 * 
+	 * @param objeto que pasa el juga
 	 */
 	public void tirarObjeto(Objeto objeto) {
 

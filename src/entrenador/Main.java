@@ -1,5 +1,6 @@
 package entrenador;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import combate.Movimiento;
@@ -31,18 +32,18 @@ public class Main {
 
 		TipoAtaque fisico = TipoAtaque.FISICO;
 
-		Movimiento destructor = new Movimiento("Pistola Agua", TipoPokemon.AGUA, TipoAtaque.FISICO, 40);
+		Movimiento destructor = new Movimiento("Destructor", TipoPokemon.NORMAL, TipoAtaque.FISICO, 40);
 
 		Movimiento[] setAtaques = new Movimiento[4];
 
 		setAtaques[0] = destructor;
 
-		Pokemon pk1 = new Pokemon("Pokachu", obj1, 8000);
-		Pokemon pk2 = new Pokemon("Charmander", null, 8000);
-		Pokemon pk3 = new Pokemon("Squirtle", obj3, 8000);
-		Pokemon pk4 = new Pokemon("Bulbasur", obj4, 8000);
-		Pokemon pk5 = new Pokemon("Dragonite", null, 8000);
-		Pokemon pk6 = new Pokemon("Mew", obj1, 8000);
+		Pokemon pk1 = new Pokemon("Pokachu", obj1);
+		Pokemon pk2 = new Pokemon("Charmander", null);
+		Pokemon pk3 = new Pokemon("Squirtle", obj3);
+		Pokemon pk4 = new Pokemon("Bulbasur", obj4);
+		Pokemon pk5 = new Pokemon("Dragonite", null);
+		Pokemon pk6 = new Pokemon("Mew", obj1);
 
 		Pokemon[] equipo = new Pokemon[6];
 
@@ -67,8 +68,10 @@ public class Main {
 		
 		Bolsa bolsa = new Bolsa(objetos);
 
-		Entrenador jugador = new Entrenador(equipo, "JelooX", 3000, bolsa, pc);
-		jugador.setEquipo(equipo);
+		Equipo team = new Equipo(equipo);
+		
+		Entrenador jugador = new Entrenador(46812, team, "JelooX", 3000, bolsa, pc, null);
+		
 
 //		System.out.println(pk1.toString());
 //		System.out.println(pk2.toString());
@@ -143,15 +146,22 @@ public class Main {
 //
 //		System.out.println(pkk2.toString());
 
-		bolsa.mostrarBolsa();
-
-//		bolsa.ponerObjeto(equipo[0]);
+//		bolsa.mostrarBolsa();
+//
+////		bolsa.ponerObjeto(equipo[0]);
+//		
+//		bolsa.quitarObjeto(pk6);
+//		
+//		System.out.println();
+//		
+//		bolsa.mostrarBolsa();
 		
-		bolsa.quitarObjeto(pk6);
+		jugador.menu(2);
+	
 		
-		System.out.println();
+		jugador.mostrarStats(equipo[1]);
 		
-		bolsa.mostrarBolsa();
+		
 
 	}
 

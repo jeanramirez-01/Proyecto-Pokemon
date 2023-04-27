@@ -143,4 +143,6 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
+	
+	
 }

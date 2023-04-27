@@ -2,7 +2,6 @@ package pokemon;
 
 import java.util.Arrays;
 import java.util.Random;
-
 import combate.Eficacias;
 import combate.Estado;
 import combate.Estado.EstadoPersistente;
@@ -14,6 +13,7 @@ import tienda.Objeto;
 
 public class Pokemon {
 
+	private int idPokemon;
 	private String nombre;
 	private String mote;
 	private int vitalidadMaxima;
@@ -31,10 +31,10 @@ public class Pokemon {
 	private int estaminaMaxima;
 	private int estaminaActual;
 	private int nivel;
-	private Movimiento[] movimientos;
+	private Movimiento[] movimientos = new Movimiento[4];
 	private int fertilidad = 5;
 	private char sexo;
-	private TipoPokemon[] tipo = new TipoPokemon[2];
+	private TipoPokemon[] tipo;
 	private Estado estado;
 	private Objeto objeto;
 	private int experienciaActual;
@@ -60,6 +60,7 @@ public class Pokemon {
 
 	}
 
+	// Constructor de la lista random
 	public Pokemon(String nombre) {
 
 		generarIVS();
@@ -69,24 +70,32 @@ public class Pokemon {
 		this.estaminaMaxima = 150;
 		this.nivel = 100;
 		this.defensaMaxima = 450;
+		this.sexo = 'M';
 		this.defensaActual = defensaMaxima;
 
 	}
 
 	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, Objeto objeto, int experienciaActual) {
+	public Pokemon(String nombre, Objeto objeto) {
 		generarIVS();
-		this.nombre = nombre;
-		this.nivel = 100;
-		this.vitalidadActual = 1000;
-		this.ataqueMaxima = 410;
-		this.ataqueActual = ataqueMaxima;
-		this.objeto = objeto;
-		this.tipo = new TipoPokemon[] { TipoPokemon.AGUA };
-		this.experienciaActual = experienciaActual;
-		this.estaminaActual = 1000;
 		this.vitalidadActual = vitalidadMaxima;
+		this.idPokemon = 150;
+		this.nombre = nombre;
+		this.nivel = 5;
+		this.objeto = objeto;
+		this.tipo = new TipoPokemon[] { TipoPokemon.FUEGO };
+		this.sexo = 'F';
+		this.estaminaMaxima = 150;
+		this.estaminaActual = estaminaMaxima;
 
+	}
+
+	public int getIdPokemon() {
+		return idPokemon;
+	}
+
+	public void setIdPokemon(int idPokemon) {
+		this.idPokemon = idPokemon;
 	}
 
 	public String getNombre() {
@@ -291,6 +300,16 @@ public class Pokemon {
 
 	// Metodos de pokemon-----------------------------------------------------------
 
+	public void mostrarStats() {
+
+		System.out.println("INFO. POKÉMON");
+		System.out.println("Nv." + this.nivel + " " + this.nombre + " " + this.sexo);
+		System.out.println("Nº. :" + this.idPokemon);
+		System.out.println("NOMBRE: " + this.nombre);
+		System.out.println("TIPO: " + this.tipo);
+
+	}
+
 	/**
 	 * Metodo en el que comprobamos que el pokemon tiene un objeto
 	 *
@@ -312,9 +331,7 @@ public class Pokemon {
 	public void aplicarEfectoObjeto() {
 
 		if (tieneObjeto()) {
-			
-			
-			
+
 			switch (this.objeto.getTipoObjeto()) {
 			case PESA:
 
@@ -688,24 +705,24 @@ public class Pokemon {
 	/**
 	 * Metodo de la formula de daño al momento del que pokemon del jugador utilice
 	 * algun movimiento
-	 * <p>
+	 * 
 	 * B = Bonificación. Si el ataque es del mismo tipo que el Pokémon que lo lanza
 	 * toma un valor de 1.5, si el ataque es de un tipo diferente al del Pokémon que
 	 * lo lanza toma un valor de 1
-	 * <p>
+	 * 
 	 * E = Efectividad. Puede tomar los valores de 0, 0.25, 0.5, 1, 2 y 4.
-	 * <p>
+	 * 
 	 * V = Variación. Es una variable que comprende todos los valores discretos
 	 * entre 85 y 100 (ambos incluidos).
-	 * <p>
+	 * 
 	 * N = Nivel del pokemon que ataca
-	 * <p>
+	 * 
 	 * A = Cantidad de ataque o ataque especial del Pokémon. Si el ataque que
 	 * utiliza el Pokémon es físico se toma la cantidad de ataque y si es especial
 	 * se toma la cantidad de ataque especial.
-	 * <p>
+	 * 
 	 * P = Poder del ataque, el potencial del ataque.
-	 * <p>
+	 * 
 	 * D = Cantidad de defensa del Pokémon rival. Si el ataque que hemos utilizado
 	 * es físico cogeremos la cantidad de defensa del Pokémon rival, si el ataque
 	 * que hemos utilizado es especial, se coge la cantidad de defensa especial del
@@ -772,7 +789,7 @@ public class Pokemon {
 	 *
 	 * @param tipoMovimientoAtacante es el tipo del pokemon atacante
 	 * @param tipoObjetivo           es el tipo del pokemon objetivo
-	 * @return nos devuelve el valor de la efecacia en double
+	 * @return nos devuelve el valor de la eficacia en double
 	 */
 
 	private double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
@@ -786,9 +803,7 @@ public class Pokemon {
 		if (tipoObjetivo.length == 1) {
 			indiceObjetivo = tipoObjetivo[0].getIndice();
 			formula = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
-		}
-
-		if (tipoObjetivo.length == 2) {
+		} else {
 			indiceObjetivoDoble = sacarIndiceDoble(tipoObjetivo);
 			formula = Eficacias.EFICACIAS_DOBLE[indiceObjetivoDoble][indiceAtacante];
 		}
@@ -822,28 +837,30 @@ public class Pokemon {
 			return 10;
 		} else if (tipoDoble[0] == TipoPokemon.AGUA && tipoDoble[1] == TipoPokemon.PSIQUICO) {
 			return 11;
-		} else if (tipoDoble[0] == TipoPokemon.AGUA && tipoDoble[1] == TipoPokemon.HIELO) {
+		} else if (tipoDoble[0] == TipoPokemon.ACERO && tipoDoble[1] == TipoPokemon.ELECTRICO) {
 			return 12;
-		} else if (tipoDoble[0] == TipoPokemon.FANTASMA && tipoDoble[1] == TipoPokemon.VENENO) {
+		} else if (tipoDoble[0] == TipoPokemon.AGUA && tipoDoble[1] == TipoPokemon.HIELO) {
 			return 13;
-		} else if (tipoDoble[0] == TipoPokemon.PLANTA && tipoDoble[1] == TipoPokemon.PSIQUICO) {
+		} else if (tipoDoble[0] == TipoPokemon.FANTASMA && tipoDoble[1] == TipoPokemon.VENENO) {
 			return 14;
-		} else if (tipoDoble[0] == TipoPokemon.TIERRA && tipoDoble[1] == TipoPokemon.ROCA) {
+		} else if (tipoDoble[0] == TipoPokemon.PLANTA && tipoDoble[1] == TipoPokemon.PSIQUICO) {
 			return 15;
-		} else if (tipoDoble[0] == TipoPokemon.HIELO && tipoDoble[1] == TipoPokemon.PSIQUICO) {
+		} else if (tipoDoble[0] == TipoPokemon.TIERRA && tipoDoble[1] == TipoPokemon.ROCA) {
 			return 16;
-		} else if (tipoDoble[0] == TipoPokemon.AGUA && tipoDoble[1] == TipoPokemon.VOLADOR) {
+		} else if (tipoDoble[0] == TipoPokemon.HIELO && tipoDoble[1] == TipoPokemon.PSIQUICO) {
 			return 17;
-		} else if (tipoDoble[0] == TipoPokemon.ROCA && tipoDoble[1] == TipoPokemon.AGUA) {
+		} else if (tipoDoble[0] == TipoPokemon.AGUA && tipoDoble[1] == TipoPokemon.VOLADOR) {
 			return 18;
-		} else if (tipoDoble[0] == TipoPokemon.ROCA && tipoDoble[1] == TipoPokemon.VOLADOR) {
+		} else if (tipoDoble[0] == TipoPokemon.ROCA && tipoDoble[1] == TipoPokemon.AGUA) {
 			return 19;
-		} else if (tipoDoble[0] == TipoPokemon.HIELO && tipoDoble[1] == TipoPokemon.VOLADOR) {
+		} else if (tipoDoble[0] == TipoPokemon.ROCA && tipoDoble[1] == TipoPokemon.VOLADOR) {
 			return 20;
-		} else if (tipoDoble[0] == TipoPokemon.ELECTRICO && tipoDoble[1] == TipoPokemon.VOLADOR) {
+		} else if (tipoDoble[0] == TipoPokemon.HIELO && tipoDoble[1] == TipoPokemon.VOLADOR) {
 			return 21;
-		} else if (tipoDoble[0] == TipoPokemon.DRAGON && tipoDoble[1] == TipoPokemon.VOLADOR) {
+		} else if (tipoDoble[0] == TipoPokemon.ELECTRICO && tipoDoble[1] == TipoPokemon.VOLADOR) {
 			return 22;
+		} else if (tipoDoble[0] == TipoPokemon.DRAGON && tipoDoble[1] == TipoPokemon.VOLADOR) {
+			return 23;
 		}
 
 		return 1;

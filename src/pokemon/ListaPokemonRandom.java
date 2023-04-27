@@ -1,6 +1,7 @@
 package pokemon;
 
 import java.util.ArrayList;
+
 import combate.Movimiento;
 import combate.Movimiento.TipoAtaque;
 

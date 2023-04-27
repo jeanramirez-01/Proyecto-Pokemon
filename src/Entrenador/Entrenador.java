@@ -1,42 +1,61 @@
 package entrenador;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
+import combate.Movimiento;
 import opcionesEntrenador.Bolsa;
 import opcionesEntrenador.Entrenamiento;
+import opcionesEntrenador.Equipo;
+import opcionesEntrenador.Pokedex;
 import pokemon.Pokemon;
+import pokemon.TipoPokemon;
 
 public class Entrenador {
 
-	private Pokemon[] equipo;
+	private int idEntrenador;
+	private Equipo equipo;
 	private String nombre;
-	private int pokedolares;
+	private int pokecuarto;
 	private Bolsa bolsa;
 	private Pokemon[][] caja;
+	private Pokedex pokedex;
 
 	public Entrenador() {
 		super();
-		this.equipo = new Pokemon[6];
-		this.nombre = "";
-		this.pokedolares = (int) (Math.random() * 1000 - 800) + 800;
+		this.idEntrenador = (int) (Math.random() * 99999);
+		this.equipo = new Equipo();
+		this.nombre = "Manolo";
+		this.pokecuarto = (int) (Math.random() * 1000 - 800) + 800;
 		this.bolsa = new Bolsa();
+		this.caja = new Pokemon[12][30];
+		this.pokedex = new Pokedex();
 	}
 
-	public Entrenador(Pokemon[] equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja) {
+	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja,
+			Pokedex pokedex) {
 		super();
+		this.idEntrenador = id;
 		this.equipo = equipo;
 		this.nombre = nombre;
-		this.pokedolares = pokedolares;
+		this.pokecuarto = pokedolares;
 		this.bolsa = bolsa;
 		this.caja = caja;
+		this.pokedex = pokedex;
 	}
 
-	public Pokemon[] getEquipo() {
+	public int getIdEntrenador() {
+		return idEntrenador;
+	}
+
+	public void setIdEntrenador(int idEntrenador) {
+		this.idEntrenador = idEntrenador;
+	}
+
+	public Equipo getEquipo() {
 		return equipo;
 	}
 
-	public void setEquipo(Pokemon[] equipo) {
+	public void setEquipo(Equipo equipo) {
 		this.equipo = equipo;
 	}
 
@@ -49,11 +68,11 @@ public class Entrenador {
 	}
 
 	public int getPokedolares() {
-		return pokedolares;
+		return pokecuarto;
 	}
 
 	public void setPokedolares(int pokedolares) {
-		this.pokedolares = pokedolares;
+		this.pokecuarto = pokedolares;
 	}
 
 	public Bolsa getBolsa() {
@@ -72,17 +91,42 @@ public class Entrenador {
 		this.caja = caja;
 	}
 
-	@Override
-	public String toString() {
-		return "Entrenador [equipo=" + Arrays.toString(equipo) + ", nombre=" + nombre + ", pokedolares=" + pokedolares
-				+ ", bolsa=" + bolsa + ", caja=" + caja + "]";
+	public Pokedex getPokedex() {
+		return pokedex;
+	}
+
+	public void setPokedex(Pokedex pokedex) {
+		this.pokedex = pokedex;
 	}
 
 	// Metodos de entrenador--------------------------------------------------------
 
-	/*
+	/**
 	 *
+	 * @param indice
 	 */
+
+	public void menu(int indice) {
+
+		switch (indice) {
+		case 1:
+			pokedex.mostrarPokedex(); // Mostrar la pokedex
+			break;
+		case 2:
+			equipo.mostrarEquipo(); // Mostrar el equipo
+			break;
+		case 3:
+			bolsa.mostrarBolsa(); // Mostrar la bolsa
+			break;
+		case 4:
+			mostrarTarjetaEntrenador(); // Mostrar la tarjeta del entrenador
+			break;
+		case 5: // Salir
+			return;
+
+		}
+
+	}
 
 	/**
 	 * Metodo de aplicar el efecto del objeto de cada pokemon del equipo del
@@ -92,10 +136,10 @@ public class Entrenador {
 
 	public void aplicarEfectoObjetoEquipoPokemon() {
 
-		for (int i = 0; i < this.equipo.length; i++) {
+		for (int i = 0; i < this.equipo.getEquipoEntrenador().length; i++) {
 
-			if (this.equipo[i] != null) {
-				this.equipo[i].aplicarEfectoObjeto();
+			if (this.equipo.getEquipoEntrenador()[i] != null) {
+				this.equipo.getEquipoEntrenador()[i].aplicarEfectoObjeto();
 			}
 		}
 
@@ -107,44 +151,10 @@ public class Entrenador {
 
 	public void curarEquipo() {
 
-		for (int i = 0; i < equipo.length; i++) {
-			if (this.equipo[i] != null) {
-				this.equipo[i].recuperarTotal();
-				;
+		for (int i = 0; i < equipo.getEquipoEntrenador().length; i++) {
+			if (this.equipo.getEquipoEntrenador()[i] != null) {
+				this.equipo.getEquipoEntrenador()[i].recuperarTotal();
 			}
-		}
-
-	}
-
-	/**
-	 * 
-	 * Metodo de mover el equipo del entrenador con opcion del entrenador.
-	 * 
-	 * @param indiceOrigen  del pokemon que queremos mover
-	 * @param indiceDestino de la posicion del pokemon donde vamos a mover el
-	 *                      pokemon origen
-	 */
-
-	public void moverEquipoPokemon(int indiceOrigen, int indiceDestino) {
-
-		// Verificar que el índice destino u el origen sea válido
-		if ((indiceDestino < 0 || indiceDestino > this.equipo.length)
-				|| (indiceOrigen < 0 || indiceOrigen > this.equipo.length)) {
-			System.out.println("El índice de origen o destino no es válido.");
-			return;
-		} else if (this.equipo[indiceOrigen] == null) { // Verificar que haya un pokemon en el índice de origen
-			System.out.println("No hay un pokemon en el índice de origen.");
-			return;
-		} else if (this.equipo[indiceDestino] == null) { // Verificar que haya un pokemon en el índice de destino
-			System.out.println("No se puede mover un pokemon a un espacio nulo");
-			return;
-		} else if (indiceOrigen == indiceDestino) { // Verificar que el índice de origen y destino sean distintos
-			System.out.println("El índice de origen y destino son iguales.");
-			return;
-		} else {
-			Pokemon temp = this.equipo[indiceDestino];
-			this.equipo[indiceDestino] = this.equipo[indiceOrigen];
-			this.equipo[indiceOrigen] = temp;
 		}
 
 	}
@@ -156,12 +166,12 @@ public class Entrenador {
 	 */
 	public void meterPokemonCaja(int indicePokemon, int indicePokemonCaja) {
 
-		if (indicePokemon < 0 || indicePokemon >= this.equipo.length) {
+		if (indicePokemon < 0 || indicePokemon >= this.equipo.getEquipoEntrenador().length) {
 			System.out.println("El pokemon seleccionado no es válido");
 		} else if (this.caja.length == 30) {
 			System.out.println("La caja está llena.");
 		}
-		
+
 	}
 
 	/**
@@ -169,7 +179,7 @@ public class Entrenador {
 	 * @param indicePokemonCaja
 	 * @param indiceEspacioPokemonEquipo
 	 */
-	
+
 	public void sacarPokemonCaja(int indicePokemonCaja, int indiceEspacioPokemonEquipo) {
 
 		for (int i = 0; i < caja.length; i++) {
@@ -177,7 +187,7 @@ public class Entrenador {
 				if (this.caja[i][j] == null) {
 					System.out.println("No hay ningun pokemon en la caja");
 					return;
-				} else if (this.equipo.length == 6) {
+				} else if (this.equipo.getEquipoEntrenador().length == 6) {
 					System.out.println("El equipo está lleno.");
 					return;
 				}
@@ -194,7 +204,7 @@ public class Entrenador {
 	 * 
 	 * @param indicePokemon:       el numero del array del equipo pokemon del
 	 *                             jugador
-	 * @param tipoEntrenamiento:   sera el entranamiento que nos pase
+	 * @param tipoEntrenamiento:   sera el entrenamiento que nos pase
 	 * @param numEntramientoVeces: el numero de entranamientos que quiere volver a
 	 *                             realizar
 	 */
@@ -204,7 +214,7 @@ public class Entrenador {
 		int costoEntrenamiento = 0;
 		int puntosAumento = 5;
 
-		if (this.equipo[indicePokemon].tieneObjeto()) {
+		if (this.equipo.getEquipoEntrenador()[indicePokemon].tieneObjeto()) {
 			System.out.println("No puedes entrenar a este Pokémon porque tiene un objeto equipado.");
 			return;
 		}
@@ -214,91 +224,95 @@ public class Entrenador {
 			switch (tipoEntrenamiento.getTipo()) {
 			case PESADO:
 				// Verificamos que el pokemon tiene el nivel suficiente para el entrenamiento
-				if (this.equipo[indicePokemon].getNivel() < 20) {
+				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 20) {
 					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
 					return;
 				} else {
-					costoEntrenamiento = this.equipo[indicePokemon].getNivel() * 20;
+					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 20;
 					if (getPokedolares() < costoEntrenamiento) {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon]
-								.setDefensaMaxima(this.equipo[indicePokemon].getDefensaMaxima() + puntosAumento);
-						this.equipo[indicePokemon].setDefensaEspecialMaxima(
-								this.equipo[indicePokemon].getDefensaEspecialMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setDefensaMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getDefensaMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setDefensaEspecialMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getDefensaEspecialMaxima()
+										+ puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVitalidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVitalidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 
-						this.equipo[indicePokemon].recuperarEstadisticas();
+						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
 						break;
 					}
 				}
 			case FURIOSO:
-				if (this.equipo[indicePokemon].getNivel() < 40) {
+				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 40) {
 					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
 					return;
 				} else {
-					costoEntrenamiento = this.equipo[indicePokemon].getNivel() * 20;
+					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 20;
 					if (getPokedolares() < costoEntrenamiento) {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon]
-								.setAtaqueMaxima(this.equipo[indicePokemon].getAtaqueMaxima() + puntosAumento);
-						this.equipo[indicePokemon].setAtaqueEspecialMaxima(
-								this.equipo[indicePokemon].getAtaqueEspecialMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueEspecialMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueEspecialMaxima()
+										+ puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVelocidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
-						this.equipo[indicePokemon].recuperarEstadisticas();
+						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
 						break;
 					}
 				}
 			case FUNCIONAL:
-				if (this.equipo[indicePokemon].getNivel() < 60) {
+				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 60) {
 					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
 					return;
 				} else {
-					costoEntrenamiento = this.equipo[indicePokemon].getNivel() * 40;
+					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 40;
 					if (getPokedolares() < costoEntrenamiento) {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon]
-								.setAtaqueMaxima(this.equipo[indicePokemon].getAtaqueMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setDefensaMaxima(this.equipo[indicePokemon].getDefensaMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setDefensaMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getDefensaMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVitalidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVitalidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVelocidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
-						this.equipo[indicePokemon].recuperarEstadisticas();
+						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
 						break;
 					}
 				}
 			case ONIRICO:
-				if (this.equipo[indicePokemon].getNivel() < 60) {
+				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 60) {
 					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
 					return;
 				} else {
-					costoEntrenamiento = this.equipo[indicePokemon].getNivel() * 40;
+					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 40;
 					if (getPokedolares() < costoEntrenamiento) {
 						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
 						return;
 					} else {
-						this.equipo[indicePokemon].setAtaqueEspecialMaxima(
-								this.equipo[indicePokemon].getAtaqueEspecialMaxima() + puntosAumento);
-						this.equipo[indicePokemon].setDefensaEspecialMaxima(
-								this.equipo[indicePokemon].getDefensaEspecialMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVitalidadMaxima(this.equipo[indicePokemon].getVitalidadMaxima() + puntosAumento);
-						this.equipo[indicePokemon]
-								.setVelocidadMaxima(this.equipo[indicePokemon].getVelocidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueEspecialMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueEspecialMaxima()
+										+ puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setDefensaEspecialMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getDefensaEspecialMaxima()
+										+ puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVitalidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVitalidadMaxima() + puntosAumento);
+						this.equipo.getEquipoEntrenador()[indicePokemon].setVelocidadMaxima(
+								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
-						this.equipo[indicePokemon].recuperarEstadisticas();
+						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
 						break;
 					}
 				}
@@ -309,8 +323,9 @@ public class Entrenador {
 		}
 
 		System.out.println("Has gastado " + costoEntrenamiento * numEntramientoVeces + " Pokédolares para entrenar a "
-				+ this.equipo[indicePokemon].getNombre() + ".");
-		System.out.println(this.equipo[indicePokemon].getNombre() + " ha aumentado sus estadísticas.");
+				+ this.equipo.getEquipoEntrenador()[indicePokemon].getNombre() + ".");
+		System.out.println(
+				this.equipo.getEquipoEntrenador()[indicePokemon].getNombre() + " ha aumentado sus estadísticas.");
 	}
 
 	/**
@@ -318,7 +333,89 @@ public class Entrenador {
 	 */
 	public void capturar() {
 		int indice = 0;
-		bolsa.quitarObjeto(equipo[indice]);
+		bolsa.quitarObjeto(equipo.getEquipoEntrenador()[indice]);
+	}
+
+	/**
+	 * 
+	 * @param padre
+	 * @param madre
+	 */
+	public void crianzaPokemon(Pokemon padre, Pokemon madre) {
+
+	}
+
+	/**
+	 * 
+	 */
+	private void mostrarTarjetaEntrenador() {
+
+		System.out.println("N.º ID: " + idEntrenador);
+		System.out.println("NOMBRE: " + nombre);
+
+		System.out.println("\nDINERO: " + pokecuarto + " ¥");
+
+		System.out.println("\nPOKÉDEX: " /* + pokedex.getPokemonCapturados() */);
+
+		System.out.println("\nT. JUEGO: ");
+		System.out.println("COMIENZO AVENTURA: ");
+
+	}
+
+	/**
+	 * @param pk
+	 */
+	public void mostrarStats(Pokemon pk) {
+
+		mostrarInfoPokemon(pk);
+		equipo.mostrarHabilPokemon(pk);
+		equipo.mostrarMovConocidos(pk);
+
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param entrenador
+	 */
+	private void mostrarInfoPokemon(Pokemon entrenador) {
+
+		TipoPokemon[] tipo = entrenador.getTipo();
+
+		System.out.println();
+
+		if (tipo.length == 1) {
+			System.out.println("\nINFO. POKÉMON");
+			System.out.println(
+					"\nNv." + entrenador.getNivel() + " " + entrenador.getNombre() + " " + entrenador.getSexo());
+			System.out.println("N.º :" + entrenador.getIdPokemon());
+			System.out.println("NOMBRE: " + entrenador.getNombre());
+			System.out.println("TIPO: " + tipo[0]);
+			System.out.println("ENTRENADOR: " + this.nombre);
+			System.out.println("N.ºID " + this.idEntrenador);
+			if (entrenador.tieneObjeto()) {
+				System.out.println("OBJETO: " + entrenador.getObjeto().getTipoObjeto().getNombre());
+			} else {
+				System.out.println("OBJETO: ");
+			}
+
+		} else {
+			System.out.println("\nINFO. POKÉMON");
+			System.out.println(
+					"\nNv." + entrenador.getNivel() + " " + entrenador.getNombre() + " " + entrenador.getSexo());
+			System.out.println("N.º :" + entrenador.getIdPokemon());
+			System.out.println("NOMBRE: " + entrenador.getNombre());
+			System.out.println("TIPO: " + tipo[0] + "," + tipo[1]);
+			System.out.println("ENTRENADOR: " + this.nombre);
+			System.out.println("N.ºID " + this.idEntrenador);
+			if (entrenador.tieneObjeto()) {
+				System.out.println("OBJETO: " + entrenador.getObjeto().getTipoObjeto().getNombre());
+			} else {
+				System.out.println("OBJETO: ");
+			}
+
+		}
+
 	}
 
 }
