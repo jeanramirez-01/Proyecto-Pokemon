@@ -4,4 +4,4 @@ Este sera el proyecto de pokemon de parte de:
 
 Jean Carlos Ramirez Yepez
 
-![image](https://user-images.githubusercontent.com/118733178/224663616-1302aac2-c368-4359-9245-48e811b92911.png)
+![image](https://user-images.githubusercontent.com/118733178/234779751-5a2ad9ba-8cae-4a14-ad64-c1e5411024bb.png)
