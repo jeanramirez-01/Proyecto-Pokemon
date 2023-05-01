@@ -49,18 +49,17 @@ public class Equipo {
 	 * 
 	 * @param pokemon
 	 */
-	public void agregarPokemon(Pokemon pokemon) {
+	public boolean agregarPokemon(Pokemon pokemon) {
 
 		for (int i = 0; i < equipoEntrenador.length; i++) {
 
 			if (equipoEntrenador[i] == null) {
 				equipoEntrenador[i] = pokemon;
-				System.out.println(pokemon.getNombre() + " se ha añadido al equipo.");
-				break;
+				return true;
 			}
 
 		}
-
+		return false;
 	}
 
 	/**

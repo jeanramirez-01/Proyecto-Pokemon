@@ -1,7 +1,9 @@
 package entrenador;
 
 import java.util.Arrays;
+import java.util.Random;
 
+import combate.Eficacias;
 import combate.Movimiento;
 import opcionesEntrenador.Bolsa;
 import opcionesEntrenador.Entrenamiento;
@@ -17,7 +19,7 @@ public class Entrenador {
 	private String nombre;
 	private int pokecuarto;
 	private Bolsa bolsa;
-	private Pokemon[][] caja;
+	private Pokemon[] caja;
 	private Pokedex pokedex;
 
 	public Entrenador() {
@@ -27,11 +29,11 @@ public class Entrenador {
 		this.nombre = "Manolo";
 		this.pokecuarto = (int) (Math.random() * 1000 - 800) + 800;
 		this.bolsa = new Bolsa();
-		this.caja = new Pokemon[12][30];
+		this.caja = new Pokemon[360];
 		this.pokedex = new Pokedex();
 	}
 
-	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[][] caja,
+	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[] caja,
 			Pokedex pokedex) {
 		super();
 		this.idEntrenador = id;
@@ -83,11 +85,11 @@ public class Entrenador {
 		this.bolsa = bolsa;
 	}
 
-	public Pokemon[][] getCaja() {
+	public Pokemon[] getCaja() {
 		return caja;
 	}
 
-	public void setCaja(Pokemon[][] caja) {
+	public void setCaja(Pokemon[] caja) {
 		this.caja = caja;
 	}
 
@@ -154,43 +156,6 @@ public class Entrenador {
 		for (int i = 0; i < equipo.getEquipoEntrenador().length; i++) {
 			if (this.equipo.getEquipoEntrenador()[i] != null) {
 				this.equipo.getEquipoEntrenador()[i].recuperarTotal();
-			}
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param indicePokemon
-	 * @param indicePokemonCaja
-	 */
-	public void meterPokemonCaja(int indicePokemon, int indicePokemonCaja) {
-
-		if (indicePokemon < 0 || indicePokemon >= this.equipo.getEquipoEntrenador().length) {
-			System.out.println("El pokemon seleccionado no es válido");
-		} else if (this.caja.length == 30) {
-			System.out.println("La caja está llena.");
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param indicePokemonCaja
-	 * @param indiceEspacioPokemonEquipo
-	 */
-
-	public void sacarPokemonCaja(int indicePokemonCaja, int indiceEspacioPokemonEquipo) {
-
-		for (int i = 0; i < caja.length; i++) {
-			for (int j = 0; j < caja[0].length; j++) {
-				if (this.caja[i][j] == null) {
-					System.out.println("No hay ningun pokemon en la caja");
-					return;
-				} else if (this.equipo.getEquipoEntrenador().length == 6) {
-					System.out.println("El equipo está lleno.");
-					return;
-				}
 			}
 		}
 
@@ -342,6 +307,37 @@ public class Entrenador {
 	 * @param madre
 	 */
 	public void crianzaPokemon(Pokemon padre, Pokemon madre) {
+
+
+		Pokemon crianza = new Pokemon();
+
+		crianza.generarInfoCrianza(padre, madre);
+
+		if (equipo.agregarPokemon(crianza)) {
+			System.out.println(crianza.getNombre() + " se ha añadido al equipo.");
+		} else {
+			// Si el equipo del entrenador está lleno, agrega el Pokémon a la caja
+			for (int j = 0; j < caja.length; j++) {
+				if (caja[j] == null) {
+					caja[j] = crianza;
+					System.out.println("Su equipo está lleno, entonces se ha guardado el Pokémon " + crianza.getMote()
+							+ " al PC.");
+					return;
+				}
+			}
+		}
+
+	}
+
+	public void mostrarPc() {
+
+		for (int i = 0; i < caja.length; i++) {
+			if (caja[i] != null) {
+				System.out.println(i + ".-" + caja[i].getMote());
+				mostrarStats(caja[i]);
+			}
+
+		}
 
 	}
 

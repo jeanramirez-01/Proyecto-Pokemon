@@ -31,7 +31,7 @@ public class Pokemon {
 	private int estaminaMaxima;
 	private int estaminaActual;
 	private int nivel;
-	private Movimiento[] movimientos = new Movimiento[4];
+	private Movimiento[] movimientos;
 	private int fertilidad = 5;
 	private char sexo;
 	private TipoPokemon[] tipo;
@@ -50,10 +50,10 @@ public class Pokemon {
 		this.estaminaMaxima = 100;
 		this.estaminaActual = estaminaMaxima;
 		this.nivel = 1;
-//		this.movimiento = new Movimiento[4];
+		this.movimientos = new Movimiento[4];
 		this.fertilidad = 5;
 		this.sexo = 'M';
-//		this.tipos = new Tipo[2];
+		this.tipo = new TipoPokemon[2];
 		this.estado = null;
 		this.objeto = null;
 		this.experienciaActual = 1;
@@ -76,17 +76,18 @@ public class Pokemon {
 	}
 
 	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, Objeto objeto) {
-		generarIVS();
+	public Pokemon(String nombre, Objeto objeto, char sexo) {
+
 		this.vitalidadActual = vitalidadMaxima;
 		this.idPokemon = 150;
 		this.nombre = nombre;
 		this.nivel = 5;
 		this.objeto = objeto;
 		this.tipo = new TipoPokemon[] { TipoPokemon.FUEGO };
-		this.sexo = 'F';
+		this.sexo = sexo;
 		this.estaminaMaxima = 150;
 		this.estaminaActual = estaminaMaxima;
+		generarIVS();
 
 	}
 
@@ -358,7 +359,6 @@ public class Pokemon {
 			case BASTON:
 
 				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaActual * 0.20));
-
 				this.velocidadActual = (int) (this.velocidadActual - (this.velocidadActual * 0.15));
 				break;
 			case PILAS:
@@ -366,6 +366,8 @@ public class Pokemon {
 				this.estaminaActual = (int) (this.estaminaActual + (this.estaminaMaxima * 0.50));
 
 				this.defensaEspecialActual = (int) (this.defensaEspecialActual - (this.defensaEspecialActual * 0.30));
+				break;
+			default:
 				break;
 
 			}
@@ -576,18 +578,19 @@ public class Pokemon {
 
 			if (this.vitalidadActual < vitalidadMaxima) {
 
-				this.vitalidadActual = this.vitalidadActual + 2;
+				this.vitalidadActual += +2;
 
 			}
 
-			this.vitalidadMaxima = this.vitalidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
-			this.ataqueMaxima = (int) (this.ataqueMaxima + (Math.random() * (5 - 1)) + 1);
-			this.defensaMaxima = this.defensaMaxima + (int) (Math.random() * (5 - 1)) + 1;
-			this.ataqueEspecialMaxima = this.ataqueEspecialMaxima + (int) (Math.random() * (5 - 1)) + 1;
-			this.defensaEspecialMaxima = this.defensaEspecialMaxima + (int) (Math.random() * (5 - 1)) + 1;
-			this.velocidadMaxima = this.velocidadMaxima + (int) (Math.random() * (5 - 1)) + 1;
+			this.vitalidadMaxima += (int) (Math.random() * (5 - 1)) + 1;
+			this.estaminaMaxima += 5;
+			this.ataqueMaxima += (int) (Math.random() * (5 - 1)) + 1;
+			this.defensaMaxima += (int) (Math.random() * (5 - 1)) + 1;
+			this.ataqueEspecialMaxima += (int) (Math.random() * (5 - 1)) + 1;
+			this.defensaEspecialMaxima += (int) (Math.random() * (5 - 1)) + 1;
+			this.velocidadMaxima += (int) (Math.random() * (5 - 1)) + 1;
 
-			this.experienciaActual = this.experienciaActual - experienciaRequerida;
+			this.experienciaActual -= experienciaRequerida;
 			this.nivel++;
 
 			experienciaRequerida = getExperienciaTotal();
@@ -650,8 +653,12 @@ public class Pokemon {
 	 * Metodo de recuperar la estamina en el combate, pero cuesta un turno
 	 */
 	public void recuperarEstamina() {
-
-		this.estaminaActual = this.estaminaMaxima;
+		int nuevaEstamina = this.estaminaActual + (this.estaminaMaxima / 2);
+		if (nuevaEstamina > this.estaminaMaxima) {
+			this.estaminaActual = this.estaminaMaxima;
+		} else {
+			this.estaminaActual = nuevaEstamina;
+		}
 	}
 
 	/**
@@ -699,6 +706,95 @@ public class Pokemon {
 		this.defensaActual = this.defensaMaxima;
 		this.ataqueEspecialActual = this.ataqueEspecialMaxima;
 		this.defensaEspecialActual = this.defensaEspecialMaxima;
+
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param padre
+	 * @param madre
+	 */
+
+	public void generarInfoCrianza(Pokemon padre, Pokemon madre) {
+
+		if (padre.getFertilidad() < 0 || madre.getFertilidad() < 0) {
+			System.out.println("Sus pokemon no se pueden reproducir mas");
+			return;
+		}
+
+		if (padre.getSexo() == madre.getSexo()) {
+			System.out.println("No se pueden reproducir pokemon del mismo sexo.");
+			return;
+		}
+
+		int padreIndice = padre.getTipo()[0].getIndice();
+		int madreIndice = madre.getTipo()[0].getIndice();
+
+		double compatibilidad = Eficacias.EFICACIAS[padreIndice][madreIndice];
+		if (compatibilidad == 2.0) {
+			System.out.println("No se puede criar entre " + padre.getNombre() + " y " + madre.getNombre()
+					+ " porque son incompatibles para la crianza.");
+			return;
+		}
+
+		String primeraMitadPadre = padre.getNombre().substring(0, padre.getNombre().length() / 2);
+		String primeraMitadMadre = madre.getNombre().substring(0, madre.getNombre().length() / 2);
+
+		Random rand = new Random();
+		int numeroAleatorio = rand.nextInt(10) + 1;
+
+		if (numeroAleatorio < 5) {
+			this.setTipo(padre.getTipo());
+			this.setSexo(padre.getSexo());
+			this.setIdPokemon(padre.getIdPokemon());
+		} else {
+			this.setTipo(madre.getTipo());
+			this.setSexo(madre.getSexo());
+			this.setIdPokemon(madre.getIdPokemon());
+		}
+
+		this.setMote(primeraMitadPadre + primeraMitadMadre);
+		this.setNombre(this.getMote());
+		this.setNivel(1);
+
+		if (padre.getVitalidadMaxima() > madre.getVitalidadMaxima()) {
+			this.setVitalidadMaxima(padre.getVitalidadMaxima());
+			this.setVitalidadActual(padre.getVitalidadMaxima());
+		} else {
+			this.setVitalidadMaxima(madre.getVitalidadMaxima());
+			this.setVitalidadActual(madre.getVitalidadMaxima());
+		}
+		if (padre.getAtaqueMaxima() > madre.getAtaqueMaxima()) {
+			this.setAtaqueMaxima(padre.getAtaqueMaxima());
+		} else {
+			this.setAtaqueMaxima(madre.getAtaqueMaxima());
+		}
+		if (padre.getDefensaMaxima() > madre.getDefensaMaxima()) {
+			this.setDefensaMaxima(padre.getDefensaMaxima());
+		} else {
+			this.setDefensaMaxima(madre.getDefensaMaxima());
+		}
+		if (padre.getAtaqueEspecialMaxima() > madre.getAtaqueEspecialMaxima()) {
+			this.setAtaqueEspecialMaxima(padre.getAtaqueEspecialMaxima());
+		} else {
+			this.setAtaqueEspecialMaxima(madre.getAtaqueEspecialMaxima());
+		}
+		if (padre.getDefensaEspecialMaxima() > madre.getDefensaEspecialMaxima()) {
+			this.setDefensaEspecialMaxima(padre.getDefensaEspecialMaxima());
+		} else {
+			this.setDefensaEspecialMaxima(madre.getDefensaEspecialMaxima());
+		}
+		if (padre.getVelocidadMaxima() > madre.getVelocidadMaxima()) {
+			this.setVelocidadMaxima(padre.getVelocidadMaxima());
+		} else {
+			this.setVelocidadMaxima(madre.getVelocidadMaxima());
+		}
+
+		this.recuperarEstadisticas();
+
+		padre.setFertilidad(padre.getFertilidad() - 1);
+		madre.setFertilidad(madre.getFertilidad() - 1);
 
 	}
 
@@ -792,7 +888,7 @@ public class Pokemon {
 	 * @return nos devuelve el valor de la eficacia en double
 	 */
 
-	private double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
+	public double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
 
 		int indiceAtacante = tipoMovimientoAtacante.getIndice();
 
@@ -804,6 +900,7 @@ public class Pokemon {
 			indiceObjetivo = tipoObjetivo[0].getIndice();
 			formula = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
 		} else {
+			indiceObjetivoDoble = indiceAtacante * indiceObjetivo;
 			indiceObjetivoDoble = sacarIndiceDoble(tipoObjetivo);
 			formula = Eficacias.EFICACIAS_DOBLE[indiceObjetivoDoble][indiceAtacante];
 		}

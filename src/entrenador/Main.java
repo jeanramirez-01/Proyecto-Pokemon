@@ -1,6 +1,5 @@
 package entrenador;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import combate.Movimiento;
@@ -38,12 +37,12 @@ public class Main {
 
 		setAtaques[0] = destructor;
 
-		Pokemon pk1 = new Pokemon("Pokachu", obj1);
-		Pokemon pk2 = new Pokemon("Charmander", null);
-		Pokemon pk3 = new Pokemon("Squirtle", obj3);
-		Pokemon pk4 = new Pokemon("Bulbasur", obj4);
-		Pokemon pk5 = new Pokemon("Dragonite", null);
-		Pokemon pk6 = new Pokemon("Mew", obj1);
+		Pokemon pk1 = new Pokemon("Pokachu", obj1, 'M');
+		Pokemon pk2 = new Pokemon("Charmander", null, 'F');
+		Pokemon pk3 = new Pokemon("Squirtle", obj3, 'M');
+		Pokemon pk4 = new Pokemon("Bulbasur", obj4, 'F');
+		Pokemon pk5 = new Pokemon("Dragonite", null, 'M');
+		Pokemon pk6 = new Pokemon("Mew", obj1, 'F');
 
 		Pokemon[] equipo = new Pokemon[6];
 
@@ -52,26 +51,25 @@ public class Main {
 		equipo[2] = pk3;
 		equipo[3] = pk4;
 		equipo[4] = pk5;
-		equipo[5] = pk6;
+//		equipo[5] = pk6;
 
 		pk1.setMovimientos(setAtaques);
 
 		pk2.setMovimientos(setAtaques);
 
-		Pokemon[][] pc = new Pokemon[12][30];
+		Pokemon[] pc = new Pokemon[360];
 
 		ArrayList<Objeto> objetos = new ArrayList<>();
 
 		objetos.add(obj7);
 		objetos.add(obj6);
 		objetos.add(obj1);
-		
+
 		Bolsa bolsa = new Bolsa(objetos);
 
 		Equipo team = new Equipo(equipo);
-		
+
 		Entrenador jugador = new Entrenador(46812, team, "JelooX", 3000, bolsa, pc, null);
-		
 
 //		System.out.println(pk1.toString());
 //		System.out.println(pk2.toString());
@@ -82,7 +80,7 @@ public class Main {
 		System.out.println("El objeto es de tipo " + obj1.getTipoObjeto() + " y su descripción es: "
 				+ obj1.getTipoObjeto().getDescripcion());
 //
-		jugador.aplicarEfectoObjetoEquipoPokemon();
+//		jugador.aplicarEfectoObjetoEquipoPokemon();
 //		System.out.println(pk1.toString());
 //		System.out.println(pk2.toString());
 //		System.out.println(pk3.toString());
@@ -155,13 +153,19 @@ public class Main {
 //		System.out.println();
 //		
 //		bolsa.mostrarBolsa();
+
+		jugador.menu(2);
+
+		
+
+		jugador.crianzaPokemon(pk4, pk5);
+
+//		jugador.mostrarPc();
+		System.out.println();
 		
 		jugador.menu(2);
-	
 		
-		jugador.mostrarStats(equipo[1]);
-		
-		
+//		jugador.mostrarStats(equipo[5]);
 
 	}
 
