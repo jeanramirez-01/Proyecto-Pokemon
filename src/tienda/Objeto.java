@@ -11,18 +11,17 @@ public class Objeto {
 	public enum TipoObjeto {
 
 		// Objetos equipables
-		PESA("Pesa", "La PESA aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%", 5000, 6,
+		PESA("Pesa", "Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%", 5000, 6,
 				CategoriasBolsa.OBJETOS),
-		PLUMA("Pluma",
-				"La PLUMA aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.",
-				5000, 6, CategoriasBolsa.OBJETOS),
+		PLUMA("Pluma", "Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.", 5000,
+				6, CategoriasBolsa.OBJETOS),
 		CHALECO("Chaleco",
-				"El chaleco aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.",
+				"Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.",
 				5000, 6, CategoriasBolsa.OBJETOS),
-		BASTON("Baston", "El baston aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.", 5000, 6,
+		BASTON("Baston", "Aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.", 5000, 6,
 				CategoriasBolsa.OBJETOS),
 		PILAS("Pilas",
-				"Las pilas recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.",
+				"Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.",
 				5000, 6, CategoriasBolsa.OBJETOS),
 
 		// Objetos consumibles de vida

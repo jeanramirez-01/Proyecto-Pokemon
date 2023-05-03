@@ -1,9 +1,3 @@
-UPDATE Tipo SET nombre = 'Volador' WHERE id_tipo = 17;
-
-alter table pokedex delete column descripcion;
-
-DELETE FROM pokedex WHERE num_pokedex = 117;
-
 delete from pokedex;
 
 insert into pokedex 
@@ -261,8 +255,6 @@ values
 (250, 'Ho-oh', 7, 17, null, null),
 (251, 'Celebi', 12, 11, null, null);
 
-update pokedex set descripcion = '' where num_pokedex = ;
-
 update pokedex set descripcion = 'La semilla de su lomo está llena de nutrientes. La semilla brota a medida que el Pokémon crece.' where num_pokedex = 1;
 update pokedex set descripcion = 'Puede aumentar su fuerza con energía solar. Ésta también hace que crezca el capullo de su lomo.' where num_pokedex = 2;
 update pokedex set descripcion = 'Llena su cuerpo de energía con los rayos solares que captan los anchos pétalos de su flor.' where num_pokedex = 3;
@@ -428,93 +420,122 @@ update pokedex set descripcion = 'Un Pokémon muy precavido. Se levanta con su c
 update pokedex set descripcion = 'Construye un nido donde introducir su largo y delgado cuerpo, en el que no pueden entrar otros Pokémon.' where num_pokedex = 162;
 update pokedex set descripcion = 'Camina con un solo pie. Cambia tan rápidamente de pie que apenas se le ve.' where num_pokedex = 163;
 update pokedex set descripcion = 'Sus ojos están especialmente adaptados, concentrando la luz para poder ver en la oscuridad.' where num_pokedex = 164;
-update pokedex set descripcion = '' where num_pokedex = 165;
-update pokedex set descripcion = '' where num_pokedex = 166;
-update pokedex set descripcion = '' where num_pokedex = 167;
-update pokedex set descripcion = '' where num_pokedex = 168;
-update pokedex set descripcion = '' where num_pokedex = 169;
-update pokedex set descripcion = '' where num_pokedex = 170;
-update pokedex set descripcion = '' where num_pokedex = 171;
-update pokedex set descripcion = '' where num_pokedex = 172;
-update pokedex set descripcion = '' where num_pokedex = 173;
-update pokedex set descripcion = '' where num_pokedex = 174;
-update pokedex set descripcion = '' where num_pokedex = 175;
-update pokedex set descripcion = '' where num_pokedex = 176;
-update pokedex set descripcion = '' where num_pokedex = 177;
-update pokedex set descripcion = '' where num_pokedex = 178;
-update pokedex set descripcion = '' where num_pokedex = 179;
-update pokedex set descripcion = '' where num_pokedex = 180;
-update pokedex set descripcion = '' where num_pokedex = 181;
-update pokedex set descripcion = '' where num_pokedex = 182;
-update pokedex set descripcion = '' where num_pokedex = 183;
-update pokedex set descripcion = '' where num_pokedex = 184;
-update pokedex set descripcion = '' where num_pokedex = 185;
-update pokedex set descripcion = '' where num_pokedex = 186;
-update pokedex set descripcion = '' where num_pokedex = 187;
-update pokedex set descripcion = '' where num_pokedex = 188;
-update pokedex set descripcion = '' where num_pokedex = 189;
-update pokedex set descripcion = '' where num_pokedex = 190;
-update pokedex set descripcion = '' where num_pokedex = 191;
-update pokedex set descripcion = '' where num_pokedex = 192;
-update pokedex set descripcion = '' where num_pokedex = 193;
-update pokedex set descripcion = '' where num_pokedex = 194;
-update pokedex set descripcion = '' where num_pokedex = 195;
-update pokedex set descripcion = '' where num_pokedex = 196;
-update pokedex set descripcion = '' where num_pokedex = 197;
-update pokedex set descripcion = '' where num_pokedex = 198;
-update pokedex set descripcion = '' where num_pokedex = 199;
-update pokedex set descripcion = '' where num_pokedex = 200;
-update pokedex set descripcion = '' where num_pokedex = 201;
-update pokedex set descripcion = '' where num_pokedex = 202;
-update pokedex set descripcion = '' where num_pokedex = 203;
-update pokedex set descripcion = '' where num_pokedex = 204;
-update pokedex set descripcion = '' where num_pokedex = 205;
-update pokedex set descripcion = '' where num_pokedex = 206;
-update pokedex set descripcion = '' where num_pokedex = 207;
-update pokedex set descripcion = '' where num_pokedex = 208;
-update pokedex set descripcion = '' where num_pokedex = 209;
-update pokedex set descripcion = '' where num_pokedex = 210;
-update pokedex set descripcion = '' where num_pokedex = 211;
-update pokedex set descripcion = '' where num_pokedex = 212;
-update pokedex set descripcion = '' where num_pokedex = 213;
-update pokedex set descripcion = '' where num_pokedex = 214;
-update pokedex set descripcion = '' where num_pokedex = 215;
-update pokedex set descripcion = '' where num_pokedex = 216;
-update pokedex set descripcion = '' where num_pokedex = 217;
-update pokedex set descripcion = '' where num_pokedex = 218;
-update pokedex set descripcion = '' where num_pokedex = 219;
-update pokedex set descripcion = '' where num_pokedex = 220;
-update pokedex set descripcion = '' where num_pokedex = 221;
-update pokedex set descripcion = '' where num_pokedex = 222;
-update pokedex set descripcion = '' where num_pokedex = 223;
-update pokedex set descripcion = '' where num_pokedex = 224;
-update pokedex set descripcion = '' where num_pokedex = 225;
-update pokedex set descripcion = '' where num_pokedex = 226;
-update pokedex set descripcion = '' where num_pokedex = 227;
-update pokedex set descripcion = '' where num_pokedex = 228;
-update pokedex set descripcion = '' where num_pokedex = 229;
-update pokedex set descripcion = '' where num_pokedex = 230;
-update pokedex set descripcion = '' where num_pokedex = 231;
-update pokedex set descripcion = '' where num_pokedex = 232;
-update pokedex set descripcion = '' where num_pokedex = 233;
-update pokedex set descripcion = '' where num_pokedex = 234;
-update pokedex set descripcion = '' where num_pokedex = 235;
-update pokedex set descripcion = '' where num_pokedex = 236;
-update pokedex set descripcion = '' where num_pokedex = 237;
-update pokedex set descripcion = '' where num_pokedex = 238;
-update pokedex set descripcion = '' where num_pokedex = 239;
-update pokedex set descripcion = '' where num_pokedex = 240;
-update pokedex set descripcion = '' where num_pokedex = 241;
-update pokedex set descripcion = '' where num_pokedex = 242;
-update pokedex set descripcion = '' where num_pokedex = 243;
-update pokedex set descripcion = '' where num_pokedex = 244;
-update pokedex set descripcion = '' where num_pokedex = 245;
-update pokedex set descripcion = '' where num_pokedex = 246;
-update pokedex set descripcion = '' where num_pokedex = 247;
-update pokedex set descripcion = '' where num_pokedex = 248;
-update pokedex set descripcion = '' where num_pokedex = 249;
-update pokedex set descripcion = '' where num_pokedex = 250;
-update pokedex set descripcion = '' where num_pokedex = 251;
+update pokedex set descripcion = 'Es muy tímido. Tiene miedo de moverse cuando va solo. Pero si va en grupo, se vuelve muy activo.' where num_pokedex = 165;
+update pokedex set descripcion = 'Cuando parpadean las estrellas en el cielo nocturno, se mece, desprendiendo un polvo brillante.' where num_pokedex = 166;
+update pokedex set descripcion = 'Mantiene la misma postura en su telaraña durante días, esperando a que se acerque una presa inocente.' where num_pokedex = 167;
+update pokedex set descripcion = 'Teje su telaraña desde atrás y desde su boca. Es muy difícil saber dónde está cada cual.' where num_pokedex = 168;
+update pokedex set descripcion = 'Es tan silencioso cuando vuela en la oscuridad con sus cuatro alas, que cuesta percibirlo cuando se acerca.' where num_pokedex = 169;
+update pokedex set descripcion = 'Descarga electricidad positiva y negativa entre las puntas de sus dos antenas y electrocuta al enemigo.' where num_pokedex = 170;
+update pokedex set descripcion = 'La luz que emite es tan brillante que puede iluminar la superficie del mar desde unos 5 km de profundidad.' where num_pokedex = 171;
+update pokedex set descripcion = 'Todavía no domina el almacenamiento de electricidad, y descargará un rayo si se divierte o asusta.' where num_pokedex = 172;
+update pokedex set descripcion = 'Por su inusual forma estrellada, la gente cree que procede de un meteorito que cayó a la tierra.' where num_pokedex = 173;
+update pokedex set descripcion = 'Su cuerpo es muy blando. Si se pone a rodar, rebotará contra todo y será imposible de parar.' where num_pokedex = 174;
+update pokedex set descripcion = 'El cascarón parece estar lleno de alegría. Dicen que trae buena suerte si es tratado con cariño.' where num_pokedex = 175;
+update pokedex set descripcion = 'Dicen que aparece entre gentes cuidadosas y de buen corazón, a quienes inunda de felicidad.' where num_pokedex = 176;
+update pokedex set descripcion = 'Va dando saltitos porque sus alas no han crecido lo suficiente. Siempre está pendiente de algo.' where num_pokedex = 177;
+update pokedex set descripcion = 'Dicen que se mantiene quieto y en silencio porque observa el pasado y el futuro al mismo tiempo.' where num_pokedex = 178;
+update pokedex set descripcion = 'Cuando almacena electricidad en su cuerpo, dobla su volumen. Tócalo y recibirás una descarga.' where num_pokedex = 179;
+update pokedex set descripcion = 'Como almacena tanta electricidad, ha desarrollado parches donde no crece ni la lana.' where num_pokedex = 180;
+update pokedex set descripcion = 'La punta de su cola reluce brillantemente y puede ser vista desde lejos. Es usado como faro.' where num_pokedex = 181;
+update pokedex set descripcion = 'Los Bellossom suelen reunirse para bailar. Dicen que sus danzas son un ritual para invocar al sol.' where num_pokedex = 182;
+update pokedex set descripcion = 'La punta de su cola, que contiene aceite, le permite nadar sin miedo a ahogarse.' where num_pokedex = 183;
+update pokedex set descripcion = 'Guardando silencio y prestando mucha atención puede saber lo que hay en los rápidos y salvajes ríos.' where num_pokedex = 184;
+update pokedex set descripcion = 'Aunque pretende ser un árbol, en su composición se parece más a una roca que a una planta.' where num_pokedex = 185;
+update pokedex set descripcion = 'Si Poliwag y Poliwhirl oyen su grito, responderán reuniéndose a lo largo y ancho de este mundo.' where num_pokedex = 186;
+update pokedex set descripcion = 'Para evitar ser llevados por el viento, se reúnen en grupos, aunque adoran las suaves brisas.' where num_pokedex = 187;
+update pokedex set descripcion = 'La flor de su cabeza se abre y cierra según suba o baje la temperatura.' where num_pokedex = 188;
+update pokedex set descripcion = 'Si es llevado por el viento, podría dar la vuelta al mundo controlando el vuelo con sus esporas.' where num_pokedex = 189;
+update pokedex set descripcion = 'Su cola es tan potente que puede usarla para agarrarse a la rama de un árbol y no caer.' where num_pokedex = 190;
+update pokedex set descripcion = 'Puede caer del cielo de repente. Si le ataca un Spearow, moverá violentamente sus hojas.' where num_pokedex = 191;
+update pokedex set descripcion = 'Convierte la luz solar en energía. En la oscuridad, tras el atardecer, cierra sus pétalos y queda inmóvil.' where num_pokedex = 192;
+update pokedex set descripcion = 'Si aletea muy rápido, genera ondas expansivas capaces de hacer añicos todas las ventanas próximas.' where num_pokedex = 193;
+update pokedex set descripcion = 'Este Pokémon vive en aguas frías. Sale del agua para buscar comida cuando refresca el ambiente.' where num_pokedex = 194;
+update pokedex set descripcion = 'Este despreocupado Pokémon es de Naturaleza tranquila. Siempre que nada, choca con los barcos.' where num_pokedex = 195;
+update pokedex set descripcion = 'Usa el corto pelaje que cubre su cuerpo para sentir el viento y predecir las acciones enemigas.' where num_pokedex = 196;
+update pokedex set descripcion = 'Cuando se siente amenazado, este Pokémon se protege lanzando sudor venenoso por todos sus poros.' where num_pokedex = 197;
+update pokedex set descripcion = 'Temido y odiado por muchos, dicen que trae la desgracia a todos aquéllos que lo ven por la noche.' where num_pokedex = 198;
+update pokedex set descripcion = 'Su intelecto e intuición son increíbles. No pierde la compostura en ninguna situación.' where num_pokedex = 199;
+update pokedex set descripcion = 'Le gusta hacer travesuras como gritar y aullar por la noche, para asustar a la gente.' where num_pokedex = 200;
+update pokedex set descripcion = 'Tienen forma de jeroglíficos sobre lápidas antiguas. Dicen que ambos están relacionados.' where num_pokedex = 201;
+update pokedex set descripcion = 'Odia la luz y las sacudidas. Si le atacan, infla su cuerpo para aumentar su contraataque.' where num_pokedex = 202;
+update pokedex set descripcion = 'Su cola tiene un pequeño cerebro. ¡Cuidado! Si te acercas, puede reaccionar a tu olor y morder.' where num_pokedex = 203;
+update pokedex set descripcion = 'Le gusta engrosar su coraza añadiendo cortezas de árbol. El aumento de peso no le molesta.' where num_pokedex = 204;
+update pokedex set descripcion = 'Todo su cuerpo está protegido por una coraza de metal. Lo que esconde la coraza es un misterio.' where num_pokedex = 205;
+update pokedex set descripcion = 'Este Pokémon escapa hacia atrás perforando el suelo con su cola, si es descubierto.' where num_pokedex = 206;
+update pokedex set descripcion = 'Vuela directo a la cara del objetivo, y acaba con su aterrada víctima inyectándole veneno.' where num_pokedex = 207;
+update pokedex set descripcion = 'Su cuerpo ha sido comprimido en el interior de la tierra, y por eso es hasta más duro que el diamante.' where num_pokedex = 208;
+update pokedex set descripcion = 'Aunque parezca aterrador, en realidad es amable y afectuoso. Es muy popular entre las mujeres.' where num_pokedex = 209;
+update pokedex set descripcion = 'Es muy tímido y asustadizo. Si se siente atacado, se moverá para evitar al enemigo.' where num_pokedex = 210;
+update pokedex set descripcion = 'Para arrojar sus venenosas púas, infla su cuerpo bebiendo hasta 10 litros de agua de una sola vez.' where num_pokedex = 211;
+update pokedex set descripcion = 'Mueve sus pinzas para asustar al enemigo. Por los dibujos de su cuerpo parece tener 3 cabezas.' where num_pokedex = 212;
+update pokedex set descripcion = 'Las BAYAS que almacena en su concha se descomponen en un líquido pegajoso.' where num_pokedex = 213;
+update pokedex set descripcion = 'Este fuerte Pokémon clava su preciado cuerno en la tripa del enemigo, lo eleva y luego lo arroja.' where num_pokedex = 214;
+update pokedex set descripcion = 'Sus ocultas garras son muy afiladas. Si le atacan, extiende sus garras y asusta al enemigo.' where num_pokedex = 215;
+update pokedex set descripcion = 'Si encuentra miel, brillará la marca de su frente. Se lame las garras cuando están llenas de miel.' where num_pokedex = 216;
+update pokedex set descripcion = 'Aunque trepa muy bien, prefiere agitar los árboles con sus patas y comer las BAYAS caídas.' where num_pokedex = 217;
+update pokedex set descripcion = 'No duerme nunca. Tiene que seguir moviéndose porque si se detiene, su cuerpo de lava podría enfriarse.' where num_pokedex = 218;
+update pokedex set descripcion = 'La concha de su lomo son restos de piel enfriada y endurecida. Se rompe fácilmente con sólo tocarla.' where num_pokedex = 219;
+update pokedex set descripcion = 'Frota su hocico contra el suelo para desenterrar comida. A veces descubre aguas termales.' where num_pokedex = 220;
+update pokedex set descripcion = 'Como su largo vello corporal le impide ver con claridad, sigue atacando repetidamente.' where num_pokedex = 221;
+update pokedex set descripcion = 'Crece y muda continuamente. La parte superior de su cabeza es muy apreciada por su belleza.' where num_pokedex = 222;
+update pokedex set descripcion = 'Tiene muy buena puntería. Dispara agua a sus presas, hasta si se están moviendo, a más de 100 metros.' where num_pokedex = 223;
+update pokedex set descripcion = 'Atrapa a los enemigos con sus tentáculos, y después los golpea con su dura cabeza.' where num_pokedex = 224;
+update pokedex set descripcion = 'Siempre lleva comida. Dicen que hay muchos desaparecidos que sobrevivieron gracias a ésta.' where num_pokedex = 225;
+update pokedex set descripcion = 'Mientras nada majestuosamente, no le importa que Remoraid le siga para comerse sus sobras.' where num_pokedex = 226;
+update pokedex set descripcion = 'Sus fuertes alas parecen pesadas, aunque son huecas y ligeras, y le permiten volar libremente.' where num_pokedex = 227;
+update pokedex set descripcion = 'Usa diferentes tipos de gritos para comunicarse con los de su especie, o para seguir a su presa.' where num_pokedex = 228;
+update pokedex set descripcion = 'Si te quemas con las llamas que lanza por su boca, el dolor no desaparecerá nunca.' where num_pokedex = 229;
+update pokedex set descripcion = 'Dicen que suele esconderse en cuevas submarinas. Puede crear torbellinos al bostezar.' where num_pokedex = 230;
+update pokedex set descripcion = 'Mueve su larga trompa para jugar, pero como es tan fuerte, esto podría resultar peligroso.' where num_pokedex = 231;
+update pokedex set descripcion = 'Tiene afilados y duros colmillos, y una gruesa piel. Su PLACAJE es tan fuerte que puede derribar una casa.' where num_pokedex = 232;
+update pokedex set descripcion = 'Esta versión mejorada de Porygon fue creada para explorar el espacio, aunque no puede volar.' where num_pokedex = 233;
+update pokedex set descripcion = 'Su cornamenta cambia el flujo del aire para crear un espacio de realidad distorsionada.' where num_pokedex = 234;
+update pokedex set descripcion = 'La punta de su cola rezuma un fluido especial. Lo pinta todo con este líquido para marcar su terreno.' where num_pokedex = 235;
+update pokedex set descripcion = 'Ataca siempre con mucha energía. Para fortalecerse a sí mismo, sigue luchando aunque pierda' where num_pokedex = 236;
+update pokedex set descripcion = 'Si te gustan sus suaves, elegantes y danzarinas patadas, acabarás taladrado.' where num_pokedex = 237;
+update pokedex set descripcion = 'Sus labios son la parte más sensible de su cuerpo. Siempre los usa para examinar las cosas.' where num_pokedex = 238;
+update pokedex set descripcion = 'Gira sus brazos para generar electricidad, pero se agota rápido, así que sólo se recarga un poco.' where num_pokedex = 239;
+update pokedex set descripcion = 'Cada vez que inspira y expira, lanza ascuas por su boca y por sus fosas nasales.' where num_pokedex = 240;
+update pokedex set descripcion = 'Su leche, rica en nutrientes, es la mejor bebida contra el cansancio y la enfermedad.' where num_pokedex = 241;
+update pokedex set descripcion = 'Cualquiera que pruebe un poco de huevo de Blissey, se volverá más amable y agradable con todos.' where num_pokedex = 242;
+update pokedex set descripcion = 'Las nubes de lluvia que lleva le permiten lanzar rayos a voluntad. Dicen que apareció con un rayo.' where num_pokedex = 243;
+update pokedex set descripcion = 'Cuando ladra, los volcanes entran en erupción. Como no puede controlar su poder, corre siempre en cabeza.' where num_pokedex = 244;
+update pokedex set descripcion = 'Conocido como la reencarnación de los vientos del norte, puede purificar aguas turbias y sucias.' where num_pokedex = 245;
+update pokedex set descripcion = 'Se alimenta de tierra. Después de comer una gran montaña, se duerme y empieza a crecer.' where num_pokedex = 246;
+update pokedex set descripcion = 'Su caparazón es duro como una piedra, y muy resistente. Su GOLPE puede derribar montañas.' where num_pokedex = 247;
+update pokedex set descripcion = 'Su cuerpo es casi inmune a los ataques. Por eso le encanta desafiar a sus enemigos.' where num_pokedex = 248;
+update pokedex set descripcion = 'Dicen que permanece en silencio en el fondo del mar debido a su inmenso poder.' where num_pokedex = 249;
+update pokedex set descripcion = 'Cuenta la leyenda que este Pokémon vuela por el cielo con sus magníficas alas de siete colores.' where num_pokedex = 250;
+update pokedex set descripcion = 'Este Pokémon vaga por el tiempo. La hierba y los árboles crecen por los campos por donde pasa.' where num_pokedex = 251;
+
+insert into objeto values (1,'Pesa','Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%', 5000, 'OBJETOS', 0, 0.20, 0.20, 0, 0, 0, 0.20);
+insert into objeto values (2,'Pluma','Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.', 5000, 'OBJETOS', 0, 0, 0.20, 0, 0.2, 0, 0.30);
+insert into objeto values (3,'Chaleco','Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.', 5000, 'OBJETOS', 0, 0.15, 0.20, 0, 0.2, 0, 0.15);
+insert into objeto values (4,'Baston','Aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.', 5000, 'OBJETOS', 0, 0, 0, 0, 0, 0.2, 0.15);
+insert into objeto values (5,'Pilas','Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.', 5000, 'OBJETOS', 0, 0, 0, 0, 0.3, 0.5, 0);
+
+insert into objeto values (6,'Pocion','Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.', 300, 'BOTIQUIN', 20, 0, 0, 0, 0, 0, 0);
+insert into objeto values (7,'Superpocion','Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.', 700, 'BOTIQUIN', 50, 0, 0, 0, 0, 0, 0);
+insert into objeto values (8,'Hiperpocion','Medicina en spray, que cura heridas y restaura 200 PS de un POKÉMON.', 1500, 'BOTIQUIN', 200, 0, 0, 0, 0, 0, 0);
+
+insert into objeto values (9,'Antidoto','Medicina en spray, que cura a un POKÉMON envenenado.', 100, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (10,'Antiparalizador','Medicina en spray, que cura a un POKÉMON paralizado.', 200, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (11,'Despertar','Medicina en spray, que despierta a un POKÉMON dormido.', 250, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (12,'Antiquemar','Medicina en spray, que cura a un POKÉMON quemado.', 250, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (13,'Antihielo','Medicina en spray, que descongela a un POKÉMON.', 250, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
+
+insert into objeto values (14,'Poke ball','Sirve para atrapar POKÉMON salvajes. Parece una cápsula.', 200, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (15,'Superball','Es buena. Tiene más índice de éxito que la POKÉ BALL.', 600, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (16,'Ultraball','Es muy buena. Tiene más índice que la SUPERBALL.', 1200, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (17,'Masterball','Es la mejor. Atrapa siempre al pokémon. No falla.', 500000, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
+
+alter table entrenador add id_equipo int;
+alter table entrenador add id_caja int;
+alter table entrenador add id_bolsa int;
+
+alter table caja_pokemon drop column id_entrenador
+
+alter table movimiento modify column estado enum('Paralizado', 'Quemado', 'Envenenado', 'Gravemente envenenado')
 
 
 
