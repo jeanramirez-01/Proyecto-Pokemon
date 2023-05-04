@@ -1,8 +1,4 @@
-package opcionesEntrenador;
-
-import combate.Movimiento;
-import pokemon.Pokemon;
-import pokemon.TipoPokemon;
+package mecanicaspokemon;
 
 public class Equipo {
 

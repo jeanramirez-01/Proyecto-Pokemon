@@ -1,6 +1,4 @@
-package combate;
-
-import entrenador.Entrenador;
+package mecanicaspokemon;
 
 public class Turno {
 

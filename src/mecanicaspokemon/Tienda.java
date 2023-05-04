@@ -1,4 +1,4 @@
-package tienda;
+package mecanicaspokemon;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package combate;
+package mecanicaspokemon;
 
 public class Eficacias {
 

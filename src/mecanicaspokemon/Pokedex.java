@@ -1,8 +1,6 @@
-package opcionesEntrenador;
+package mecanicaspokemon;
 
 import java.util.ArrayList;
-
-import pokemon.Pokemon;
 
 public class Pokedex {
 

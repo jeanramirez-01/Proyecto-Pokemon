@@ -1,4 +1,4 @@
-package tienda;
+package mecanicaspokemon;
 
 public class Objeto {
 

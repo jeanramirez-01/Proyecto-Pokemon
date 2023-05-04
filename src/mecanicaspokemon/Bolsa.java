@@ -1,12 +1,11 @@
-package opcionesEntrenador;
+package mecanicaspokemon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import pokemon.Pokemon;
-import tienda.Objeto;
-import tienda.Objeto.CategoriasBolsa;
-import tienda.Objeto.TipoObjeto;
+
+import mecanicaspokemon.Objeto.CategoriasBolsa;
+import mecanicaspokemon.Objeto.TipoObjeto;
 
 public class Bolsa {
 

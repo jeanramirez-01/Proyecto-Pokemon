@@ -1,16 +1,7 @@
-package entrenador;
+package mecanicaspokemon;
 
 import java.util.Arrays;
 import java.util.Random;
-
-import combate.Eficacias;
-import combate.Movimiento;
-import opcionesEntrenador.Bolsa;
-import opcionesEntrenador.Entrenamiento;
-import opcionesEntrenador.Equipo;
-import opcionesEntrenador.Pokedex;
-import pokemon.Pokemon;
-import pokemon.TipoPokemon;
 
 public class Entrenador {
 

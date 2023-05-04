@@ -1,8 +1,4 @@
-package combate;
-
-import pokemon.Pokemon;
-
-import pokemon.TipoPokemon;
+package mecanicaspokemon;
 
 public class Movimiento {
 

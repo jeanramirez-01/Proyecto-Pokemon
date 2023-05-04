@@ -1,4 +1,4 @@
-package opcionesEntrenador;
+package mecanicaspokemon;
 
 public class Entrenamiento {
 

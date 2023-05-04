@@ -5,16 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7041aa64-fe42-4d4c-9179-a848f3fdfa97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/pokemon/Pokemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/pokemon/Pokemon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entrenador/Entrenador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entrenador/Entrenador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combate/Eficacias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combate/Eficacias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/combate/Movimiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/combate/Movimiento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entrenador/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrenador/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Pokedex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/opcionesEntrenador/Pokedex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pokemon/ListaPokemonRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pokemon/ListaPokemonRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pokemon/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pokemon/Pokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pokemon/TipoPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pokemon/TipoPokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/pokemon/Pokemon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entrenador/Entrenador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combate/Eficacias.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combate/Estado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combate/Movimiento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/combate/Turno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrenador/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Bolsa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/CajaPokemon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Entrenamiento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Equipo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/PcPokemon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Pokedex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opcionesEntrenador/Tienda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pokemon/ListaPokemonRandom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pokemon/Pokemon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pokemon/TipoPokemon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tienda/Objeto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tienda/Tienda.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,13 +78,18 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="mecanicaspokemon.Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="entrenador.Main" />
+      <option name="MAIN_CLASS_NAME" value="mecanicaspokemon.Main" />
       <module name="ProyectoPokemon" />
       <extension name="coverage">
         <pattern>
@@ -100,6 +115,8 @@
       <workItem from="1681906783168" duration="19000" />
       <workItem from="1681973046166" duration="10337000" />
       <workItem from="1682416749259" duration="113000" />
+      <workItem from="1683182987708" duration="64000" />
+      <workItem from="1683183650841" duration="77000" />
     </task>
     <servers />
   </component>

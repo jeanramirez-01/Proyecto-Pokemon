@@ -1,15 +1,11 @@
-package entrenador;
+package mecanicaspokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import combate.Movimiento;
-import combate.Movimiento.TipoAtaque;
-import opcionesEntrenador.*;
-import pokemon.*;
-import pokemon.TipoPokemon;
-import opcionesEntrenador.Entrenamiento.TipoEntrenamiento;
-import tienda.Objeto;
-import tienda.Objeto.TipoObjeto;
+
+import mecanicaspokemon.Entrenamiento.TipoEntrenamiento;
+import mecanicaspokemon.Movimiento.TipoAtaque;
+import mecanicaspokemon.Objeto.TipoObjeto;
 
 public class Main {
 

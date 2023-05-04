@@ -1,9 +1,8 @@
-package pokemon;
+package mecanicaspokemon;
 
 import java.util.ArrayList;
 
-import combate.Movimiento;
-import combate.Movimiento.TipoAtaque;
+import mecanicaspokemon.Movimiento.TipoAtaque;
 
 public class ListaPokemonRandom {
 

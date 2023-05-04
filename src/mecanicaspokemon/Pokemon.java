@@ -1,15 +1,12 @@
-package pokemon;
+package mecanicaspokemon;
 
 import java.util.Arrays;
 import java.util.Random;
-import combate.Eficacias;
-import combate.Estado;
-import combate.Estado.EstadoPersistente;
-import combate.Estado.EstadoTemporal;
-import combate.Estado.OtrosEstados;
-import combate.Movimiento;
-import combate.Movimiento.TipoAtaque;
-import tienda.Objeto;
+
+import mecanicaspokemon.Estado.EstadoPersistente;
+import mecanicaspokemon.Estado.EstadoTemporal;
+import mecanicaspokemon.Estado.OtrosEstados;
+import mecanicaspokemon.Movimiento.TipoAtaque;
 
 public class Pokemon {
 
