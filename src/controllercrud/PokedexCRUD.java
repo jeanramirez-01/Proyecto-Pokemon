@@ -10,14 +10,6 @@ import java.util.LinkedList;
 
 public class PokedexCRUD {
 
-    public static void main(String[] args) {
-
-        for (int i = 0; i < selectPokedex().size(); i++) {
-            System.out.println(selectPokedex().get(i));
-        }
-
-    }
-
     public static LinkedList selectPokedex() {
 
         String query = "Select P.num_pokedex, P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2,\n" +
@@ -41,7 +33,7 @@ public class PokedexCRUD {
                 String descripcion = resultSet.getString("descripcion");
 
                 if (tipo2 == null) {
-                    TipoPokemon[] tipo = {TipoPokemon.valueOf(tipo1), null};
+                    TipoPokemon[] tipo = {TipoPokemon.valueOf(tipo1)};
                     single = new Pokemon(id_pokemon, name, tipo, descripcion);
                 } else {
                     TipoPokemon[] tipo = {TipoPokemon.valueOf(tipo1), TipoPokemon.valueOf(tipo2)};

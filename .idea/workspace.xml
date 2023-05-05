@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7041aa64-fe42-4d4c-9179-a848f3fdfa97" name="Changes" comment="Cambio de estructura de clases">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mecanicaspokemon/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoPokemon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoPokemon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllercrud/MySQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllercrud/MySQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllercrud/PokedexCRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllercrud/PokedexCRUD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllercrud/PokemonCRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllercrud/PokemonCRUD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecanicaspokemon/Pokedex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecanicaspokemon/Pokedex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mecanicaspokemon/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mecanicaspokemon/Pokemon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,34 +48,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "T:/JavaFX/javafx/javafx-sdk-20/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
+    <configuration name="PokedexCRUD" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controllercrud.PokedexCRUD" />
+      <module name="ProyectoPokemon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controllercrud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="mecanicaspokemon.Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -109,22 +116,6 @@
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestPokemon" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPokemon.mostrarStats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProyectoPokemon" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.TestPokemon" />
-      <option name="METHOD_NAME" value="mostrarStats" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,19 +170,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.mecanicaspokemon.Main" />
+      <item itemvalue="Application.PokedexCRUD" />
       <item itemvalue="JUnit.TestPokemon" />
-      <item itemvalue="JUnit.TestPokemon.mostrarStats" />
       <item itemvalue="JUnit.TestPokemon.sacarEficacia" />
       <item itemvalue="JUnit.TestPokemon.sacarEficacia (1)" />
       <item itemvalue="JUnit.TestPokemon.subirNivel" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PokedexCRUD" />
         <item itemvalue="JUnit.TestPokemon.sacarEficacia" />
         <item itemvalue="JUnit.TestPokemon" />
         <item itemvalue="JUnit.TestPokemon.subirNivel" />
         <item itemvalue="JUnit.TestPokemon.sacarEficacia (1)" />
-        <item itemvalue="JUnit.TestPokemon.mostrarStats" />
       </list>
     </recent_temporary>
   </component>
@@ -210,6 +201,8 @@
       <workItem from="1682416749259" duration="113000" />
       <workItem from="1683182987708" duration="64000" />
       <workItem from="1683183650841" duration="18117000" />
+      <workItem from="1683218742524" duration="3390000" />
+      <workItem from="1683275154366" duration="2672000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio de estructura de clases">
       <created>1683183938304</created>
