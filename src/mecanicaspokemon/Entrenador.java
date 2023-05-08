@@ -1,6 +1,7 @@
 package mecanicaspokemon;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Entrenador {
@@ -8,23 +9,22 @@ public class Entrenador {
 	private int idEntrenador;
 	private Equipo equipo;
 	private String nombre;
+	private int edad;
+	private String sexo;
 	private int pokecuarto;
 	private Bolsa bolsa;
-	private Pokemon[] caja;
+	private LinkedList<Pokemon> caja;
 	private Pokedex pokedex;
 
-	public Entrenador() {
-		super();
-		this.idEntrenador = (int) (Math.random() * 99999);
-		this.equipo = new Equipo();
-		this.nombre = "Manolo";
-		this.pokecuarto = (int) (Math.random() * 1000 - 800) + 800;
-		this.bolsa = new Bolsa();
-		this.caja = new Pokemon[360];
-		this.pokedex = new Pokedex();
+	public Entrenador(String name, int edad, String sexo, int pokedolares) {
+		this.nombre = name;
+		this.edad = edad;
+		this.sexo = sexo;
+		this.pokecuarto = pokedolares;
+
 	}
 
-	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, Pokemon[] caja,
+	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, LinkedList<Pokemon> caja,
 			Pokedex pokedex) {
 		super();
 		this.idEntrenador = id;
@@ -76,11 +76,11 @@ public class Entrenador {
 		this.bolsa = bolsa;
 	}
 
-	public Pokemon[] getCaja() {
+	public LinkedList<Pokemon> getCaja() {
 		return caja;
 	}
 
-	public void setCaja(Pokemon[] caja) {
+	public void setCaja(LinkedList<Pokemon> caja) {
 		this.caja = caja;
 	}
 
@@ -299,7 +299,6 @@ public class Entrenador {
 	 */
 	public void crianzaPokemon(Pokemon padre, Pokemon madre) {
 
-
 		Pokemon crianza = new Pokemon();
 
 		crianza.generarInfoCrianza(padre, madre);
@@ -308,9 +307,9 @@ public class Entrenador {
 			System.out.println(crianza.getNombre() + " se ha añadido al equipo.");
 		} else {
 			// Si el equipo del entrenador está lleno, agrega el Pokémon a la caja
-			for (int j = 0; j < caja.length; j++) {
-				if (caja[j] == null) {
-					caja[j] = crianza;
+			for (int j = 0; j < caja.size(); j++) {
+				if (caja.get(j) == null) {
+					caja.add(crianza);
 					System.out.println("Su equipo está lleno, entonces se ha guardado el Pokémon " + crianza.getMote()
 							+ " al PC.");
 					return;
@@ -322,10 +321,10 @@ public class Entrenador {
 
 	public void mostrarPc() {
 
-		for (int i = 0; i < caja.length; i++) {
-			if (caja[i] != null) {
-				System.out.println(i + ".-" + caja[i].getMote());
-				mostrarStats(caja[i]);
+		for (int i = 0; i < caja.size(); i++) {
+			if (caja.get(i) != null) {
+				System.out.println(i + ".-" + caja.get(i).getMote());
+				mostrarStats(caja.get(i));
 			}
 
 		}
@@ -403,6 +402,12 @@ public class Entrenador {
 
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return "Entrenador [nombre=" + nombre + ", edad=" + edad + ", sexo=" + sexo + ", pokecuarto=" + pokecuarto
+				+ "]";
 	}
 
 }

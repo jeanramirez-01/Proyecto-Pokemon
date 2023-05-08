@@ -3,6 +3,7 @@ package mecanicaspokemon;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controllercrud.PokedexCRUD;
 import mecanicaspokemon.Entrenamiento.TipoEntrenamiento;
 import mecanicaspokemon.Movimiento.TipoAtaque;
 import mecanicaspokemon.Objeto.TipoObjeto;
@@ -162,6 +163,10 @@ public class Main {
 		jugador.menu(2);
 		
 //		jugador.mostrarStats(equipo[5]);
+
+		for (int i = 0; i <PokedexCRUD.selectPokedex().size() ; i++) {
+			System.out.println(PokedexCRUD.selectPokedex().get(i));
+		}
 
 	}
 

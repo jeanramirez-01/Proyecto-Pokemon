@@ -1,0 +1,163 @@
+package controllercrud;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class LoginCRUD {
+
+	/**
+	 * ´ Este metodo se encarga de la consulta del usuario al momento de querer
+	 * iniciar sesion en el juego, que si el nombre el del usuario que pasa por
+	 * parametro existe en la base de datos y que si su contraseña es de igual
+	 * manera la misma, entonces procede a continuar, si no, salta una excepcion
+	 * 
+	 * @param nombre del usuario
+	 * @param pass   es la contraseña del usuario
+	 */
+	public static void selectIniciarSesion(String nombre, String pass) {
+
+		String query = "Select nom_entrenador\n" + "from entrenador\n" + "where nom_entrenador = '" + nombre
+				+ "' and contrasenia = '" + pass + "';";
+
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param usuario
+	 * @param password
+	 * @param edad
+	 * @param sexo
+	 */
+	public static void crearUsuario(String usuario, String password, int edad, char sexo) {
+		String query = "INSERT INTO entrenador (nom_entrenador, contrasenia, edad, sexo, pokecuartos) VALUES ( ?, ?, ?, ?, ?)";
+
+		try {
+			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.setString(1, usuario);
+			preparedStatement.setString(2, password);
+			preparedStatement.setInt(3, edad);
+			preparedStatement.setString(4, String.valueOf(sexo));
+			int pokecuartos = (int) (Math.random() * 500) + 1000;
+			preparedStatement.setInt(5, pokecuartos);
+			preparedStatement.executeUpdate();
+			crearEquipo(EntrenadorCRUD.selectIdEntrenador(usuario));
+			crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
+			crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param nombre
+	 * @return
+	 */
+	public static String recordarContraseña(String nombre) {
+
+		String query = "Select contrasenia\n" + "from entrenador\n" + "where nom_entrenador = '" + nombre + "';";
+		String contrasenia = "";
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				contrasenia = resultSet.getString("contrasenia");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return contrasenia;
+
+	}
+
+	/**
+	 * @param pass
+	 * @return
+	 */
+	public static String recordarUsuario(String pass) {
+
+		String query = "Select nom_entrenador\n" + "from entrenador\n" + "where contrasenia = '" + pass + "';";
+		String user = "";
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				user = resultSet.getString("nom_entrenador");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return user;
+
+	}
+
+	/**
+	 * @param id
+	 */
+	private static void crearEquipo(int id) {
+
+		String query = "Insert into equipo (id_equipo, id_entrenador) values (?, ?);";
+		try {
+			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @param id
+	 */
+	private static void crearBolsa(int id) {
+
+		String query = "Insert into bolsa (id_bolsa, id_entrenador) values (?, ?);";
+		try {
+			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, id);
+			int rowsInserted = preparedStatement.executeUpdate();
+			if (rowsInserted > 0) {
+				System.out.println("Se ha registrado la bolsa correctamente");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @param id
+	 */
+	private static void crearCaja(int id) {
+
+		String query = "Insert into pc_pokemon (id_pc_pokemon, id_entrenador) values (?,?);";
+		try {
+			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

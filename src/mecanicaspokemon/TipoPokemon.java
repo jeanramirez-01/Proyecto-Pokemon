@@ -28,7 +28,7 @@ public enum TipoPokemon {
 		this.indice = indice;
 	}
 
-	public String getNombre() {
+	public String getNombre() {		
 		return nombre;
 	}
 

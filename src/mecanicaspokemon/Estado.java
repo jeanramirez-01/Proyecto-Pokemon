@@ -2,18 +2,23 @@ package mecanicaspokemon;
 
 public class Estado {
 
-	public enum EstadoPersistente {
+	public enum TiposEstados {
 
 		PARALIZADO("Paralizado"), 
 		QUEMADO("Quemado"), 
 		ENVENENADO("Envenenador"), 
 		GRAVEMENTE_ENVENENADO("Gravemente envenedado"),
-		CONGELADO("Congelado"), 
+		CONGELADO("Congelado"),
+		DORMIDO("Dormido"),
+		CONFUSO("Confuso"),
+		DRENADORAS("Drenadoras"),
+		AMENDRENTADO("Amendrentado"),
+		DEBILITADO("Debilidado"),
 		NORMAL("Estado normal"); 
 
 		private String mensaje;
 
-		private EstadoPersistente(String mensaje) {
+		private TiposEstados(String mensaje) {
 			this.mensaje = mensaje;
 		}
 
@@ -23,98 +28,15 @@ public class Estado {
 
 	}
 
-	public enum EstadoTemporal {
+	private TiposEstados estado;
 
-		CONFUSO("Confuso", 4),
-		DORMIDO("Dormido", 3),
-		DRENADORAS("Drenadoras", 10), 
-		AMEDRENTADO("Amedrentado", 1);
-
-		private String mensaje;
-
-		private int turno;
-
-		private EstadoTemporal(String mensaje, int turno) {
-			this.mensaje = mensaje;
-			this.turno = turno;
-		}
-
-		public String getMensaje() {
-			return mensaje;
-		}
-
-		public int getTurno() {
-			return turno;
-		}
-
+	public TiposEstados getEstado() {
+		return estado;
 	}
 
-	public enum OtrosEstados {
-
-		DEBILITADO("Debilitado");
-
-		private String mensaje;
-
-		private OtrosEstados(String mensaje) {
-			this.mensaje = mensaje;
-		}
-
-		public String getMensaje() {
-			return mensaje;
-		}
-
+	public void setEstado(TiposEstados estado) {
+		this.estado = estado;
 	}
-
-	private EstadoPersistente persistente;
-	private EstadoTemporal temporal;
-	private OtrosEstados otros;
-	private Turno turnos; // Clase turnos.
-
-	public Estado(EstadoPersistente persistente) {
-		super();
-		this.persistente = persistente;
-	}
-
-	public Estado(EstadoTemporal temporal) {
-		super();
-		this.temporal = temporal;
-	}
-
-	public Estado(OtrosEstados otros) {
-		super();
-		this.otros = otros;
-	}
-
-	public EstadoPersistente getPersistente() {
-		return persistente;
-	}
-
-	public void setPersistente(EstadoPersistente persistente) {
-		this.persistente = persistente;
-	}
-
-	public EstadoTemporal getTemporal() {
-		return temporal;
-	}
-
-	public void setTemporal(EstadoTemporal temporal) {
-		this.temporal = temporal;
-	}
-
-	public OtrosEstados getOtros() {
-		return otros;
-	}
-
-	public void setOtros(OtrosEstados otros) {
-		this.otros = otros;
-	}
-
-	public Turno getTurnos() {
-		return turnos;
-	}
-
-	public void setTurnos(Turno turnos) {
-		this.turnos = turnos;
-	}
-
+	
+	
 }
