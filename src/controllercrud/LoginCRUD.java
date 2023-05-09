@@ -15,19 +15,30 @@ public class LoginCRUD {
 	 * @param nombre del usuario
 	 * @param pass   es la contraseña del usuario
 	 */
-	public static void selectIniciarSesion(String nombre, String pass) {
-
-		String query = "Select nom_entrenador\n" + "from entrenador\n" + "where nom_entrenador = '" + nombre
-				+ "' and contrasenia = '" + pass + "';";
-
+	public static boolean selectIniciarSesion(String nombre, String pass) {
+		String query = "SELECT nom_entrenador, contrasenia FROM entrenador WHERE nom_entrenador = ? AND contrasenia = ?";
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			preparedStatement.executeQuery();
+			preparedStatement.setString(1, nombre);
+			preparedStatement.setString(2, pass);
+			resultSet = preparedStatement.executeQuery();
+			return resultSet.next();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
-
 	}
 
 	/**
@@ -41,8 +52,9 @@ public class LoginCRUD {
 	public static void crearUsuario(String usuario, String password, int edad, char sexo) {
 		String query = "INSERT INTO entrenador (nom_entrenador, contrasenia, edad, sexo, pokecuartos) VALUES ( ?, ?, ?, ?, ?)";
 
+		PreparedStatement preparedStatement = null;
 		try {
-			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
 			preparedStatement.setString(1, usuario);
 			preparedStatement.setString(2, password);
 			preparedStatement.setInt(3, edad);
@@ -55,6 +67,14 @@ public class LoginCRUD {
 			crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 
@@ -67,14 +87,26 @@ public class LoginCRUD {
 		String query = "Select contrasenia\n" + "from entrenador\n" + "where nom_entrenador = '" + nombre + "';";
 		String contrasenia = "";
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				contrasenia = resultSet.getString("contrasenia");
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 
 		return contrasenia;
@@ -90,14 +122,26 @@ public class LoginCRUD {
 		String query = "Select nom_entrenador\n" + "from entrenador\n" + "where contrasenia = '" + pass + "';";
 		String user = "";
 		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				user = resultSet.getString("nom_entrenador");
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 
 		return user;
@@ -128,8 +172,9 @@ public class LoginCRUD {
 	private static void crearBolsa(int id) {
 
 		String query = "Insert into bolsa (id_bolsa, id_entrenador) values (?, ?);";
+		PreparedStatement preparedStatement = null;
 		try {
-			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			preparedStatement.setInt(2, id);
 			int rowsInserted = preparedStatement.executeUpdate();
@@ -138,6 +183,15 @@ public class LoginCRUD {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 
 	}

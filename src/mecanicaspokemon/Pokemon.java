@@ -2,7 +2,7 @@ package mecanicaspokemon;
 
 import java.util.Arrays;
 import java.util.Random;
-
+import mecanicaspokemon.Estado.Estados;
 import mecanicaspokemon.Estado.TiposEstados;
 import mecanicaspokemon.Movimiento.TipoAtaque;
 
@@ -401,53 +401,54 @@ public class Pokemon {
 	 * estado del movimiento del pokemon. En este caso primero declaramos
 	 */
 
-	public void ponerEstado() {
-
-		TiposEstados persistente;
-		EstadoTemporal temporal;
-
-		boolean estaPersistente = this.estado.getPersistente() != null;
-		if (estaPersistente && this.estado.getPersistente() != TiposEstados.NORMAL) {
-			System.out.println("No se puede cambiar el estado de " + this.nombre + " dado que esta "
-					+ this.estado.getPersistente().getMensaje());
-			return;
-		}
-
-		for (Movimiento movimiento : movimientos) {
-			if (this.estado.getTemporal() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
-				TiposEstados estadoMovimiento = movimiento.getEstado().getPersistente();
-				if (estadoMovimiento == TiposEstados.PARALIZADO || estadoMovimiento == TiposEstados.QUEMADO
-						|| estadoMovimiento == TiposEstados.ENVENENADO
-						|| estadoMovimiento == TiposEstados.GRAVEMENTE_ENVENENADO
-						|| estadoMovimiento == TiposEstados.CONGELADO) {
-
-					if (estaPersistente) {
-						return;
-					}
-
-					persistente = estadoMovimiento;
-					setEstado(new Estado(persistente));
-					break;
-				}
-			}
-			if (this.estado.getPersistente() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
-				EstadoTemporal estadoMovimiento2 = movimiento.getEstado().getTemporal();
-				if (estadoMovimiento2 == EstadoTemporal.CONFUSO || estadoMovimiento2 == EstadoTemporal.DORMIDO
-						|| estadoMovimiento2 == EstadoTemporal.AMEDRENTADO
-						|| estadoMovimiento2 == EstadoTemporal.DRENADORAS) {
-					temporal = estadoMovimiento2;
-					setEstado(new Estado(temporal));
-					break;
-				}
-			}
-		}
-
-		if (this.vitalidadActual == 0) {
-			setEstado(new Estado(OtrosEstados.DEBILITADO));
-			System.out.println(this.nombre + " se ha debilitado.");
-		}
-
-	}
+//	public void ponerEstado() {
+//
+//		Estados persistente;
+//		Estados temporal;
+//
+//		this.estado.getEstado().getTipoEstado();
+//		boolean estaPersistente = TiposEstados.PERSISTENTE != null;
+//		if (estaPersistente && this.estado.getEstado().getTipoEstado().PERSISTENTE != Estados.NORMAL) {
+//			System.out.println("No se puede cambiar el estado de " + this.nombre + " dado que esta "
+//					+ this.estado.getEstado().getMensaje());
+//			return;
+//		}
+//
+//		for (Movimiento movimiento : movimientos) {
+//			if (this.estado.getTipoEstado() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
+//				Estados estadoMovimiento = movimiento.getEstado().getPersistente();
+//				if (estadoMovimiento == Estados.PARALIZADO || estadoMovimiento == Estados.QUEMADO
+//						|| estadoMovimiento == Estados.ENVENENADO
+//						|| estadoMovimiento == Estados.GRAVEMENTE_ENVENENADO
+//						|| estadoMovimiento == Estados.CONGELADO) {
+//
+//					if (estaPersistente) {
+//						return;
+//					}
+//
+//					persistente = estadoMovimiento;
+//					setEstado(new Estado(persistente));
+//					break;
+//				}
+//			}
+//			if (this.estado.getPersistente() != null || this.estado.getOtros() == OtrosEstados.DEBILITADO) {
+//				EstadoTemporal estadoMovimiento2 = movimiento.getEstado().getTipoEstado();
+//				if (estadoMovimiento2 == EstadoTemporal.CONFUSO || estadoMovimiento2 == EstadoTemporal.DORMIDO
+//						|| estadoMovimiento2 == EstadoTemporal.AMEDRENTADO
+//						|| estadoMovimiento2 == EstadoTemporal.DRENADORAS) {
+//					temporal = estadoMovimiento2;
+//					setEstado(new Estado(temporal));
+//					break;
+//				}
+//			}
+//		}
+//
+//		if (this.vitalidadActual == 0) {
+//			setEstado(new Estado(Estados.DEBILITADO));
+//			System.out.println(this.nombre + " se ha debilitado.");
+//		}
+//
+//	}
 
 	/**
 	 *
@@ -458,10 +459,10 @@ public class Pokemon {
 		boolean estadoAplicado = false;
 		int random = 0;
 
-		switch (this.estado.getPersistente()) {
+		switch (this.estado.getEstado()) {
 		case PARALIZADO:
 
-			System.out.println(this.nombre + this.estado.getPersistente().getMensaje());
+			System.out.println(this.nombre + this.estado.getEstado().getMensaje());
 
 			boolean paralizado = false;
 			for (int i = 0; i < 1; i++) {
@@ -539,7 +540,7 @@ public class Pokemon {
 
 			if (descongelado) {
 				System.out.println(this.nombre + " se ha descongelado");
-				setEstado(new Estado(TiposEstados.NORMAL));
+				setEstado(new Estado(Estados.NORMAL));
 			} else {
 				System.out.println(this.nombre + " está congelado y no puede atacar");
 				break;
@@ -552,7 +553,7 @@ public class Pokemon {
 
 		}
 
-		switch (this.estado.getTemporal()) {
+		switch (this.estado.getEstado()) {
 		case CONFUSO:
 
 			break;
@@ -560,7 +561,7 @@ public class Pokemon {
 
 			estadoAplicado = true;
 			break;
-		case AMEDRENTADO:
+		case AMENDRENTADO:
 
 			break;
 
@@ -642,7 +643,7 @@ public class Pokemon {
 
 			if (danio >= rival.getVitalidadActual()) {
 				rival.setVitalidadActual(0);
-				rival.setEstado(new Estado(TiposEstados.DEBILITADO));
+				rival.setEstado(new Estado(Estados.DEBILITADO));
 				System.out.println(rival.getNombre() + " se ha debilitado");
 			} else {
 				rival.setVitalidadActual(rival.getVitalidadActual() - danio);
@@ -714,21 +715,6 @@ public class Pokemon {
 		this.velocidadMaxima = (int) (Math.random() * (31 - 5)) + 5;
 
 		recuperarEstadisticas();
-
-		// Cosas de prueba en la main
-//        int factor = (int) ((int) this.nivel * 2.5);
-//        this.vitalidadMaxima = (int) (Math.random() * ((31 - 10)) + 10) + factor;
-//        this.ataqueMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//        this.defensaMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//        this.ataqueEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//        this.defensaEspecialMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//        this.velocidadMaxima = (int) (Math.random() * ((31 - 5)) + 5) + factor;
-//
-//        this.vitalidadActual = this.vitalidadMaxima;
-//        this.ataqueActual = this.ataqueMaxima;
-//        this.defensaActual = this.defensaMaxima;
-//        this.ataqueEspecialActual = this.ataqueEspecialMaxima;
-//        this.defensaEspecialActual = this.defensaEspecialMaxima;
 
 	}
 
@@ -912,7 +898,6 @@ public class Pokemon {
 	public static double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
 
 		int indiceAtacante = tipoMovimientoAtacante.getIndice();
-
 		int indiceObjetivo = 0;
 		int indiceObjetivoDoble = 0;
 		double formula = 0;
@@ -921,9 +906,11 @@ public class Pokemon {
 			indiceObjetivo = tipoObjetivo[0].getIndice();
 			formula = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
 		} else {
-
-			indiceObjetivoDoble = sacarIndiceDoble(tipoObjetivo);
-			formula = Eficacias.EFICACIAS_DOBLE[indiceObjetivoDoble][indiceAtacante];
+			indiceObjetivo = tipoObjetivo[0].getIndice();
+			indiceObjetivoDoble = tipoObjetivo[1].getIndice();
+			double uno = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivo];
+			double dos = Eficacias.EFICACIAS[indiceAtacante][indiceObjetivoDoble];
+			formula = uno * dos;
 		}
 
 		return formula;

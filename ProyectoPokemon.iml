@@ -23,7 +23,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="JavaFX" level="project" />
     <orderEntry type="module-library">
       <library name="junit5">
         <CLASSES>

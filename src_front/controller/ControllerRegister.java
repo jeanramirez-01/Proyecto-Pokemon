@@ -27,8 +27,9 @@ public class ControllerRegister {
 
 	public void init() {
 		
+		
 		File file = new File(
-				"T:\\\\ProyectoJAVA\\\\Eclipse\\\\ProyectoPokemon\\\\recursos\\\\audios\\\\introLoginAudio.mp3");
+				"T:\\\\ProyectoJAVA\\\\Eclipse\\\\ProyectoPokemon\\\\recursos\\\\audios\\\\registerAudio.mp3");
 		Media sound = new Media(file.toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

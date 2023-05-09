@@ -1,7 +1,6 @@
 package gamegui;
 
 import java.io.File;
-import java.net.URL;
 import controller.ControllerLogin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +13,8 @@ public class Main extends Application {
 
 	@Override
     public void start(Stage primaryStage) throws Exception {
-        URL url = getClass().getResource("T:\\ProyectoJAVA\\Eclipse\\ProyectoPokemon\\src_front\\view\\Login.fxml");
-        Parent root = FXMLLoader.load(url);
+		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+		Parent root = FXMLLoader.load(fxmlFile.toURI().toURL());
         Scene scene = new Scene(root);
         File file1 = new File("T:\\ProyectoJAVA\\Eclipse\\ProyectoPokemon\\recursos\\imagenes\\imagenes_login\\iconoVentana.png");
         Image icono = new Image(file1.toURI().toString());

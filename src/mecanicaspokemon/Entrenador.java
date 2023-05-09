@@ -1,8 +1,6 @@
 package mecanicaspokemon;
 
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Entrenador {
 
@@ -16,6 +14,14 @@ public class Entrenador {
 	private LinkedList<Pokemon> caja;
 	private Pokedex pokedex;
 
+	public Entrenador() {
+		this.nombre = "";
+		this.edad = 0;
+		this.sexo = "";
+		this.pokecuarto = 0;
+
+	}
+	
 	public Entrenador(String name, int edad, String sexo, int pokedolares) {
 		this.nombre = name;
 		this.edad = edad;
