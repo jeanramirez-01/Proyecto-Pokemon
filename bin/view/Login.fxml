@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerLogin">
    <children>
@@ -19,8 +21,9 @@
          </image>
       </ImageView>
       <TextField fx:id="textUser" layoutX="250.0" layoutY="190.0" promptText="User" />
-      <TextField fx:id="textPassword" layoutX="251.0" layoutY="238.0" promptText="Password" />
       <Button fx:id="loginButton" layoutX="207.0" layoutY="291.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar Sesion" />
       <Button fx:id="registerButton" layoutX="363.0" layoutY="291.0" mnemonicParsing="false" onAction="#showRegister" text="Registrarse" />
+      <MediaView fx:id="mediaPlayer" fitHeight="200.0" fitWidth="200.0" />
+      <PasswordField fx:id="textPassword" layoutX="250.0" layoutY="238.0" promptText="Password" />
    </children>
 </AnchorPane>

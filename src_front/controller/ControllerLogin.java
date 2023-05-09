@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import controllercrud.LoginCRUD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,16 +12,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ControllerLogin {
 
-	private Stage stage;
-
 	private MediaPlayer mediaPlayer;
+
+	private Stage stage;
 
 	@FXML
 	private Button loginButton;
@@ -29,37 +32,47 @@ public class ControllerLogin {
 	private Button registerButton;
 
 	@FXML
-	private TextField textPassword;
+	private PasswordField textPassword;
 
 	@FXML
 	private TextField textUser;
 
-	@FXML
 	public void initialize() {
 
-		File file = new File(
-				"T:\\\\ProyectoJAVA\\\\Eclipse\\\\ProyectoPokemon\\\\recursos\\\\audios\\\\introLoginAudio.mp3");
+		File file = new File(System.getProperty("user.dir") + "/recursos/audios/introLoginAudio.mp3");
 		Media sound = new Media(file.toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.setAutoPlay(true);
+		mediaPlayer.setVolume(1);
+		
 	}
 
 	@FXML
 	void iniciarSesion(ActionEvent event) {
 		String nombre = textUser.getText();
 		String pass = textPassword.getText();
-
+		
 		if (LoginCRUD.selectIniciarSesion(nombre, pass)) {
 			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SeleccionPokemon.fxml"));
+				Stage currentStage = (Stage) loginButton.getScene().getWindow();
+				mediaPlayer.stop();
+				mediaPlayer.dispose();
+				currentStage.close();
+				
+				File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
+				FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
 				Stage stage = new Stage();
 				stage.setScene(scene);
+				File iconFile = new File(System.getProperty("user.dir") + "/recursos/imagenes/imagenes_login/iconoVentana.png");
+			    Image icon = new Image(iconFile.toURI().toString());
+			    stage = (Stage) root.getScene().getWindow();
+			    stage.getIcons().add(icon);
+			    stage.setTitle("Pokemon Cesur");
 				stage.show();
-				// Cerrar la ventana actual de inicio de sesión
-				Stage currentStage = (Stage) loginButton.getScene().getWindow();
-				currentStage.close();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -75,27 +88,26 @@ public class ControllerLogin {
 	@FXML
 	void showRegister(ActionEvent event) throws IOException {
 
+		Stage currentStage = (Stage) loginButton.getScene().getWindow();
 		mediaPlayer.stop();
-		mediaPlayer.setVolume(0);
-		mediaPlayer.setOnStopped(() -> mediaPlayer.dispose());
-
-		// Carga la vista de registro
-		File fxmlFile = new File("T:\\ProyectoJAVA\\Eclipse\\ProyectoPokemon\\src_front\\view\\Register.fxml");
+		mediaPlayer.dispose();
+		currentStage.close();
+		
+		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Register.fxml");
 		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 		Parent root = loader.load();
 		ControllerRegister registerController = loader.getController();
-
-		// Crea una nueva ventana de registro y establece su escena
 		Stage registerStage = new Stage();
 		registerStage.setScene(new Scene(root));
-
-		// Inicializa el controlador de registro y muestra la ventana
+		registerStage.setResizable(false);
 		registerController.init();
+		File iconFile = new File(System.getProperty("user.dir") + "/recursos/imagenes/imagenes_login/iconoVentana.png");
+	    Image icon = new Image(iconFile.toURI().toString());
+	    registerStage = (Stage) root.getScene().getWindow(); 
+	    registerStage.getIcons().add(icon);
+		registerStage.setTitle("Pokemon Cesur");
 		registerStage.show();
-
-		// Cierra la ventana actual de inicio de sesión
-		Stage currentStage = (Stage) loginButton.getScene().getWindow();
-		currentStage.close();
+		
 	}
 
 	public void setStage(Stage primaryStage) {
