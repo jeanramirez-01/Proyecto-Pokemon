@@ -1,6 +1,4 @@
-delete from pokedex;
-
-insert into pokedex 
+insert into pokedex (num_pokedex, nom_pokemon, tipo_primario, tipo_secundario, nivel_evolutivo, id_evolucion_pokemon)
 values
 (3, 'Venasaur', 11, 16, null, null),
 (2, 'Ivysaur', 11, 16, 32, 3),
@@ -529,13 +527,1051 @@ insert into objeto values (15,'Superball','Es buena. Tiene más índice de éxit
 insert into objeto values (16,'Ultraball','Es muy buena. Tiene más índice que la SUPERBALL.', 1200, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
 insert into objeto values (17,'Masterball','Es la mejor. Atrapa siempre al pokémon. No falla.', 500000, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
 
-alter table entrenador add id_equipo int;
-alter table entrenador add id_caja int;
-alter table entrenador add id_bolsa int;
 
-alter table caja_pokemon drop column id_entrenador
+update tipo set nombre = 'ACERO' where id_tipo = 1;
+update tipo set nombre = 'AGUA' where id_tipo = 2;
+update tipo set nombre = 'BICHO' where id_tipo = 3;
+update tipo set nombre = 'DRAGON' where id_tipo = 4;
+update tipo set nombre = 'ELECTRICO' where id_tipo = 5;
+update tipo set nombre = 'FANTASMA' where id_tipo = 6;
+update tipo set nombre = 'FUEGO' where id_tipo = 7;
+update tipo set nombre = 'HIELO' where id_tipo = 8;
+update tipo set nombre = 'LUCHA' where id_tipo = 9;
+update tipo set nombre = 'NORMAL' where id_tipo = 10;
+update tipo set nombre = 'PLANTA' where id_tipo = 11;
+update tipo set nombre = 'PSIQUICO' where id_tipo = 12;
+update tipo set nombre = 'ROCA' where id_tipo = 13;
+update tipo set nombre = 'SINIESTRO' where id_tipo = 14;
+update tipo set nombre = 'TIERRA' where id_tipo = 15;
+update tipo set nombre = 'VENENO' where id_tipo = 16;
+update tipo set nombre = 'VOLADOR' where id_tipo = 17;
 
-alter table movimiento modify column estado enum('Paralizado', 'Quemado', 'Envenenado', 'Gravemente envenenado')
+insert into movimiento (id_movimiento, nombre, id_tipo_movimiento) 
+values (1, 'Burbuja', 2),
+(2, 'Cascada', 2),
+(3, 'Hidrobomba', 2),
+(4, 'Martillazo', 2),
+(5, 'Pistola agua', 2),
+(6, 'Rayo burbuja', 2),
+(7, 'Refugio', 2),
+(8, 'Surf', 2),
+(9, 'Tenaza', 2),
+(10, 'Chupavidas', 3),
+(11, 'Disparo demora', 3),
+(12, 'Doble ataque', 3),
+(13, 'Pin misil', 3),
+(14, 'Furia dragón', 4),
+(15, 'Impactrueno', 5),
+(16, 'Onda trueno', 5),
+(17, 'Puño trueno', 5),
+(18, 'Rayo', 5),
+(19, 'Trueno', 5),
+(20, 'Lengüetazo', 6),
+(21, 'Rayo confuso', 6),
+(22, 'Tinieblas', 6),
+(23, 'Ascuas', 7),
+(24, 'Giro fuego', 7),
+(25, 'Lanzallamas', 7),
+(26, 'Lanzallamada', 7),
+(27, 'Puño fuego', 7),
+(28, 'Neblina', 8),
+(29, 'Niebla', 8),
+(30, 'Puño hielo', 8),
+(31, 'Rayo aurora', 8),
+(32, 'Rayo hielo', 8),
+(33, 'Ventisca', 8),
+(34, 'Contraataque', 9),
+(35, 'Doble ataque', 9),
+(36, 'Golpe kárate', 9),
+(37, 'Patada baja', 9),
+(38, 'Patada giro', 9),
+(39, 'Patada salto', 9),
+(40, 'Patada salto alta', 9),
+(41, 'Sísmico', 9),
+(42, 'Sumisión', 9),
+(43, 'Afilar', 10),
+(44, 'Agarre', 10),
+(45, 'Anulación', 10),
+(46, 'Arañazo', 10),
+(47, 'Atadura', 10),
+(48, 'Ataque furia', 10),
+(49, 'Ataque rápido', 10),
+(50, 'Atizar', 10),
+(51, 'Autodestrucción', 10),
+(52, 'Beso amoroso', 10),
+(53, 'Bomba huevo', 10),
+(54, 'Bomba sónica', 10),
+(55, 'Bombardeo', 10),
+(56, 'Cabezazo', 10),
+(57, 'Canto', 10),
+(58, 'Clavo cañón', 10),
+(59, 'Constricción', 10),
+(60, 'Conversión', 10),
+(61, 'Cornada', 10),
+(62, 'Corte', 10),
+(63, 'Cuchillida', 10),
+(64, 'Danza espada', 10),
+(65, 'Derribo', 10),
+(66, 'Desarrollo', 10),
+(67, 'Deslumbrar', 10),
+(68, 'Destello', 10),
+(69, 'Destructor', 10),
+(70, 'Día de pago', 10),
+(71, 'Doble dofetón', 10),
+(72, 'Doble equipo', 10),
+(73, 'Doble filo', 10),
+(74, 'Explosión', 10),
+(75, 'Foco energía', 10),
+(76, 'Fortaleza', 10),
+(77, 'Fuerza', 10),
+(78, 'Furia', 10),
+(79, 'Golpe cabeza', 10),
+(80, 'Golpe cuerpo', 10),
+(81, 'Golpes furia', 10),
+(82, 'Gruñido', 10),
+(83, 'Guillotina', 10),
+(84, 'Hipercolmillo', 10),
+(85, 'Hiperrayo', 10),
+(86, 'Látigo', 10),
+(87, 'Malicioso', 10),
+(88, 'Megapatada', 10),
+(89, 'Megapuño', 10),
+(90, 'Meteoros', 10),
+(91, 'Metrónomo', 10),
+(92, 'Ovocuración', 10),
+(93, 'Pantalla de humo', 10),
+(94, 'Perforador', 10),
+(95, 'Pisotón', 10),
+(96, 'Placaje', 10),
+(97, 'Puño cometa', 10),
+(98, 'Puño mareo', 10),
+(99, 'Metrónomo', 10),
+(100, 'Recuperación', 10),
+(101, 'Reducción', 10),
+(102, 'Remolino', 10),
+(103, 'Restricción', 10),
+(104, 'Rizo defensa', 10),
+(105, 'Rugido', 10),
+(106, 'Salpicadura', 10),
+(107, 'Saña', 10),
+(108, 'Superdiente', 10),
+(109, 'Supersónico', 10),
+(110, 'Sustituto', 10),
+(111, 'Transformación', 10),
+(112, 'Triataque', 10),
+(113, 'Venganza', 10),
+(114, 'Viento cortante', 10),
+(115, 'Chirrido', 10),
+(116, 'Absorber', 11),
+(117, 'Danza pétalo', 11),
+(118, 'Drenadoras', 11),
+(119, 'Espora', 11),
+(120, 'Hoja afilada', 11),
+(121, 'Látigo cepa', 11),
+(122, 'Megaagotar', 11),
+(123, 'Parilizador', 11),
+(124, 'Rayo solar', 11),
+(125, 'Somnífero', 11),
+(126, 'Agilidad', 12),
+(127, 'Amnesia', 12),
+(128, 'Barrera', 12),
+(129, 'Comesueños', 12),
+(130, 'Confusión', 12),
+(131, 'Descanso', 12),
+(132, 'Hipnosis', 12),
+(133, 'Kinético', 12),
+(134, 'Meditación', 12),
+(135, 'Pantalla de luz', 12),
+(136, 'Psicoonda', 12),
+(137, 'Psicorrayo', 12),
+(138, 'Psíquico', 12),
+(139, 'Reflejo', 12),
+(140, 'Teletransporte', 12),
+(141, 'Avalancha', 13),
+(142, 'Lanzarrocas', 13),
+(143, 'Mordisco', 14),
+(144, 'Ataque arena', 15),
+(145, 'Excavar', 15),
+(146, 'Fisura', 15),
+(147, 'Hueso palo', 15),
+(148, 'Huesomerang', 15),
+(149, 'Terremoto', 15),
+(150, 'Ácido', 16),
+(151, 'Armadura ácida', 16),
+(152, 'Gas venenoso', 16),
+(153, 'Picotazo veneno', 16),
+(154, 'Polución', 16),
+(155, 'Polvo veneno', 16),
+(156, 'Residuos', 16),
+(157, 'Tóxico', 16),
+(158, 'Ataque aéreo', 17),
+(159, 'Ataque ala', 17),
+(160, 'Espejo', 17),
+(161, 'Pico taladro', 17),
+(162, 'Picotazo', 17),
+(163, 'Tornado', 17),
+(164, 'Vuelo', 17),
+(165, 'Ala de acero', 1),
+(166, 'Cola férrea', 1),
+(167, 'Garra metal', 1),
+(168, 'Danza lluvia	', 2),
+(169, 'Pulpocañón', 2),
+(170, 'Torbellino', 2),
+(171, 'Corte de furia', 3),
+(172, 'Megacuerno', 3),
+(173, 'Telaraña', 3),
+(174, 'Ciclón', 4),
+(175, 'Dragoaliento', 4),
+(176, 'Enfado', 4),
+(177, 'Chispa', 5),
+(178, 'Electrocañón', 5),
+(179, 'Bola sombra', 6),
+(180, 'Maldición', 6),
+(181, 'Mismo destino', 6),
+(182, 'Pesadilla', 6),
+(183, 'Rencor', 6),
+(184, 'Día soleado', 7),
+(185, 'Fuego sagrado', 7),
+(186, 'Rueda fuego', 7),
+(187, 'Beso dulce', 10),
+(188, 'Encanto', 10),
+(189, 'Luz lunar', 10),
+(190, 'Nieve polvo', 8),
+(191, 'Viento hielo', 8),
+(192, 'Detección', 9),
+(193, 'Golpe roca', 9),
+(194, 'Inviersión', 9),
+(195, 'Llave vital', 9),
+(196, 'Puño dinámico', 9),
+(197, 'Tajo cruzado', 9),
+(198, 'Triple patada', 9),
+(199, 'Ultrapuño', 9),
+(200, 'Aguante', 10),
+(201, 'Atracción', 10),
+(202, 'Autosugestión', 10),
+(203, 'Azote', 10),
+(204, 'Batido', 10),
+(205, 'Canto mortal', 10),
+(206, 'Cara susto', 10),
+(207, 'Cascabel cura', 10),
+(208, 'Contoneo', 10),
+(209, 'Conversión2', 10),
+(210, 'Divide dolor', 10),
+(211, 'Dulce aroma', 10),
+(212, 'Esquema', 10),
+(213, 'Falso tortazo', 10),
+(214, 'Fijar blanco', 10),
+(215, 'Frustración', 10),
+(216, 'Giro rápido', 10),
+(217, 'Mal de ojo', 10),
+(218, 'Otra vez', 10),
+(219, 'Poder oculto', 10),
+(220, 'Presente', 10),
+(221, 'Profecía', 10),
+(222, 'Protección', 10),
+(223, 'Relevo', 10),
+(224, 'Retribución', 10),
+(225, 'Ronquido', 10),
+(226, 'Sol matinal', 10),
+(227, 'Sonámbulo', 10),
+(228, 'Tambor', 10),
+(229, 'Telépata', 10),
+(230, 'Velo sagrado', 10),
+(231, 'Velocidad extrema', 10),
+(232, 'Esporagodón', 11),
+(233, 'Gigadrenado', 11),
+(234, 'Síntesis', 11),
+(235, 'Manto espejo', 12),
+(236, 'Premonición', 12),
+(237, 'Poder pasado', 13),
+(238, 'Rodar', 13),
+(239, 'Tormenta arena', 13),
+(240, 'Finta', 14),
+(241, 'Ladrón', 14),
+(242, 'Paliza', 14),
+(243, 'Persecución', 14),
+(244, 'Triturar', 14),
+(245, 'Ataque óseo', 15),
+(246, 'Bofetón lodo', 15),
+(247, 'Magnitud', 15),
+(248, 'Púas', 15),
+(249, 'Bomba lodo', 10),
+(250, 'Aerochorro', 10);
 
+UPDATE movimiento SET descripcion = null WHERE id_movimiento = 1;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 2;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 3;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 4;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 5;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 6;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 7;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 8;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 9;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 10;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 11;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 12;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 13;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 14;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 15;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 16;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 17;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 18;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 19;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 20;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 21;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 22;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 23;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 24;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 25;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 26;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 27;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 28;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 29;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 30;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 31;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 32;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 33;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 34;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 35;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 36;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 37;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 38;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 39;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 40;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 41;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 42;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 43;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 44;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 45;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 46;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 47;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 48;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 49;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 50;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 51;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 52;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 53;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 54;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 55;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 56;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 57;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 58;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 59;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 60;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 61;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 62;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 63;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 64;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 65;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 66;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 67;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 68;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 69;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 70;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 71;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 72;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 73;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 74;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 75;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 76;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 77;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 78;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 79;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 80;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 81;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 82;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 83;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 84;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 85;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 86;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 87;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 88;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 89;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 90;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 91;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 92;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 93;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 94;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 95;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 96;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 97;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 98;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 99;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 100;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 101;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 102;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 103;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 104;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 105;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 106;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 107;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 108;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 109;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 110;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 111;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 112;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 113;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 114;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 115;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 116;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 117;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 118;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 119;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 120;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 121;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 122;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 123;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 124;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 125;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 126;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 127;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 128;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 129;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 130;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 131;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 132;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 133;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 134;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 135;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 136;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 137;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 138;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 139;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 140;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 141;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 142;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 143;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 144;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 145;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 146;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 147;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 148;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 149;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 150;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 151;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 152;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 153;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 154;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 155;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 156;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 157;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 158;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 159;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 160;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 161;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 162;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 163;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 164;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 165;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 166;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 167;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 168;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 169;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 170;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 171;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 172;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 173;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 174;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 175;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 176;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 177;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 178;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 179;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 180;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 181;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 182;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 183;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 184;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 185;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 186;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 187;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 188;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 189;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 190;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 191;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 192;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 193;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 194;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 195;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 196;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 197;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 198;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 199;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 200;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 201;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 202;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 203;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 204;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 205;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 206;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 207;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 208;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 209;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 210;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 211;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 212;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 213;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 214;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 215;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 216;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 217;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 218;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 219;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 220;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 221;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 222;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 223;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 224;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 225;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 226;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 227;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 228;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 229;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 230;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 231;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 232;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 233;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 234;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 235;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 236;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 237;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 238;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 239;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 240;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 241;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 242;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 243;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 244;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 245;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 246;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 247;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 248;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 249;
+UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 250;
 
+delete from bolsa; 
 
+delete from equipo;
+
+delete from pc_pokemon; 
+
+delete from entrenador;
+
+insert into estado 
+values
+(2, 'Quemado', 'Persistente'),
+(3, 'Envenenado', 'Persistente'),
+(4, 'Gravemente_envenenado', 'Persistente'),
+(5, 'Congelado', 'Persistente'),
+(6, 'Dormido', 'Temporal'),
+(7, 'Confuso', 'Temporal'),
+(8, 'Drenadoras', 'Temporal'),
+(9, 'Amendrentado', 'Temporal'),
+(10, 'Debilitado', 'Otro_Estado'),
+(11, 'Normal', 'Otro_Estado');
+
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/1.gif' where num_pokedex = 1;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/2.gif' where num_pokedex = 2;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/3.gif' where num_pokedex = 3;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/4.gif' where num_pokedex = 4;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/5.gif' where num_pokedex = 5;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/6.gif' where num_pokedex = 6;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/7.gif' where num_pokedex = 7;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/8.gif' where num_pokedex = 8;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/9.gif' where num_pokedex = 9;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/10.gif' where num_pokedex = 10;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/11.gif' where num_pokedex = 11;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/12.gif' where num_pokedex = 12;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/13.gif' where num_pokedex = 13;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/14.gif' where num_pokedex = 14;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/15.gif' where num_pokedex = 15;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/16.gif' where num_pokedex = 16;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/17.gif' where num_pokedex = 17;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/18.gif' where num_pokedex = 18;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/19.gif' where num_pokedex = 19;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/20.gif' where num_pokedex = 20;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/21.gif' where num_pokedex = 21;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/22.gif' where num_pokedex = 22;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/23.gif' where num_pokedex = 23;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/24.gif' where num_pokedex = 24;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/25.gif' where num_pokedex = 25;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/26.gif' where num_pokedex = 26;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/27.gif' where num_pokedex = 27;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/28.gif' where num_pokedex = 28;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/29.gif' where num_pokedex = 29;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/30.gif' where num_pokedex = 30;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/31.gif' where num_pokedex = 31;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/32.gif' where num_pokedex = 32;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/33.gif' where num_pokedex = 33;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/34.gif' where num_pokedex = 34;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/35.gif' where num_pokedex = 35;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/36.gif' where num_pokedex = 36;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/37.gif' where num_pokedex = 37;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/38.gif' where num_pokedex = 38;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/39.gif' where num_pokedex = 39;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/40.gif' where num_pokedex = 40;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/41.gif' where num_pokedex = 41;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/42.gif' where num_pokedex = 42;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/43.gif' where num_pokedex = 43;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/44.gif' where num_pokedex = 44;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/45.gif' where num_pokedex = 45;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/46.gif' where num_pokedex = 46;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/47.gif' where num_pokedex = 47;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/48.gif' where num_pokedex = 48;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/49.gif' where num_pokedex = 49;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/50.gif' where num_pokedex = 50;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/51.gif' where num_pokedex = 51;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/52.gif' where num_pokedex = 52;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/53.gif' where num_pokedex = 53;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/54.gif' where num_pokedex = 54;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/55.gif' where num_pokedex = 55;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/56.gif' where num_pokedex = 56;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/57.gif' where num_pokedex = 57;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/58.gif' where num_pokedex = 58;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/59.gif' where num_pokedex = 59;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/60.gif' where num_pokedex = 60;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/61.gif' where num_pokedex = 61;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/62.gif' where num_pokedex = 62;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/63.gif' where num_pokedex = 63;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/64.gif' where num_pokedex = 64;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/65.gif' where num_pokedex = 65;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/66.gif' where num_pokedex = 66;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/67.gif' where num_pokedex = 67;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/68.gif' where num_pokedex = 68;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/69.gif' where num_pokedex = 69;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/70.gif' where num_pokedex = 70;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/71.gif' where num_pokedex = 71;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/72.gif' where num_pokedex = 72;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/73.gif' where num_pokedex = 73;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/74.gif' where num_pokedex = 74;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/75.gif' where num_pokedex = 75;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/76.gif' where num_pokedex = 76;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/77.gif' where num_pokedex = 77;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/78.gif' where num_pokedex = 78;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/79.gif' where num_pokedex = 79;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/80.gif' where num_pokedex = 80;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/81.gif' where num_pokedex = 81;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/82.gif' where num_pokedex = 82;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/83.gif' where num_pokedex = 83;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/84.gif' where num_pokedex = 84;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/85.gif' where num_pokedex = 85;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/86.gif' where num_pokedex = 86;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/87.gif' where num_pokedex = 87;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/88.gif' where num_pokedex = 88;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/89.gif' where num_pokedex = 89;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/90.gif' where num_pokedex = 90;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/91.gif' where num_pokedex = 91;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/92.gif' where num_pokedex = 92;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/93.gif' where num_pokedex = 93;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/94.gif' where num_pokedex = 94;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/95.gif' where num_pokedex = 95;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/96.gif' where num_pokedex = 96;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/97.gif' where num_pokedex = 97;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/98.gif' where num_pokedex = 98;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/99.gif' where num_pokedex = 99;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/100.gif' where num_pokedex = 100;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/101.gif' where num_pokedex = 101;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/102.gif' where num_pokedex = 102;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/103.gif' where num_pokedex = 103;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/104.gif' where num_pokedex = 104;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/105.gif' where num_pokedex = 105;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/106.gif' where num_pokedex = 106;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/107.gif' where num_pokedex = 107;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/108.gif' where num_pokedex = 108;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/109.gif' where num_pokedex = 109;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/110.gif' where num_pokedex = 110;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/111.gif' where num_pokedex = 111;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/112.gif' where num_pokedex = 112;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/113.gif' where num_pokedex = 113;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/114.gif' where num_pokedex = 114;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/115.gif' where num_pokedex = 115;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/116.gif' where num_pokedex = 116;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/117.gif' where num_pokedex = 117;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/118.gif' where num_pokedex = 118;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/119.gif' where num_pokedex = 119;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/120.gif' where num_pokedex = 120;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/121.gif' where num_pokedex = 121;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/122.gif' where num_pokedex = 122;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/123.gif' where num_pokedex = 123;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/124.gif' where num_pokedex = 124;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/125.gif' where num_pokedex = 125;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/126.gif' where num_pokedex = 126;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/127.gif' where num_pokedex = 127;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/128.gif' where num_pokedex = 128;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/129.gif' where num_pokedex = 129;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/130.gif' where num_pokedex = 130;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/131.gif' where num_pokedex = 131;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/132.gif' where num_pokedex = 132;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/133.gif' where num_pokedex = 133;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/134.gif' where num_pokedex = 134;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/135.gif' where num_pokedex = 135;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/136.gif' where num_pokedex = 136;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/137.gif' where num_pokedex = 137;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/138.gif' where num_pokedex = 138;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/139.gif' where num_pokedex = 139;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/140.gif' where num_pokedex = 140;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/141.gif' where num_pokedex = 141;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/142.gif' where num_pokedex = 142;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/143.gif' where num_pokedex = 143;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/144.gif' where num_pokedex = 144;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/145.gif' where num_pokedex = 145;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/146.gif' where num_pokedex = 146;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/147.gif' where num_pokedex = 147;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/148.gif' where num_pokedex = 148;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/149.gif' where num_pokedex = 149;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/150.gif' where num_pokedex = 150;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/151.gif' where num_pokedex = 151;
+
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/152.gif' where num_pokedex = 152;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/153.gif' where num_pokedex = 153;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/154.gif' where num_pokedex = 154;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/155.gif' where num_pokedex = 155;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/156.gif' where num_pokedex = 156;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/157.gif' where num_pokedex = 157;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/158.gif' where num_pokedex = 158;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/159.gif' where num_pokedex = 159;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/160.gif' where num_pokedex = 160;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/161.gif' where num_pokedex = 161;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/162.gif' where num_pokedex = 162;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/163.gif' where num_pokedex = 163;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/164.gif' where num_pokedex = 164;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/165.gif' where num_pokedex = 165;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/166.gif' where num_pokedex = 166;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/167.gif' where num_pokedex = 167;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/168.gif' where num_pokedex = 168;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/169.gif' where num_pokedex = 169;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/170.gif' where num_pokedex = 170;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/171.gif' where num_pokedex = 171;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/172.gif' where num_pokedex = 172;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/173.gif' where num_pokedex = 173;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/174.gif' where num_pokedex = 174;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/175.gif' where num_pokedex = 175;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/176.gif' where num_pokedex = 176;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/177.gif' where num_pokedex = 177;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/178.gif' where num_pokedex = 178;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/179.gif' where num_pokedex = 179;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/180.gif' where num_pokedex = 180;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/181.gif' where num_pokedex = 181;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/182.gif' where num_pokedex = 182;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/183.gif' where num_pokedex = 183;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/184.gif' where num_pokedex = 184;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/185.gif' where num_pokedex = 185;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/186.gif' where num_pokedex = 186;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/187.gif' where num_pokedex = 187;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/188.gif' where num_pokedex = 188;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/189.gif' where num_pokedex = 189;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/190.gif' where num_pokedex = 190;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/191.gif' where num_pokedex = 191;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/192.gif' where num_pokedex = 192;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/193.gif' where num_pokedex = 193;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/194.gif' where num_pokedex = 194;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/195.gif' where num_pokedex = 195;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/196.gif' where num_pokedex = 196;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/197.gif' where num_pokedex = 197;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/198.gif' where num_pokedex = 198;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/199.gif' where num_pokedex = 199;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/200.gif' where num_pokedex = 200;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/201.gif' where num_pokedex = 201;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/202.gif' where num_pokedex = 202;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/203.gif' where num_pokedex = 203;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/204.gif' where num_pokedex = 204;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/205.gif' where num_pokedex = 205;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/206.gif' where num_pokedex = 206;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/207.gif' where num_pokedex = 207;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/208.gif' where num_pokedex = 208;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/209.gif' where num_pokedex = 209;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/210.gif' where num_pokedex = 210;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/211.gif' where num_pokedex = 211;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/212.gif' where num_pokedex = 212;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/213.gif' where num_pokedex = 213;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/214.gif' where num_pokedex = 214;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/215.gif' where num_pokedex = 215;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/216.gif' where num_pokedex = 216;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/217.gif' where num_pokedex = 217;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/218.gif' where num_pokedex = 218;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/219.gif' where num_pokedex = 219;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/220.gif' where num_pokedex = 220;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/221.gif' where num_pokedex = 221;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/222.gif' where num_pokedex = 222;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/223.gif' where num_pokedex = 223;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/224.gif' where num_pokedex = 224;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/225.gif' where num_pokedex = 225;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/226.gif' where num_pokedex = 226;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/227.gif' where num_pokedex = 227;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/228.gif' where num_pokedex = 228;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/229.gif' where num_pokedex = 229;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/230.gif' where num_pokedex = 230;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/231.gif' where num_pokedex = 231;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/232.gif' where num_pokedex = 232;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/233.gif' where num_pokedex = 233;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/234.gif' where num_pokedex = 234;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/235.gif' where num_pokedex = 235;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/236.gif' where num_pokedex = 236;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/237.gif' where num_pokedex = 237;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/238.gif' where num_pokedex = 238;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/239.gif' where num_pokedex = 239;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/240.gif' where num_pokedex = 240;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/241.gif' where num_pokedex = 241;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/242.gif' where num_pokedex = 242;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/243.gif' where num_pokedex = 243;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/244.gif' where num_pokedex = 244;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/245.gif' where num_pokedex = 245;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/246.gif' where num_pokedex = 246;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/247.gif' where num_pokedex = 247;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/248.gif' where num_pokedex = 248;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/249.gif' where num_pokedex = 249;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/250.gif' where num_pokedex = 250;
+update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/251.gif' where num_pokedex = 251;
+
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/1.mp3' where num_pokedex = 1;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/2.mp3' where num_pokedex = 2;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/3.mp3' where num_pokedex = 3;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/4.mp3' where num_pokedex = 4;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/5.mp3' where num_pokedex = 5;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/6.mp3' where num_pokedex = 6;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/7.mp3' where num_pokedex = 7;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/8.mp3' where num_pokedex = 8;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/9.mp3' where num_pokedex = 9;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/10.mp3' where num_pokedex = 10;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/11.mp3' where num_pokedex = 11;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/12.mp3' where num_pokedex = 12;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/13.mp3' where num_pokedex = 13;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/14.mp3' where num_pokedex = 14;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/15.mp3' where num_pokedex = 15;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/16.mp3' where num_pokedex = 16;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/17.mp3' where num_pokedex = 17;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/18.mp3' where num_pokedex = 18;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/19.mp3' where num_pokedex = 19;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/20.mp3' where num_pokedex = 20;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/21.mp3' where num_pokedex = 21;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/22.mp3' where num_pokedex = 22;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/23.mp3' where num_pokedex = 23;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/24.mp3' where num_pokedex = 24;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/25.mp3' where num_pokedex = 25;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/26.mp3' where num_pokedex = 26;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/27.mp3' where num_pokedex = 27;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/28.mp3' where num_pokedex = 28;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/29.mp3' where num_pokedex = 29;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/30.mp3' where num_pokedex = 30;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/31.mp3' where num_pokedex = 31;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/32.mp3' where num_pokedex = 32;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/33.mp3' where num_pokedex = 33;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/34.mp3' where num_pokedex = 34;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/35.mp3' where num_pokedex = 35;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/36.mp3' where num_pokedex = 36;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/37.mp3' where num_pokedex = 37;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/38.mp3' where num_pokedex = 38;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/39.mp3' where num_pokedex = 39;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/40.mp3' where num_pokedex = 40;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/41.mp3' where num_pokedex = 41;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/42.mp3' where num_pokedex = 42;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/43.mp3' where num_pokedex = 43;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/44.mp3' where num_pokedex = 44;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/45.mp3' where num_pokedex = 45;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/46.mp3' where num_pokedex = 46;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/47.mp3' where num_pokedex = 47;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/48.mp3' where num_pokedex = 48;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/49.mp3' where num_pokedex = 49;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/50.mp3' where num_pokedex = 50;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/51.mp3' where num_pokedex = 51;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/52.mp3' where num_pokedex = 52;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/53.mp3' where num_pokedex = 53;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/54.mp3' where num_pokedex = 54;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/55.mp3' where num_pokedex = 55;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/56.mp3' where num_pokedex = 56;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/57.mp3' where num_pokedex = 57;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/58.mp3' where num_pokedex = 58;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/59.mp3' where num_pokedex = 59;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/60.mp3' where num_pokedex = 60;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/61.mp3' where num_pokedex = 61;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/62.mp3' where num_pokedex = 62;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/63.mp3' where num_pokedex = 63;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/64.mp3' where num_pokedex = 64;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/65.mp3' where num_pokedex = 65;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/66.mp3' where num_pokedex = 66;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/67.mp3' where num_pokedex = 67;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/68.mp3' where num_pokedex = 68;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/69.mp3' where num_pokedex = 69;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/70.mp3' where num_pokedex = 70;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/71.mp3' where num_pokedex = 71;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/72.mp3' where num_pokedex = 72;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/73.mp3' where num_pokedex = 73;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/74.mp3' where num_pokedex = 74;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/75.mp3' where num_pokedex = 75;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/76.mp3' where num_pokedex = 76;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/77.mp3' where num_pokedex = 77;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/78.mp3' where num_pokedex = 78;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/79.mp3' where num_pokedex = 79;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/80.mp3' where num_pokedex = 80;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/81.mp3' where num_pokedex = 81;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/82.mp3' where num_pokedex = 82;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/83.mp3' where num_pokedex = 83;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/84.mp3' where num_pokedex = 84;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/85.mp3' where num_pokedex = 85;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/86.mp3' where num_pokedex = 86;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/87.mp3' where num_pokedex = 87;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/88.mp3' where num_pokedex = 88;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/89.mp3' where num_pokedex = 89;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/90.mp3' where num_pokedex = 90;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/91.mp3' where num_pokedex = 91;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/92.mp3' where num_pokedex = 92;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/93.mp3' where num_pokedex = 93;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/94.mp3' where num_pokedex = 94;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/95.mp3' where num_pokedex = 95;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/96.mp3' where num_pokedex = 96;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/97.mp3' where num_pokedex = 97;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/98.mp3' where num_pokedex = 98;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/99.mp3' where num_pokedex = 99;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/100.mp3' where num_pokedex = 100;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/101.mp3' where num_pokedex = 101;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/102.mp3' where num_pokedex = 102;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/103.mp3' where num_pokedex = 103;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/104.mp3' where num_pokedex = 104;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/105.mp3' where num_pokedex = 105;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/106.mp3' where num_pokedex = 106;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/107.mp3' where num_pokedex = 107;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/108.mp3' where num_pokedex = 108;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/109.mp3' where num_pokedex = 109;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/110.mp3' where num_pokedex = 110;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/111.mp3' where num_pokedex = 111;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/112.mp3' where num_pokedex = 112;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/113.mp3' where num_pokedex = 113;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/114.mp3' where num_pokedex = 114;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/115.mp3' where num_pokedex = 115;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/116.mp3' where num_pokedex = 116;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/117.mp3' where num_pokedex = 117;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/118.mp3' where num_pokedex = 118;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/119.mp3' where num_pokedex = 119;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/120.mp3' where num_pokedex = 120;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/121.mp3' where num_pokedex = 121;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/122.mp3' where num_pokedex = 122;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/123.mp3' where num_pokedex = 123;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/124.mp3' where num_pokedex = 124;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/125.mp3' where num_pokedex = 125;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/126.mp3' where num_pokedex = 126;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/127.mp3' where num_pokedex = 127;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/128.mp3' where num_pokedex = 128;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/129.mp3' where num_pokedex = 129;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/130.mp3' where num_pokedex = 130;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/131.mp3' where num_pokedex = 131;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/132.mp3' where num_pokedex = 132;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/133.mp3' where num_pokedex = 133;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/134.mp3' where num_pokedex = 134;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/135.mp3' where num_pokedex = 135;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/136.mp3' where num_pokedex = 136;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/137.mp3' where num_pokedex = 137;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/138.mp3' where num_pokedex = 138;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/139.mp3' where num_pokedex = 139;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/140.mp3' where num_pokedex = 140;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/141.mp3' where num_pokedex = 141;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/142.mp3' where num_pokedex = 142;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/143.mp3' where num_pokedex = 143;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/144.mp3' where num_pokedex = 144;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/145.mp3' where num_pokedex = 145;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/146.mp3' where num_pokedex = 146;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/147.mp3' where num_pokedex = 147;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/148.mp3' where num_pokedex = 148;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/149.mp3' where num_pokedex = 149;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/150.mp3' where num_pokedex = 150;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen1/151.mp3' where num_pokedex = 151;
+
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/152.mp3' where num_pokedex = 152;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/153.mp3' where num_pokedex = 153;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/154.mp3' where num_pokedex = 154;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/155.mp3' where num_pokedex = 155;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/156.mp3' where num_pokedex = 156;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/157.mp3' where num_pokedex = 157;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/158.mp3' where num_pokedex = 158;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/159.mp3' where num_pokedex = 159;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/160.mp3' where num_pokedex = 160;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/161.mp3' where num_pokedex = 161;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/162.mp3' where num_pokedex = 162;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/163.mp3' where num_pokedex = 163;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/164.mp3' where num_pokedex = 164;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/165.mp3' where num_pokedex = 165;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/166.mp3' where num_pokedex = 166;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/167.mp3' where num_pokedex = 167;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/168.mp3' where num_pokedex = 168;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/169.mp3' where num_pokedex = 169;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/170.mp3' where num_pokedex = 170;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/171.mp3' where num_pokedex = 171;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/172.mp3' where num_pokedex = 172;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/173.mp3' where num_pokedex = 173;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/174.mp3' where num_pokedex = 174;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/175.mp3' where num_pokedex = 175;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/176.mp3' where num_pokedex = 176;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/177.mp3' where num_pokedex = 177;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/178.mp3' where num_pokedex = 178;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/179.mp3' where num_pokedex = 179;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/180.mp3' where num_pokedex = 180;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/181.mp3' where num_pokedex = 181;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/182.mp3' where num_pokedex = 182;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/183.mp3' where num_pokedex = 183;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/184.mp3' where num_pokedex = 184;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/185.mp3' where num_pokedex = 185;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/186.mp3' where num_pokedex = 186;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/187.mp3' where num_pokedex = 187;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/188.mp3' where num_pokedex = 188;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/189.mp3' where num_pokedex = 189;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/190.mp3' where num_pokedex = 190;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/191.mp3' where num_pokedex = 191;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/192.mp3' where num_pokedex = 192;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/193.mp3' where num_pokedex = 193;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/194.mp3' where num_pokedex = 194;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/195.mp3' where num_pokedex = 195;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/196.mp3' where num_pokedex = 196;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/197.mp3' where num_pokedex = 197;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/198.mp3' where num_pokedex = 198;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/199.mp3' where num_pokedex = 199;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/200.mp3' where num_pokedex = 200;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/201.mp3' where num_pokedex = 201;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/202.mp3' where num_pokedex = 202;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/203.mp3' where num_pokedex = 203;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/204.mp3' where num_pokedex = 204;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/205.mp3' where num_pokedex = 205;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/206.mp3' where num_pokedex = 206;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/207.mp3' where num_pokedex = 207;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/208.mp3' where num_pokedex = 208;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/209.mp3' where num_pokedex = 209;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/210.mp3' where num_pokedex = 210;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/211.mp3' where num_pokedex = 211;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/212.mp3' where num_pokedex = 212;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/213.mp3' where num_pokedex = 213;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/214.mp3' where num_pokedex = 214;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/215.mp3' where num_pokedex = 215;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/216.mp3' where num_pokedex = 216;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/217.mp3' where num_pokedex = 217;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/218.mp3' where num_pokedex = 218;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/219.mp3' where num_pokedex = 219;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/220.mp3' where num_pokedex = 220;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/221.mp3' where num_pokedex = 221;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/222.mp3' where num_pokedex = 222;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/223.mp3' where num_pokedex = 223;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/224.mp3' where num_pokedex = 224;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/225.mp3' where num_pokedex = 225;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/226.mp3' where num_pokedex = 226;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/227.mp3' where num_pokedex = 227;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/228.mp3' where num_pokedex = 228;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/229.mp3' where num_pokedex = 229;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/230.mp3' where num_pokedex = 230;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/231.mp3' where num_pokedex = 231;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/232.mp3' where num_pokedex = 232;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/233.mp3' where num_pokedex = 233;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/234.mp3' where num_pokedex = 234;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/235.mp3' where num_pokedex = 235;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/236.mp3' where num_pokedex = 236;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/237.mp3' where num_pokedex = 237;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/238.mp3' where num_pokedex = 238;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/239.mp3' where num_pokedex = 239;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/240.mp3' where num_pokedex = 240;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/241.mp3' where num_pokedex = 241;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/242.mp3' where num_pokedex = 242;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/243.mp3' where num_pokedex = 243;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/244.mp3' where num_pokedex = 244;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/245.mp3' where num_pokedex = 245;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/246.mp3' where num_pokedex = 246;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/247.mp3' where num_pokedex = 247;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/248.mp3' where num_pokedex = 248;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/249.mp3' where num_pokedex = 249;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/250.mp3' where num_pokedex = 250;
+update pokedex set ruta_cry = 'recursos/audios/Original_Pokemon_Cries/Gen2/251.mp3' where num_pokedex = 251;
