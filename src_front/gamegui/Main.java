@@ -19,13 +19,13 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         File file1 = new File("recursos/imagenes/imagenes_login/iconoVentana.png");
         Image icono = new Image(file1.toURI().toString());
-        
+       
         primaryStage.setTitle("Pokemon Cesur");
         primaryStage.getIcons().add(icono);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        
         ControllerLogin controller = new ControllerLogin();
-        controller.initialize();
         controller.setStage(primaryStage);
         primaryStage.show();
         

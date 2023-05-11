@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controllercrud.PokemonCRUD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ControllerSeleccionarPokemon {
 
+	@FXML
+    private Button btnBulbasaur;
+
+    @FXML
+    private Button btnCharmander;
+
+    @FXML
+    private Button btnSeleccionar;
+
+    @FXML
+    private Button btnSquirtle;
+	
     @FXML
     private ResourceBundle resources;
 
@@ -45,8 +63,21 @@ public class ControllerSeleccionarPokemon {
 
     @FXML
     void initialize() {
-        // Mostrar el primer Pokemon disponible
-        showCurrentPokemonName();
+        
+    	
+		File iconFileGifB = new File(PokemonCRUD.selectRutaSprite(1));
+    	Image imgB = new Image(iconFileGifB.toURI().toString());
+    	ImageView imgViewB = new ImageView(imgB);
+    	btnBulbasaur.setGraphic(imgViewB);
+    	File iconFileGifS = new File("recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/4.gif");
+    	Image imgS = new Image(iconFileGifS.toURI().toString());
+    	ImageView imgViewS = new ImageView(imgS);
+    	btnSquirtle.setGraphic(imgViewS);
+    	File iconFileGifC = new File("recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/7.gif");
+    	Image imgC = new Image(iconFileGifC.toURI().toString());
+    	ImageView imgViewC = new ImageView(imgC);
+    	btnCharmander.setGraphic(imgViewC);
+
     }
 
     @FXML
@@ -88,6 +119,17 @@ public class ControllerSeleccionarPokemon {
         pokemonNameLabel.setText(availablePokemonNames[currentPokemonIndex]);
     }
 
+    @FXML
+    void sonidoBulbasur(ActionEvent event) {
+    	
+    	File file = new File(System.getProperty("user.dir") + "/recursos/audios/Original_Pokemon_Cries/Gen1/001_bulbasaur.mp3");
+		Media sound = new Media(file.toURI().toString());
+		MediaPlayer mediaPlaye = new MediaPlayer(sound);
+		mediaPlaye.setVolume(1);
+		mediaPlaye.play();
+    	
+    }
+    
 	
 }
 

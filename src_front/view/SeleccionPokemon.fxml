@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerSeleccionarPokemon">
     <children>
         <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="250.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,10 +18,9 @@
                 <Font name="System Bold" size="36.0" />
             </font>
         </Label>
-        <Button fx:id="btnBulbasaur" layoutX="76.0" layoutY="120.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
-        <Button fx:id="btnCharmander" layoutX="174.0" layoutY="120.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
-        <Button fx:id="btnSquirtle" layoutX="272.0" layoutY="120.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
+        <Button fx:id="btnBulbasaur" layoutX="76.0" layoutY="120.0" mnemonicParsing="false" onAction="#sonidoBulbasur" prefHeight="60.0" prefWidth="60.0" />
+        <Button fx:id="btnCharmander" layoutX="370.0" layoutY="120.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
+        <Button fx:id="btnSquirtle" layoutX="651.0" layoutY="120.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" />
         <Button fx:id="btnSeleccionar" layoutX="340.0" layoutY="540.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Seleccionar" />
     </children>
 </AnchorPane>
-

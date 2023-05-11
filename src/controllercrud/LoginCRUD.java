@@ -65,6 +65,7 @@ public class LoginCRUD {
 			crearEquipo(EntrenadorCRUD.selectIdEntrenador(usuario));
 			crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
 			crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -76,6 +77,7 @@ public class LoginCRUD {
 				throw new RuntimeException(e);
 			}
 		}
+
 	}
 
 	/**
@@ -177,10 +179,8 @@ public class LoginCRUD {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			preparedStatement.setInt(2, id);
-			int rowsInserted = preparedStatement.executeUpdate();
-			if (rowsInserted > 0) {
-				System.out.println("Se ha registrado la bolsa correctamente");
-			}
+			preparedStatement.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

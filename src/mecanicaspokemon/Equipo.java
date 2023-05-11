@@ -1,7 +1,8 @@
 package mecanicaspokemon;
 
 public class Equipo {
-
+	
+	
 	private Pokemon[] equipoEntrenador;
 
 	public Equipo() {
