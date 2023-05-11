@@ -86,6 +86,7 @@ public class ControllerRegister {
 	@FXML
 	void comebackDarling(ActionEvent event) {
 		
+		
 		helicopteroImage.setImage(null);
 		File iconFile = new File("recursos/imagenes/imagenes_register/liraEntrenador.png");
 		Image image = new Image(iconFile.toURI().toString());
