@@ -1,3 +1,23 @@
+insert into tipo 
+values 
+(1, 'ACERO', 0),
+(2, 'AGUA', 1),
+(3, 'BICHO', 2),
+(4, 'DRAGON', 3),
+(5, 'ELECTRICO', 4),
+(6, 'FANTASMA', 5),
+(7, 'FUEGO', 6),
+(8, 'HIELO', 7),
+(9, 'LUCHA', 8),
+(10, 'NORMAL', 9),
+(11, 'PLANTA', 10),
+(12, 'PSIQUICO', 11),
+(13, 'ROCA', 12),
+(14, 'SINIESTRO', 13),
+(15, 'TIERRA', 14),
+(16, 'VENENO', 15),
+(17, 'VOLADOR', 16);
+
 insert into pokedex (num_pokedex, nom_pokemon, tipo_primario, tipo_secundario, nivel_evolutivo, id_evolucion_pokemon)
 values
 (3, 'Venasaur', 11, 16, null, null),
@@ -5,7 +25,7 @@ values
 (1, 'Bulbasaur', 11, 16, 16, 2),
 (6, 'Charizard', 7, 17, null, null),
 (5, 'Charmeleon', 7, null, 36, 6),
-(4, 'Charmander', 7, null, 16, 5).
+(4, 'Charmander', 7, null, 16, 5),
 (9, 'Blastoise', 2, null, null, null),
 (8, 'Wartortle', 2, null, 36, 9),
 (7, 'Squirtle', 2, null, 16, 8),
@@ -17,7 +37,7 @@ values
 (13, 'Weedle', 3, 16, 7, 13),
 (18, 'Pidgeot', 10, 17, null, null),
 (17, 'Pidgeotto', 10, 17, 36, 18),
-(16, 'Pidgey', 10, 17, 18, 16),
+(16, 'Pidgey', 10, 17, 18, 17),
 (20, 'Raticate', 10, null, null, null),
 (19, 'Rattata', 10, null, 20, 20),
 (22, 'Fearow', 10, 17, null, null),
@@ -40,6 +60,7 @@ values
 (37, 'Vulpix', 7, null, 30, 38),
 (40, 'Wigglytuff', 10, null, null, null),
 (39, 'Jiggypuff', 10, null, 30, 40),
+(169, 'Crobat', 16, 17, null, null), 
 (42, 'Golbat', 16, 17, 40, 169),
 (41, 'Zubat', 16, 17, 22, 42),
 (45, 'Vileplume', 11, 15, null, null),
@@ -94,6 +115,7 @@ values
 (94, 'Gengar', 6, 16, null, null),
 (93, 'Haunter', 6, 16, 45, 94),
 (92, 'Gastly', 6, 16, 25, 93),
+(208, 'Steelix', 1, 15, null, null),
 (95, 'Onix', 13, 15, 40, 208),
 (97, 'Hypno', 12, null, null, null),
 (96, 'Drowzee', 12, null, 26, 97),
@@ -112,9 +134,11 @@ values
 (109, 'Koffing', 16, null, null, null),
 (112, 'Rhydon', 15, 13, null, null),
 (111, 'Rhyhorn', 15, 13, 42, 112),
+(242, 'Blissey', 10, null, null, null),
 (113, 'Chansey', 10, null, null, 242),
 (114, 'Tangela', 11, null, null, null),
 (115, 'Kangaskhan', 10, null, null, null),
+(230, 'Kingdra', 2, 4, null, null),
 (117, 'Seadra', 2, null, 45, 230),
 (116, 'Horsea', 2, null, 32, 117),
 (119, 'Seaking', 2, null, null, null),
@@ -122,6 +146,7 @@ values
 (121, 'Starmie', 2, 12, null, null),
 (120, 'Staryu', 2, null, 30, 121),
 (122, 'Mr. Mine', 12, null, null, null), 
+(212, 'Scizor', 3, 1, null, null),
 (123, 'Scyther', 3, 17, 42, 212),
 (124, 'Jynx', 8, 12, null, null),
 (125, 'Electabuzz', 5, null, null, null), 
@@ -136,6 +161,7 @@ values
 (134, 'Vaporeon', 2, null, null, null),
 (135, 'Jolteon', 5, null, null, null),
 (136, 'Flareon', 7, null, null, null),
+(233, 'Porygon2', 10, null, null, null),
 (137, 'Porygon', 10, null, 30, 233),
 (139, 'Omastar', 13, 2, null, null),
 (138, 'Omanyte', 13, 2, 40, 139),
@@ -169,7 +195,6 @@ values
 (165, 'Ledyba', 3, 17, 18, 166),
 (168, 'Ariados', 3, 16, null, null),
 (167, 'Spinarak', 3, 16, 22, 168),
-(169, 'Crobat', 16, 17, null, null), 
 (171, 'Lanturn', 2, 5, null, null),
 (170, 'Chinchou', 2, 5, 27, 171),
 (172, 'Pichu', 5, null, 10, 25),
@@ -208,11 +233,9 @@ values
 (204, 'Pineco', 3, null, 31, 205), 
 (206, 'Dunsparce', 10, null, null, null),
 (207, 'Gligar', 15, 17, null, null),
-(208, 'Steelix', 1, 15, null, null),
 (210, 'Granbull', 10, null, null, null),
 (209, 'Snubbull', 10, null, null, 210),
 (211, 'Qwilfish', 2, 16, null, null),
-(212, 'Scizor', 3, 1, null, null, null),
 (213, 'Shuckle', 3, 13, null, null),
 (214, 'Heracross', 3, 9, null, null),
 (215, 'Sneasel', 14, 8, null, null),
@@ -230,10 +253,8 @@ values
 (227, 'Skarmory', 1, 17, null, null),
 (229, 'Houndoom', 14, 7, null, null),
 (228, 'Houndour', 14, 7, 24, 229),
-(230, 'Kingdra', 2, 4, null, null),
 (232, 'Donphan', 15, null, null, null),
 (231, 'Phanpy', 15, null, 25, 232),
-(233, 'Porygon2', 10, null, null, null),
 (234, 'Stantler', 10, null, null, null),
 (235, 'Smeargle', 10, null, null, null),
 (236, 'Tyrogue', 9, null, null, null),
@@ -242,7 +263,6 @@ values
 (239, 'Elekid', 5, null, 30, 125),
 (240, 'Magby', 7, null, 30, 126),
 (241, 'Miltank', 10, null, null, null),
-(242, 'Blissey', 10, null, null, null),
 (243, 'Raikou', 5, null, null, null),
 (244, 'Entei', 7, null, null, null),
 (245, 'Suicune', 2, null, null, null),
@@ -506,11 +526,11 @@ update pokedex set descripcion = 'Dicen que permanece en silencio en el fondo de
 update pokedex set descripcion = 'Cuenta la leyenda que este Pokémon vuela por el cielo con sus magníficas alas de siete colores.' where num_pokedex = 250;
 update pokedex set descripcion = 'Este Pokémon vaga por el tiempo. La hierba y los árboles crecen por los campos por donde pasa.' where num_pokedex = 251;
 
-insert into objeto values (1,'Pesa','Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%', 5000, 'OBJETOS', 0, 0.20, 0.20, 0, 0, 0, 0.20);
-insert into objeto values (2,'Pluma','Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.', 5000, 'OBJETOS', 0, 0, 0.20, 0, 0.2, 0, 0.30);
-insert into objeto values (3,'Chaleco','Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.', 5000, 'OBJETOS', 0, 0.15, 0.20, 0, 0.2, 0, 0.15);
-insert into objeto values (4,'Baston','Aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.', 5000, 'OBJETOS', 0, 0, 0, 0, 0, 0.2, 0.15);
-insert into objeto values (5,'Pilas','Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.', 5000, 'OBJETOS', 0, 0, 0, 0, 0.3, 0.5, 0);
+insert into objeto values (1,'Pesa','Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%', 5000, 'OBJETO', 0, 0.20, 0.20, 0, 0, 0, 0.20);
+insert into objeto values (2,'Pluma','Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.', 5000, 'OBJETO', 0, 0, 0.20, 0, 0.2, 0, 0.30);
+insert into objeto values (3,'Chaleco','Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.', 5000, 'OBJETO', 0, 0.15, 0.20, 0, 0.2, 0, 0.15);
+insert into objeto values (4,'Baston','Aumenta la estamina un 20%, pero disminuye en un 15% la velocidad.', 5000, 'OBJETO', 0, 0, 0, 0, 0, 0.2, 0.15);
+insert into objeto values (5,'Pilas','Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.', 5000, 'OBJETO', 0, 0, 0, 0, 0.3, 0.5, 0);
 
 insert into objeto values (6,'Pocion','Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.', 300, 'BOTIQUIN', 20, 0, 0, 0, 0, 0, 0);
 insert into objeto values (7,'Superpocion','Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.', 700, 'BOTIQUIN', 50, 0, 0, 0, 0, 0, 0);
@@ -522,29 +542,10 @@ insert into objeto values (11,'Despertar','Medicina en spray, que despierta a un
 insert into objeto values (12,'Antiquemar','Medicina en spray, que cura a un POKÉMON quemado.', 250, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
 insert into objeto values (13,'Antihielo','Medicina en spray, que descongela a un POKÉMON.', 250, 'BOTIQUIN', 0, 0, 0, 0, 0, 0, 0);
 
-insert into objeto values (14,'Poke ball','Sirve para atrapar POKÉMON salvajes. Parece una cápsula.', 200, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
-insert into objeto values (15,'Superball','Es buena. Tiene más índice de éxito que la POKÉ BALL.', 600, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
-insert into objeto values (16,'Ultraball','Es muy buena. Tiene más índice que la SUPERBALL.', 1200, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
-insert into objeto values (17,'Masterball','Es la mejor. Atrapa siempre al pokémon. No falla.', 500000, 'POKEBALS', 0, 0, 0, 0, 0, 0, 0);
-
-
-update tipo set nombre = 'ACERO' where id_tipo = 1;
-update tipo set nombre = 'AGUA' where id_tipo = 2;
-update tipo set nombre = 'BICHO' where id_tipo = 3;
-update tipo set nombre = 'DRAGON' where id_tipo = 4;
-update tipo set nombre = 'ELECTRICO' where id_tipo = 5;
-update tipo set nombre = 'FANTASMA' where id_tipo = 6;
-update tipo set nombre = 'FUEGO' where id_tipo = 7;
-update tipo set nombre = 'HIELO' where id_tipo = 8;
-update tipo set nombre = 'LUCHA' where id_tipo = 9;
-update tipo set nombre = 'NORMAL' where id_tipo = 10;
-update tipo set nombre = 'PLANTA' where id_tipo = 11;
-update tipo set nombre = 'PSIQUICO' where id_tipo = 12;
-update tipo set nombre = 'ROCA' where id_tipo = 13;
-update tipo set nombre = 'SINIESTRO' where id_tipo = 14;
-update tipo set nombre = 'TIERRA' where id_tipo = 15;
-update tipo set nombre = 'VENENO' where id_tipo = 16;
-update tipo set nombre = 'VOLADOR' where id_tipo = 17;
+insert into objeto values (14,'Poke ball','Sirve para atrapar POKÉMON salvajes. Parece una cápsula.', 200, 'POKEBALL', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (15,'Superball','Es buena. Tiene más índice de éxito que la POKÉ BALL.', 600, 'POKEBALL', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (16,'Ultraball','Es muy buena. Tiene más índice que la SUPERBALL.', 1200, 'POKEBALL', 0, 0, 0, 0, 0, 0, 0);
+insert into objeto values (17,'Masterball','Es la mejor. Atrapa siempre al pokémon. No falla.', 500000, 'POKEBALL', 0, 0, 0, 0, 0, 0, 0);
 
 insert into movimiento (id_movimiento, nombre, id_tipo_movimiento) 
 values (1, 'Burbuja', 2),
@@ -798,277 +799,19 @@ values (1, 'Burbuja', 2),
 (249, 'Bomba lodo', 10),
 (250, 'Aerochorro', 10);
 
-UPDATE movimiento SET descripcion = null WHERE id_movimiento = 1;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 2;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 3;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 4;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 5;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 6;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 7;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 8;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 9;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 10;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 11;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 12;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 13;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 14;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 15;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 16;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 17;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 18;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 19;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 20;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 21;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 22;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 23;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 24;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 25;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 26;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 27;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 28;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 29;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 30;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 31;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 32;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 33;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 34;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 35;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 36;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 37;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 38;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 39;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 40;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 41;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 42;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 43;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 44;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 45;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 46;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 47;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 48;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 49;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 50;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 51;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 52;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 53;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 54;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 55;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 56;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 57;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 58;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 59;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 60;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 61;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 62;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 63;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 64;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 65;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 66;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 67;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 68;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 69;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 70;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 71;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 72;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 73;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 74;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 75;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 76;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 77;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 78;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 79;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 80;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 81;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 82;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 83;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 84;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 85;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 86;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 87;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 88;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 89;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 90;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 91;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 92;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 93;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 94;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 95;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 96;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 97;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 98;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 99;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 100;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 101;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 102;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 103;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 104;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 105;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 106;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 107;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 108;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 109;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 110;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 111;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 112;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 113;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 114;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 115;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 116;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 117;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 118;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 119;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 120;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 121;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 122;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 123;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 124;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 125;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 126;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 127;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 128;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 129;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 130;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 131;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 132;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 133;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 134;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 135;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 136;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 137;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 138;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 139;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 140;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 141;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 142;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 143;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 144;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 145;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 146;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 147;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 148;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 149;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 150;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 151;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 152;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 153;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 154;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 155;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 156;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 157;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 158;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 159;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 160;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 161;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 162;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 163;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 164;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 165;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 166;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 167;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 168;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 169;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 170;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 171;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 172;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 173;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 174;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 175;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 176;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 177;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 178;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 179;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 180;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 181;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 182;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 183;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 184;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 185;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 186;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 187;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 188;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 189;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 190;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 191;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 192;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 193;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 194;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 195;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 196;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 197;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 198;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 199;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 200;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 201;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 202;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 203;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 204;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 205;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 206;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 207;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 208;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 209;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 210;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 211;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 212;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 213;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 214;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 215;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 216;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 217;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 218;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 219;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 220;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 221;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 222;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 223;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 224;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 225;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 226;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 227;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 228;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 229;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 230;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 231;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 232;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 233;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 234;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 235;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 236;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 237;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 238;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 239;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 240;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 241;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 242;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 243;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 244;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 245;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 246;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 247;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 248;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 249;
-UPDATE movimiento SET descripcion = '' WHERE id_movimiento = 250;
-
-delete from bolsa; 
-
-delete from equipo;
-
-delete from pc_pokemon; 
-
-delete from entrenador;
-
 insert into estado 
 values
-(2, 'Quemado', 'Persistente'),
-(3, 'Envenenado', 'Persistente'),
-(4, 'Gravemente_envenenado', 'Persistente'),
-(5, 'Congelado', 'Persistente'),
-(6, 'Dormido', 'Temporal'),
-(7, 'Confuso', 'Temporal'),
-(8, 'Drenadoras', 'Temporal'),
-(9, 'Amendrentado', 'Temporal'),
-(10, 'Debilitado', 'Otro_Estado'),
-(11, 'Normal', 'Otro_Estado');
+(1, 'PARALIZADO', 'PERSISTENTE'),
+(2, 'QUEMADO', 'PERSISTENTE'),
+(3, 'ENVENENADO', 'PERSISTENTE'),
+(4, 'GRAVEMENTE_ENVENENADO', 'PERSISTENTE'),
+(5, 'CONGELADO', 'PERSISTENTE'),
+(6, 'DORMIDO', 'TEMPORAL'),
+(7, 'CONFUSO', 'TEMPORAL'),
+(8, 'DRENADORAS', 'TEMPORAL'),
+(9, 'AMENDRENTADO', 'TEMPORAL'),
+(10, 'DEBILITADO', 'OTRO_ESTADO'),
+(11, 'NORMAL', 'OTRO_ESTADO');
 
 update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/1.gif' where num_pokedex = 1;
 update pokedex set ruta_sprite = 'recursos/sprites/sprites_pokemon_animaciones/sprites_animaciones/animated/2.gif' where num_pokedex = 2;

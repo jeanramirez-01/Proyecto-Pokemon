@@ -1,11 +1,8 @@
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ControllerSeleccionarPokemon {
@@ -23,96 +20,52 @@ public class ControllerSeleccionarPokemon {
 	private Button btnSeleccionar;
 
 	@FXML
-	private ResourceBundle resources;
+	private Button btnChikorita;
 
 	@FXML
-	private URL location;
+	private Button btnCindaquil;
 
 	@FXML
-	private Label pokemonNameLabel;
+	private Button btnPikachu;
 
 	@FXML
-	private Button previousButton;
-
-	@FXML
-	private Button nextButton;
-
-	@FXML
-	private Button selectButton;
-
-	@FXML
-	private Button cancelButton;
-
-	private String[] availablePokemonNames = { "Bulbasaur", "Charmander", "Squirtle" };
-	private int currentPokemonIndex = 0;
+	private Button btnTotodile;
 
 	private Stage stage;
-	private String selectedPokemonName;
+	private int currentPokemonIndex = 0;
 
 	@FXML
 	void initialize() {
+		btnBulbasaur.setGraphic(Sprite.mostrarSprite(1));
 
-		try {
-			btnBulbasaur.setGraphic(Sprite.mostrarSprite(1));
+		btnCharmander.setGraphic(Sprite.mostrarSprite(4));
 
-			btnCharmander.setGraphic(Sprite.mostrarSprite(4));
-			
-			btnSquirtle.setGraphic(Sprite.mostrarSprite(7));
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		btnSquirtle.setGraphic(Sprite.mostrarSprite(7));
 
-	}
+		btnChikorita.setGraphic(Sprite.mostrarSprite(152));
 
-	@FXML
-	void handleCancelButton(ActionEvent event) {
-		// Cerrar la ventana sin seleccionar ningún Pokemon
-		stage.close();
-	}
+		btnCindaquil.setGraphic(Sprite.mostrarSprite(155));
 
-	@FXML
-	void handleNextButton(ActionEvent event) {
-		// Mostrar el siguiente Pokemon disponible
-		currentPokemonIndex = (currentPokemonIndex + 1) % availablePokemonNames.length;
-		showCurrentPokemonName();
-	}
+		btnTotodile.setGraphic(Sprite.mostrarSprite(158));
 
-	@FXML
-	void handlePreviousButton(ActionEvent event) {
-		// Mostrar el Pokemon anterior disponible
-		currentPokemonIndex = (currentPokemonIndex - 1 + availablePokemonNames.length) % availablePokemonNames.length;
-		showCurrentPokemonName();
-	}
-
-	@FXML
-	void handleSelectButton(ActionEvent event) {
-		// Seleccionar el Pokemon actual y cerrar la ventana
-		selectedPokemonName = availablePokemonNames[currentPokemonIndex];
-		stage.close();
+		btnPikachu.setGraphic(Sprite.mostrarSprite(25));
 	}
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
 
-	public String getSelectedPokemonName() {
-		return selectedPokemonName;
-	}
-
-	private void showCurrentPokemonName() {
-		pokemonNameLabel.setText(availablePokemonNames[currentPokemonIndex]);
-	}
-
 	@FXML
 	void sonidoBulbasur(ActionEvent event) {
 
 		Sprite.playAudio(1).play();
+		currentPokemonIndex = 1;
 
 	}
 
 	@FXML
 	void sonidoCharmander(ActionEvent event) {
-
+		currentPokemonIndex = 4;
 		Sprite.playAudio(4).play();
 
 	}
@@ -120,8 +73,49 @@ public class ControllerSeleccionarPokemon {
 	@FXML
 	void sonidoSquirtle(ActionEvent event) {
 
+		currentPokemonIndex = 7;
 		Sprite.playAudio(7).play();
 
+	}
+
+	@FXML
+	void sonidoChikorita(ActionEvent event) {
+
+		currentPokemonIndex = 152;
+		Sprite.playAudio(152).play();
+
+	}
+
+	@FXML
+	void sonidoCindaquil(ActionEvent event) {
+
+		currentPokemonIndex = 155;
+		Sprite.playAudio(155).play();
+	}
+
+	@FXML
+	void sonidoPikachu(ActionEvent event) {
+
+		currentPokemonIndex = 25;
+		Sprite.playAudio(25).play();
+	}
+
+	@FXML
+	void sonidoTotodile(ActionEvent event) {
+
+		currentPokemonIndex = 158;
+		Sprite.playAudio(158).play();
+	}
+
+	@FXML
+	void seleccionarPokemon(ActionEvent event) {
+		
+		System.out.println(currentPokemonIndex);
+		
+	}
+
+	private int getSelectIndicePokemonInicial() {
+		return currentPokemonIndex;
 	}
 
 }

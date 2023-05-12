@@ -49,7 +49,7 @@ public class ControllerRegister {
 	private TextField userCreateField;
 
 	private char selectedGender = 'X';
-
+	
 	@FXML
 	private Parent myAnchorPane;
 
