@@ -1,9 +1,24 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import controllercrud.EntrenadorCRUD;
+import controllercrud.EquipoPokemonCRUD;
+import controllercrud.PokedexCRUD;
+import controllercrud.PokemonCRUD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import mecanicaspokemon.Pokemon;
 
 public class ControllerSeleccionarPokemon {
 
@@ -108,10 +123,34 @@ public class ControllerSeleccionarPokemon {
 	}
 
 	@FXML
-	void seleccionarPokemon(ActionEvent event) {
-		
-		System.out.println(currentPokemonIndex);
-		
+	void seleccionarPokemon(ActionEvent event) throws IOException {
+
+		if (currentPokemonIndex == 0) {
+			Alert alert = new Alert(AlertType.ERROR, "No ha elegido ningun pokemon.");
+			alert.showAndWait();
+			return;
+		} else {
+			EquipoPokemonCRUD.insertPokemonInicialEnEquipo(getSelectIndicePokemonInicial(),
+					EntrenadorCRUD.selectIdEntrenadorRecienCreado());
+			Stage currentStage = (Stage) btnSeleccionar.getScene().getWindow();
+			currentStage.close();
+
+			File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			File iconFile = new File(
+					System.getProperty("user.dir") + "/recursos/imagenes/imagenes_login/iconoVentana.png");
+			Image icon = new Image(iconFile.toURI().toString());
+			stage = (Stage) root.getScene().getWindow();
+			stage.getIcons().add(icon);
+			stage.setTitle("Pokemon Cesur");
+			stage.show();
+
+		}
+
 	}
 
 	private int getSelectIndicePokemonInicial() {

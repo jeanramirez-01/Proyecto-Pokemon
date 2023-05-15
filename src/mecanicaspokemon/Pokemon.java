@@ -3,7 +3,6 @@ package mecanicaspokemon;
 import java.util.Arrays;
 import java.util.Random;
 import mecanicaspokemon.Estado.Estados;
-import mecanicaspokemon.Estado.TiposEstados;
 import mecanicaspokemon.Movimiento.TipoAtaque;
 
 public class Pokemon {
@@ -101,6 +100,16 @@ public class Pokemon {
 		this.nombre = name;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
+	}
+
+	public Pokemon(int num_pokedex, int vtBS, int atBS, int dfBS, int atEBS, int dfEBS, int vlBS) {
+		this.idPokemon = num_pokedex;
+		this.vitalidadMaxima = vtBS;
+		this.ataqueMaxima = atBS;
+		this.defensaMaxima = dfBS;
+		this.ataqueEspecialMaxima = atEBS;
+		this.defensaEspecialMaxima = dfEBS;
+		this.velocidadMaxima = vlBS;
 	}
 
 	public int getIdPokemon() {
@@ -918,7 +927,9 @@ public class Pokemon {
 
 	@Override
 	public String toString() {
-		return "Pokemon{" + "idPokemon=" + idPokemon + ", nombre='" + nombre + '\'' + ", tipo=" + Arrays.toString(tipo)
-				+ ", descripcion='" + descripcion + '\'' + '}';
+		return "Pokemon [nombre=" + nombre + ", vitalidadMaxima=" + vitalidadMaxima + ", ataqueMaxima=" + ataqueMaxima
+				+ ", defensaMaxima=" + defensaMaxima + ", ataqueEspecialMaxima=" + ataqueEspecialMaxima
+				+ ", defensaEspecialMaxima=" + defensaEspecialMaxima + ", velocidadMaxima=" + velocidadMaxima
+				+ ", estaminaMaxima=" + estaminaMaxima + "]";
 	}
 }

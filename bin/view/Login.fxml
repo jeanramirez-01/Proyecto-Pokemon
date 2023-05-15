@@ -6,39 +6,22 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.media.MediaView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
-	prefWidth="650.0" xmlns="http://javafx.com/javafx/19"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.ControllerLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="788.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerLogin">
 	<children>
-		<ImageView fitHeight="515.0" fitWidth="824.0"
-			layoutX="-87.0" layoutY="-6.0" pickOnBounds="true"
-			preserveRatio="true">
+		<ImageView fitHeight="591.0" fitWidth="1057.0" layoutX="-133.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../recursos/imagenes/imagenes_login/introgif.gif" />
+         </image></ImageView>
+		<ImageView fitHeight="304.0" fitWidth="461.0" layoutX="163.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
 			<image>
-				<Image
-					url="@../../recursos/imagenes/imagenes_login/introgif.gif" />
+				<Image url="@../../recursos/imagenes/imagenes_login/titulocompleto.png" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="304.0" fitWidth="461.0" layoutX="95.0"
-			layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
-			<image>
-				<Image
-					url="@../../recursos/imagenes/imagenes_login/titulocompleto.png" />
-			</image>
-		</ImageView>
-		<TextField fx:id="textUser" layoutX="250.0" layoutY="190.0"
-			promptText="User" />
-		<Button fx:id="loginButton" layoutX="207.0" layoutY="291.0"
-			mnemonicParsing="false" onAction="#iniciarSesion"
-			text="Iniciar Sesion" />
-		<Button fx:id="registerButton" layoutX="363.0" layoutY="291.0"
-			mnemonicParsing="false" onAction="#showRegister" text="Registrarse" />
-		<MediaView fx:id="mediaPlayer" fitHeight="200.0"
-			fitWidth="200.0" />
-		<PasswordField fx:id="textPassword" layoutX="250.0"
-			layoutY="238.0" promptText="Password" />
+		<TextField fx:id="textUser" layoutX="300.0" layoutY="222.0" prefHeight="32.0" prefWidth="187.0" promptText="User" />
+		<Button fx:id="loginButton" layoutX="95.0" layoutY="369.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="46.0" prefWidth="136.0" text="Iniciar Sesion" />
+		<Button fx:id="registerButton" layoutX="325.0" layoutY="369.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="46.0" prefWidth="136.0" text="Registrarse" />
+		<PasswordField fx:id="textPassword" layoutX="300.0" layoutY="276.0" prefHeight="32.0" prefWidth="187.0" promptText="Password" />
+      <Button fx:id="exitButton" layoutX="556.0" layoutY="369.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
 	</children>
 </AnchorPane>

@@ -1,0 +1,19 @@
+.font-face {
+  font-family: 'PKMN_RBYGSC';
+  src: url('/recursos/imagenes/font/PKMN_RBYGSC.ttf') format('truetype');
+}
+
+.button {
+    -fx-background-color: #0072C6;
+    -fx-text-fill: white;
+    -fx-font-family: 'PKMN_RBYGSC';
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 46px;
+    -fx-pref-width: 136px;
+}
+
+.button:hover {
+    -fx-background-color: #005DAE;
+}
+

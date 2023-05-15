@@ -50,7 +50,7 @@ public class LoginCRUD {
 	 * @param sexo
 	 */
 	public static void crearUsuario(String usuario, String password, int edad, char sexo) {
-		String query = "INSERT INTO entrenador (nom_entrenador, contrasenia, edad, sexo, pokecuartos) VALUES ( ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO entrenador (nom_entrenador, contrasenia, edad, genero, pokecuartos) VALUES ( ?, ?, ?, ?, ?)";
 
 		PreparedStatement preparedStatement = null;
 		try {
@@ -62,7 +62,6 @@ public class LoginCRUD {
 			int pokecuartos = (int) (Math.random() * 500) + 1000;
 			preparedStatement.setInt(5, pokecuartos);
 			preparedStatement.executeUpdate();
-			crearEquipo(EntrenadorCRUD.selectIdEntrenador(usuario));
 			crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
 			crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
 
@@ -147,24 +146,6 @@ public class LoginCRUD {
 		}
 
 		return user;
-
-	}
-
-	/**
-	 * @param id
-	 */
-	private static void crearEquipo(int id) {
-
-		String query = "Insert into equipo (id_equipo, id_entrenador) values (?, ?);";
-		try {
-			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, id);
-			preparedStatement.setInt(2, id);
-			preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 	}
 

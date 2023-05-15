@@ -27,4 +27,5 @@ public class Sprite {
 		mediaPlaye.setVolume(1);
 		return mediaPlaye;
 	}
+	
 }
