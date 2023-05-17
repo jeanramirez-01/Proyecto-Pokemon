@@ -3,7 +3,6 @@ package controllercrud;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +10,7 @@ import java.util.Date;
 public class Logger {
 
 	private static BufferedWriter bufferedWriter;
-    private static String logPath = "src/main/files/";
+    private static String logPath = "src/files";
 
     public static BufferedWriter getOrCreateFileWriter() {
 

@@ -60,12 +60,14 @@ public class ControllerMainMenu {
 
 	private ImageView pauseIcon;
 
-	void init(Entrenador trainer) {
+	@FXML
+	void init() {
 
-		jugador = trainer;
-		
+		Singleton singleton = Singleton.getInstance(null); 
+		jugador = singleton.value;
+
 		System.out.println(jugador.getNombre());
-		
+
 		File playIconFile = new File("recursos/imagenes/imagenes_main_menu/soundImage.png");
 		Image playImage = new Image(playIconFile.toURI().toString());
 		playIcon = new ImageView(playImage);

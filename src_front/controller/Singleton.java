@@ -1,11 +1,13 @@
 package controller;
 
+import mecanicaspokemon.Entrenador;
+
 public final class Singleton {
 
 	private static Singleton instance;	
-	public String value;
+	public Entrenador value;
 
-	private Singleton(String value) {
+	private Singleton(Entrenador value) {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException ex) {
@@ -14,10 +16,11 @@ public final class Singleton {
 		this.value = value;
 	}
 
-	public static Singleton getInstance(String value) {
+	public static Singleton getInstance(Entrenador value) {
 		if (instance == null) {
 			instance = new Singleton(value);
 		}
 		return instance;
 	}
+	
 }

@@ -23,6 +23,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 public class ControllerRegister {
 
 	@FXML
@@ -61,7 +62,7 @@ public class ControllerRegister {
 	@FXML
 	private Button backButton;
 
-	private  MediaPlayer mediaPlayer;
+	private MediaPlayer mediaPlayer;
 
 	private MediaPlayer buttonClickPlayer;
 
@@ -70,12 +71,6 @@ public class ControllerRegister {
 	@FXML
 	public void init() {
 
-//		File file = new File(System.getProperty("user.dir") + "/recursos/audios/registerAudio.mp3");
-//		Media sound = new Media(file.toURI().toString());
-//		mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-//		mediaPlayer.setVolume(1);
-//		mediaPlayer.play();
 		musica().play();
 
 		File buttonClickFile = new File("recursos/audios/efectoBotonPresion.mp3");
@@ -158,7 +153,6 @@ public class ControllerRegister {
 		try {
 			age = Integer.parseInt(ageCreateField.getText());
 		} catch (NumberFormatException e) {
-			// Mostrar mensaje de error si la edad no es un número válido
 			Alert alert = new Alert(AlertType.ERROR, "La edad debe ser un número entero.");
 			alert.showAndWait();
 			return;
@@ -171,11 +165,14 @@ public class ControllerRegister {
 		} else {
 			LoginCRUD.crearUsuario(nombre, pass, age, getSelectedGender());
 
-			// Cerrar la ventana actual y abrir la ventana de selección de Pokemon
 			File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
+
+			ControllerSeleccionarPokemon selectPokemon = loader.getController();
+			selectPokemon.initialize(nombre);
+
 			mediaPlayer.stop();
 			// Obtiene la raíz de la escena actual y asigna la transición
 			Parent rootCurrent = backButton.getScene().getRoot();

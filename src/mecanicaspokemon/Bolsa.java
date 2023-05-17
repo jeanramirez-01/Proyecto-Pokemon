@@ -3,7 +3,6 @@ package mecanicaspokemon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import mecanicaspokemon.Objeto.CategoriasBolsa;
 import mecanicaspokemon.Objeto.TipoObjeto;
 

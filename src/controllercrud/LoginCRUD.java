@@ -62,8 +62,8 @@ public class LoginCRUD {
 			int pokecuartos = (int) (Math.random() * 500) + 1000;
 			preparedStatement.setInt(5, pokecuartos);
 			preparedStatement.executeUpdate();
-			crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
-			crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
+			BolsaCRUD.crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
+			PcPokemonCRUD.crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,52 +146,6 @@ public class LoginCRUD {
 		}
 
 		return user;
-
-	}
-
-	/**
-	 * @param id
-	 */
-	private static void crearBolsa(int id) {
-
-		String query = "Insert into bolsa (id_bolsa, id_entrenador) values (?, ?);";
-		PreparedStatement preparedStatement = null;
-		try {
-			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, id);
-			preparedStatement.setInt(2, id);
-			preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
-
-	}
-
-	/**
-	 * @param id
-	 */
-	private static void crearCaja(int id) {
-
-		String query = "Insert into pc_pokemon (id_pc_pokemon, id_entrenador) values (?,?);";
-		try {
-			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, id);
-			preparedStatement.setInt(2, id);
-			preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
 	}
 

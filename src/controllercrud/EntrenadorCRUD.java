@@ -8,10 +8,6 @@ import mecanicaspokemon.Entrenador;
 
 public class EntrenadorCRUD {
 
-	public static void main(String[] args) {
-		System.out.println(selectIdEntrenadorRecienCreado());
-	}
-
 	/**
 	 * @return
 	 */
@@ -123,9 +119,15 @@ public class EntrenadorCRUD {
 		String query = "Select E.nom_entrenador, E.edad, E.genero, E.pokecuartos,\n"
 					 + "B.id_objeto, B.cantidad_objetos,\n"
 					 + "Eq.id_pokemon,\n"
-					 + "";
+					 + "Pc.id_pokemon\n"
+					 + "from entrenador E\n"
+					 + "join bolsa B on E.id_entrenador = B.id_entrenador\n"
+					 + "join equipo_pokemon Eq on E.id_entrenador = Eq.id_entrenador\n"
+					 + "join pc_pokemon Pc on E.id_entrenador = Pc.id_entrenador\n"
+					 + "where E.nom_entrenador = ?";
+		Entrenador trainer = null;
 		
 		
-		return null;
+		return trainer;
 	}
 }

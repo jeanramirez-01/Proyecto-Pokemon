@@ -2,8 +2,6 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-
-import controllercrud.EntrenadorCRUD;
 import controllercrud.LoginCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -74,18 +72,21 @@ public class ControllerLogin {
 		if (LoginCRUD.selectIniciarSesion(nombre, pass)) {
 			try {
 
-				File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Main.fxml");
+				File fxmlFile = new File("src_front/view/Main.fxml");
 				FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 				Parent root = loader.load();
+
 				Scene scene = new Scene(root);
 				Stage stage = new Stage();
 				stage.setScene(scene);
 
 				ControllerMainMenu main = loader.getController();
-				Entrenador trainer = new Entrenador(nombre);
-				main.init(trainer);
 
-//				Singleton singleton = Singleton.getInstance(nombre);
+				Entrenador trainer = new Entrenador(nombre);
+
+				Singleton.getInstance(trainer);
+
+				main.init();
 
 				Parent rootCurrent = loginButton.getScene().getRoot();
 				FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);

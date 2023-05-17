@@ -48,9 +48,13 @@ public class ControllerSeleccionarPokemon {
 	private int currentPokemonIndex = 0;
 
 	private static MediaPlayer buttonClickPlayer;
+	
+	private String nombreJugador;
 
-	@FXML
-	void initialize() {
+	void initialize(String nombre) {
+		
+		this.nombreJugador = nombre;
+		
 		btnBulbasaur.setGraphic(Sprite.mostrarSprite(1));
 
 		btnCharmander.setGraphic(Sprite.mostrarSprite(4));
@@ -120,16 +124,14 @@ public class ControllerSeleccionarPokemon {
 
 	@FXML
 	void seleccionarPokemon(ActionEvent event) throws IOException {
-
+		
+		efectoBoton().play();
 		if (currentPokemonIndex == 0) {
 			Alert alert = new Alert(AlertType.ERROR, "No ha elegido ningun pokemon.");
 			alert.showAndWait();
 			return;
 		} else {
-			efectoBoton().play();
-
-			EquipoPokemonCRUD.insertPokemonInicialEnEquipo(getSelectIndicePokemonInicial(),
-					EntrenadorCRUD.selectIdEntrenadorRecienCreado());
+			EquipoPokemonCRUD.insertPokemonInicialEnEquipo(getSelectIndicePokemonInicial(), nombreJugador);
 
 			File fxmlFile = new File("src_front/view/Login.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
