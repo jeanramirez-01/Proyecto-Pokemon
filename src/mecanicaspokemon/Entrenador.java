@@ -14,8 +14,8 @@ public class Entrenador {
 	private LinkedList<Pokemon> caja;
 	private Pokedex pokedex;
 
-	public Entrenador() {
-		this.nombre = "";
+	public Entrenador(String nombre2) {
+		this.nombre = nombre2;
 		this.edad = 0;
 		this.sexo = "";
 		this.pokecuarto = 0;
@@ -40,6 +40,10 @@ public class Entrenador {
 		this.bolsa = bolsa;
 		this.caja = caja;
 		this.pokedex = pokedex;
+	}
+
+	public Entrenador() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdEntrenador() {

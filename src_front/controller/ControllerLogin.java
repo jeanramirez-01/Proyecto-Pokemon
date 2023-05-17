@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import controllercrud.EntrenadorCRUD;
 import controllercrud.LoginCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import mecanicaspokemon.Entrenador;
 
 public class ControllerLogin {
 
@@ -27,6 +30,7 @@ public class ControllerLogin {
 
 	private Stage stage;
 
+	private MediaPlayer buttonClickPlayer;
 	@FXML
 	private Button loginButton;
 
@@ -45,35 +49,44 @@ public class ControllerLogin {
 	@FXML
 	public void initialize() {
 
+		File file2 = new File("recursos/audios/efectoBotonPresion.mp3");
+		Media sound2 = new Media(file2.toURI().toString());
+		buttonClickPlayer = new MediaPlayer(sound2);
+		buttonClickPlayer.setVolume(1);
+
 		File file = new File(System.getProperty("user.dir") + "/recursos/audios/introLoginAudio.mp3");
 		Media sound = new Media(file.toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.setVolume(1);
 		mediaPlayer.play();
+
 	}
 
 	@FXML
 	void iniciarSesion(ActionEvent event) {
 
-		File file = new File(System.getProperty("user.dir") + "/recursos/audios/efectoBotonPresion.mp3");
-		Media sound = new Media(file.toURI().toString());
-		MediaPlayer mediaPlaye = new MediaPlayer(sound);
-		mediaPlaye.setVolume(1);
-		mediaPlaye.play();
+		buttonClickPlayer.play();
 
 		String nombre = textUser.getText();
 		String pass = textPassword.getText();
 
 		if (LoginCRUD.selectIniciarSesion(nombre, pass)) {
 			try {
-			
-				File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
+
+				File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Main.fxml");
 				FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
 				Stage stage = new Stage();
 				stage.setScene(scene);
+
+				ControllerMainMenu main = loader.getController();
+				Entrenador trainer = new Entrenador(nombre);
+				main.init(trainer);
+
+//				Singleton singleton = Singleton.getInstance(nombre);
+
 				Parent rootCurrent = loginButton.getScene().getRoot();
 				FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
 				fadeOut.setFromValue(1.0);
@@ -84,7 +97,6 @@ public class ControllerLogin {
 						// Cuando la transición de desvanecimiento termina, asigna la nueva escena
 						Stage stage = (Stage) loginButton.getScene().getWindow();
 						stage.setScene(scene);
-
 						// Crea la transición de aparición para la nueva escena
 						FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
 						fadeIn.setFromValue(0.0);
@@ -112,11 +124,7 @@ public class ControllerLogin {
 	@FXML
 	void showRegister(ActionEvent event) throws IOException {
 
-		File file = new File(System.getProperty("user.dir") + "/recursos/audios/efectoBotonPresion.mp3");
-		Media sound = new Media(file.toURI().toString());
-		MediaPlayer mediaPlaye = new MediaPlayer(sound);
-		mediaPlaye.setVolume(1);
-		mediaPlaye.play();
+		buttonClickPlayer.play();
 
 		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Register.fxml");
 		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());

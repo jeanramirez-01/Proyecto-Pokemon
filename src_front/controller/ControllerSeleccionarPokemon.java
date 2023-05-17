@@ -2,13 +2,11 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-
 import controllercrud.EntrenadorCRUD;
 import controllercrud.EquipoPokemonCRUD;
-import controllercrud.PokedexCRUD;
-import controllercrud.PokemonCRUD;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,9 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import mecanicaspokemon.Pokemon;
+import javafx.util.Duration;
 
 public class ControllerSeleccionarPokemon {
 
@@ -46,8 +45,9 @@ public class ControllerSeleccionarPokemon {
 	@FXML
 	private Button btnTotodile;
 
-	private Stage stage;
 	private int currentPokemonIndex = 0;
+
+	private static MediaPlayer buttonClickPlayer;
 
 	@FXML
 	void initialize() {
@@ -64,10 +64,6 @@ public class ControllerSeleccionarPokemon {
 		btnTotodile.setGraphic(Sprite.mostrarSprite(158));
 
 		btnPikachu.setGraphic(Sprite.mostrarSprite(25));
-	}
-
-	public void setStage(Stage stage) {
-		this.stage = stage;
 	}
 
 	@FXML
@@ -130,24 +126,32 @@ public class ControllerSeleccionarPokemon {
 			alert.showAndWait();
 			return;
 		} else {
+			efectoBoton().play();
+
 			EquipoPokemonCRUD.insertPokemonInicialEnEquipo(getSelectIndicePokemonInicial(),
 					EntrenadorCRUD.selectIdEntrenadorRecienCreado());
-			Stage currentStage = (Stage) btnSeleccionar.getScene().getWindow();
-			currentStage.close();
 
-			File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+			File fxmlFile = new File("src_front/view/Login.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			File iconFile = new File(
-					System.getProperty("user.dir") + "/recursos/imagenes/imagenes_login/iconoVentana.png");
-			Image icon = new Image(iconFile.toURI().toString());
-			stage = (Stage) root.getScene().getWindow();
-			stage.getIcons().add(icon);
-			stage.setTitle("Pokemon Cesur");
-			stage.show();
+			Parent rootCurrent = btnSeleccionar.getScene().getRoot();
+			FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+			fadeOut.setFromValue(1.0);
+			fadeOut.setToValue(0.0);
+			fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Stage stage = (Stage) btnSeleccionar.getScene().getWindow();
+					stage.setScene(scene);
+
+					FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+					fadeIn.setFromValue(0.0);
+					fadeIn.setToValue(1.0);
+					fadeIn.play();
+				}
+			});
+			fadeOut.play();
 
 		}
 
@@ -155,6 +159,17 @@ public class ControllerSeleccionarPokemon {
 
 	private int getSelectIndicePokemonInicial() {
 		return currentPokemonIndex;
+	}
+
+	public static MediaPlayer efectoBoton() {
+
+		File buttonClickFile = new File(System.getProperty("user.dir") + "/recursos/audios/efectoBotonPresion.mp3");
+		Media buttonClickMedia = new Media(buttonClickFile.toURI().toString());
+		buttonClickPlayer = new MediaPlayer(buttonClickMedia);
+		buttonClickPlayer.setVolume(1);
+
+		return buttonClickPlayer;
+
 	}
 
 }

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Random;
 
 import mecanicaspokemon.Pokemon;
 
@@ -17,16 +18,14 @@ public class PokemonCRUD {
 
 	public static void insertPokemonInicial(int id) {
 
-		String query = "Insert into pokemon (num_pokedex, vitalidad, ataque, defensa, ataque_especial, defensa_especial, velocidad)\n"
-				+ "values (?,?,?,?,?,?,?);";
+		String query = "Insert into pokemon (num_pokedex, vitalidad, ataque, defensa, ataque_especial, defensa_especial, velocidad, sexo)\n"
+				+ "values (?,?,?,?,?,?,?,?);";
 
 		PreparedStatement preparedStatement = null;
 
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-
 			Pokemon pokemon = PokedexCRUD.selectStatsBase(id);
-
 			preparedStatement.setInt(1, pokemon.getIdPokemon());
 			preparedStatement.setInt(2, pokemon.getVitalidadMaxima());
 			preparedStatement.setInt(3, pokemon.getAtaqueMaxima());
@@ -34,6 +33,10 @@ public class PokemonCRUD {
 			preparedStatement.setInt(5, pokemon.getAtaqueEspecialMaxima());
 			preparedStatement.setInt(6, pokemon.getDefensaEspecialMaxima());
 			preparedStatement.setInt(7, pokemon.getVelocidadMaxima());
+			char[] opciones = { 'H', 'M' };
+			Random random = new Random();
+			char sexo = opciones[random.nextInt(opciones.length)];
+			preparedStatement.setString(8, String.valueOf(sexo));
 			preparedStatement.executeUpdate(); // Insertar los valores de las estadísticas en la tabla 'pokemon'
 
 		} catch (SQLException e) {

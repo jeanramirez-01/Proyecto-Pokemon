@@ -91,4 +91,41 @@ public class EntrenadorCRUD {
 		return id;
 	}
 
+	public static boolean comprobarEntrenador(String usuario) {
+
+		String query = "Select nom_entrenador from entrenador where nom_entrenador = ?";
+
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			preparedStatement.setString(1, usuario);
+			resultSet = preparedStatement.executeQuery();
+			return resultSet.next();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+	}
+
+	public static Entrenador cargarEntrenador(String nombre) {
+		String query = "Select E.nom_entrenador, E.edad, E.genero, E.pokecuartos,\n"
+					 + "B.id_objeto, B.cantidad_objetos,\n"
+					 + "Eq.id_pokemon,\n"
+					 + "";
+		
+		
+		return null;
+	}
 }

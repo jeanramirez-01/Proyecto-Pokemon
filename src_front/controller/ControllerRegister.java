@@ -2,8 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-
+import controllercrud.EntrenadorCRUD;
 import controllercrud.LoginCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -62,7 +61,7 @@ public class ControllerRegister {
 	@FXML
 	private Button backButton;
 
-	private static MediaPlayer mediaPlayer;
+	private  MediaPlayer mediaPlayer;
 
 	private MediaPlayer buttonClickPlayer;
 
@@ -71,14 +70,15 @@ public class ControllerRegister {
 	@FXML
 	public void init() {
 
-		File file = new File(System.getProperty("user.dir") + "/recursos/audios/registerAudio.mp3");
-		Media sound = new Media(file.toURI().toString());
-		mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		mediaPlayer.setVolume(1);
-		mediaPlayer.play();
+//		File file = new File(System.getProperty("user.dir") + "/recursos/audios/registerAudio.mp3");
+//		Media sound = new Media(file.toURI().toString());
+//		mediaPlayer = new MediaPlayer(sound);
+//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//		mediaPlayer.setVolume(1);
+//		mediaPlayer.play();
+		musica().play();
 
-		File buttonClickFile = new File(System.getProperty("user.dir") + "/recursos/audios/efectoBotonPresion.mp3");
+		File buttonClickFile = new File("recursos/audios/efectoBotonPresion.mp3");
 		Media buttonClickMedia = new Media(buttonClickFile.toURI().toString());
 		buttonClickPlayer = new MediaPlayer(buttonClickMedia);
 		buttonClickPlayer.setVolume(1);
@@ -86,6 +86,9 @@ public class ControllerRegister {
 
 	@FXML
 	void comebackHelicopter(ActionEvent event) {
+
+		buttonClickPlayer.seek(Duration.ZERO);
+		buttonClickPlayer.play();
 
 		imagenEntrenadorSeleccion.setImage(null);
 		File iconFile = new File("recursos/imagenes/imagenes_register/helicoptero.png");
@@ -97,13 +100,13 @@ public class ControllerRegister {
 		buttonFemale.setStyle(null);
 		buttonMale.setStyle(null);
 
-		buttonClickPlayer.seek(Duration.ZERO);
-		buttonClickPlayer.play();
-
 	}
 
 	@FXML
 	void comebackDarling(ActionEvent event) {
+
+		buttonClickPlayer.seek(Duration.ZERO);
+		buttonClickPlayer.play();
 
 		helicopteroImage.setImage(null);
 		File iconFile = new File("recursos/imagenes/imagenes_register/liraEntrenador.png");
@@ -115,12 +118,13 @@ public class ControllerRegister {
 		buttonMale.setStyle(null);
 		buttonHelicopter.setStyle(null);
 
-		buttonClickPlayer.seek(Duration.ZERO);
-		buttonClickPlayer.play();
 	}
 
 	@FXML
 	void comebackMan(ActionEvent event) {
+
+		buttonClickPlayer.seek(Duration.ZERO);
+		buttonClickPlayer.play();
 
 		helicopteroImage.setImage(null);
 		File iconFile = new File("recursos/imagenes/imagenes_register/ecoEntrenador.png");
@@ -132,18 +136,25 @@ public class ControllerRegister {
 		buttonFemale.setStyle(null);
 		buttonHelicopter.setStyle(null);
 
-		buttonClickPlayer.seek(Duration.ZERO);
-		buttonClickPlayer.play();
 	}
 
 	@FXML
 	void registerButton(ActionEvent event) throws IOException {
 
-		// Obtener datos de los campos de texto y botones de radio
+		buttonClickPlayer.seek(Duration.ZERO);
+		buttonClickPlayer.play();
+
 		String nombre = userCreateField.getText();
 		String pass = passwordCreateField.getText();
 		int age = 0;
-		// Validar que los campos requeridos estén llenos
+
+		if (nombre.isEmpty() || pass.isEmpty()) {
+			// Mostrar mensaje de error si hay algún campo vacío
+			Alert alert = new Alert(AlertType.ERROR, "Debe completar todos los campos.");
+			alert.showAndWait();
+			return;
+		}
+
 		try {
 			age = Integer.parseInt(ageCreateField.getText());
 		} catch (NumberFormatException e) {
@@ -152,43 +163,41 @@ public class ControllerRegister {
 			alert.showAndWait();
 			return;
 		}
-		if (nombre.isEmpty() || pass.isEmpty() || age == 0) {
-			// Mostrar mensaje de error si hay algún campo vacío
-			Alert alert = new Alert(AlertType.ERROR, "Debe completar todos los campos.");
+
+		if (EntrenadorCRUD.comprobarEntrenador(nombre)) {
+			Alert alert = new Alert(AlertType.ERROR, "El nombre del usuario no esta disponible");
 			alert.showAndWait();
 			return;
+		} else {
+			LoginCRUD.crearUsuario(nombre, pass, age, getSelectedGender());
+
+			// Cerrar la ventana actual y abrir la ventana de selección de Pokemon
+			File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
+			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			mediaPlayer.stop();
+			// Obtiene la raíz de la escena actual y asigna la transición
+			Parent rootCurrent = backButton.getScene().getRoot();
+			FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+			fadeOut.setFromValue(1.0);
+			fadeOut.setToValue(0.0);
+			fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					// Cuando la transición de desvanecimiento termina, asigna la nueva escena
+					Stage stage = (Stage) backButton.getScene().getWindow();
+					stage.setScene(scene);
+
+					// Crea la transición de aparición para la nueva escena
+					FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+					fadeIn.setFromValue(0.0);
+					fadeIn.setToValue(1.0);
+					fadeIn.play();
+				}
+			});
+			fadeOut.play();
 		}
-
-		// Agregar el nuevo usuario a la lista de usuarios existente
-		LoginCRUD.crearUsuario(nombre, pass, age, getSelectedGender());
-
-		// Cerrar la ventana actual y abrir la ventana de selección de Pokemon
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
-		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-
-		// Obtiene la raíz de la escena actual y asigna la transición
-		Parent rootCurrent = backButton.getScene().getRoot();
-		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// Cuando la transición de desvanecimiento termina, asigna la nueva escena
-				Stage stage = (Stage) backButton.getScene().getWindow();
-				stage.setScene(scene);
-
-				// Crea la transición de aparición para la nueva escena
-				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
-				fadeIn.setFromValue(0.0);
-				fadeIn.setToValue(1.0);
-				fadeIn.play();
-			}
-		});
-		fadeOut.play();
-		buttonClickPlayer.play();
 
 	}
 
@@ -203,12 +212,13 @@ public class ControllerRegister {
 
 	@FXML
 	void volver(ActionEvent event) throws IOException {
+		buttonClickPlayer.seek(Duration.ZERO);
+		buttonClickPlayer.play();
+
 		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
 		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-
-		buttonClickPlayer.play();
 
 		// Obtiene la raíz de la escena actual y asigna la transición
 		Parent rootCurrent = backButton.getScene().getRoot();
@@ -236,6 +246,18 @@ public class ControllerRegister {
 
 	private char getSelectedGender() {
 		return selectedGender;
+	}
+
+	public MediaPlayer musica() {
+
+		File file = new File(System.getProperty("user.dir") + "/recursos/audios/registerAudio.mp3");
+		Media sound = new Media(file.toURI().toString());
+		mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.setVolume(1);
+
+		return mediaPlayer;
+
 	}
 
 }
