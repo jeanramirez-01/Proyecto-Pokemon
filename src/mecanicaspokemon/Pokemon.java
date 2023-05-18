@@ -112,6 +112,67 @@ public class Pokemon {
 		this.velocidadMaxima = vlBS;
 	}
 
+	public Pokemon(String nombre, String mote, int vitalidadMaxima, int ataqueMaxima, int defensaMaxima,
+			int ataqueEspecialMaxima, int defensaEspecialMaxima, int velocidadMaxima, int estaminaMaxima, int nivel,
+			Movimiento[] movimientos, int fertilidad, char sexo, TipoPokemon[] tipo, int experienciaTotal,
+			String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.mote = mote;
+		this.vitalidadMaxima = vitalidadMaxima;
+		this.ataqueMaxima = ataqueMaxima;
+		this.defensaMaxima = defensaMaxima;
+		this.ataqueEspecialMaxima = ataqueEspecialMaxima;
+		this.defensaEspecialMaxima = defensaEspecialMaxima;
+		this.velocidadMaxima = velocidadMaxima;
+		this.estaminaMaxima = estaminaMaxima;
+		this.nivel = nivel;
+		this.movimientos = movimientos;
+		this.fertilidad = fertilidad;
+		this.sexo = sexo;
+		this.tipo = tipo;
+		this.experienciaTotal = experienciaTotal;
+		this.descripcion = descripcion;
+	}
+
+	// Constructor para cargar las stats del pokemon
+	public Pokemon(String mote2, int vt, int at, int df, int atE, int dfE, int vl, int st, int nv, String sexo2,
+			int exp, Movimiento[] mov) {
+		this.mote = mote2;
+		this.vitalidadMaxima = vt;
+		this.ataqueMaxima = at;
+		this.defensaMaxima = df;
+		this.ataqueEspecialMaxima = atE;
+		this.defensaEspecialMaxima = dfE;
+		this.velocidadMaxima = vl;
+		this.estaminaMaxima = st;
+		this.nivel = nv;
+		this.sexo = sexo2.charAt(0);
+		this.movimientos = mov;
+		recuperarTotal();
+	}
+
+	public Pokemon(String nom, TipoPokemon[] tip1, String mote2, int vt, int at, int df, int atE, int dfE, int vl,
+			int st, int nv, String sexo2, int exp, Movimiento[] mov, String desc) {
+
+		this.nombre = nom;
+		this.mote = mote2;
+		this.vitalidadMaxima = vt;
+		this.ataqueMaxima = at;
+		this.defensaMaxima = df;
+		this.ataqueEspecialMaxima = atE;
+		this.defensaEspecialMaxima = dfE;
+		this.velocidadMaxima = vl;
+		this.estaminaMaxima = st;
+		this.nivel = nv;
+		this.movimientos = mov;
+		this.sexo = sexo2.charAt(0);
+		this.tipo = tip1;
+		this.experienciaTotal = exp;
+		this.descripcion = desc;
+
+	}
+
 	public int getIdPokemon() {
 		return idPokemon;
 	}
@@ -925,11 +986,27 @@ public class Pokemon {
 		return formula;
 	}
 
+	public String toStringInfo() {
+		return "Pokemon [idPokemon=" + idPokemon + ", nombre=" + nombre + ", tipo=" + Arrays.toString(tipo)
+				+ ", descripcion=" + descripcion + "]";
+	}
+
+	public String toStringStats() {
+		return "Pokemon [mote= " + mote + ", vitalidad = " + vitalidadMaxima + ", ataque = " + ataqueMaxima
+				+ ", defensa = " + defensaMaxima + ", ataque Especial = " + ataqueEspecialMaxima
+				+ ", defensa Especial =" + defensaEspecialMaxima + ", velocidad Maxima = " + velocidadMaxima
+				+ ", estamina = " + estaminaMaxima + ", nivel = " + nivel + ", sexo = " + sexo + ", experiencia = "
+				+ experienciaTotal + "]";
+	}
+
 	@Override
 	public String toString() {
-		return "Pokemon [nombre=" + nombre + ", vitalidadMaxima=" + vitalidadMaxima + ", ataqueMaxima=" + ataqueMaxima
-				+ ", defensaMaxima=" + defensaMaxima + ", ataqueEspecialMaxima=" + ataqueEspecialMaxima
-				+ ", defensaEspecialMaxima=" + defensaEspecialMaxima + ", velocidadMaxima=" + velocidadMaxima
-				+ ", estaminaMaxima=" + estaminaMaxima + "]";
+		return "Pokemon [nombre=" + nombre + ", mote=" + mote + ", vitalidadMaxima=" + vitalidadMaxima
+				+ ", ataqueMaxima=" + ataqueMaxima + ", defensaMaxima=" + defensaMaxima + ", ataqueEspecialMaxima="
+				+ ataqueEspecialMaxima + ", defensaEspecialMaxima=" + defensaEspecialMaxima + ", velocidadMaxima="
+				+ velocidadMaxima + ", estaminaMaxima=" + estaminaMaxima + ", nivel=" + nivel + ", sexo=" + sexo
+				+ ", tipo=" + Arrays.toString(tipo) + ", experienciaTotal=" + experienciaTotal + ", descripcion="
+				+ descripcion + "]";
 	}
+
 }

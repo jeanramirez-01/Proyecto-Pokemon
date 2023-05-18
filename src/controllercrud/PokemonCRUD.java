@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+import mecanicaspokemon.Movimiento;
 import mecanicaspokemon.Pokemon;
+import mecanicaspokemon.TipoPokemon;
 
 public class PokemonCRUD {
 
@@ -26,9 +28,11 @@ public class PokemonCRUD {
 			preparedStatement.setInt(5, pokemon.getAtaqueEspecialMaxima());
 			preparedStatement.setInt(6, pokemon.getDefensaEspecialMaxima());
 			preparedStatement.setInt(7, pokemon.getVelocidadMaxima());
-			char[] opciones = {'H','M','N'};
 			Random random = new Random();
-			char sexo = opciones[random.nextInt(opciones.length)];
+			String opciones = "HMN";
+			int randomInt = random.nextInt(opciones.length());
+			char sexo = opciones.charAt(randomInt);
+
 			preparedStatement.setString(8, String.valueOf(sexo));
 			preparedStatement.executeUpdate();
 			crearMovimientoPokemon(selectIdPokemonRecienInsertado());
@@ -110,12 +114,59 @@ public class PokemonCRUD {
 
 			preparedStatement.setInt(1, id);
 
-			preparedStatement.executeUpdate(); // Insertar los valores de las estadísticas en la tabla 'pokemon'
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public static Pokemon cargarPokemon(int id_pokemon) {
+
+		String query = "Select P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2, P.descripcion, Pk.mote, Pk.vitalidad, Pk.ataque, Pk.defensa, Pk.ataque_especial, Pk.defensa_especial, Pk.velocidad, Pk.estamina, Pk.nivel, Pk.sexo, Pk.experiencia\n"
+				+ "from pokemon Pk\n" + "join pokedex P on Pk.num_pokedex = P.num_pokedex\n"
+				+ "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
+				+ "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" + "where Pk.id_pokemon = " + id_pokemon + ";";
+		Pokemon pk = null;
+
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				String nom = resultSet.getString("nom_pokemon");
+				String tipo1 = resultSet.getString("tipo1");
+				String tipo2 = resultSet.getString("tipo2");
+				String mote = resultSet.getString("mote");
+				int vt = resultSet.getInt("vitalidad");
+				int at = resultSet.getInt("ataque");
+				int df = resultSet.getInt("defensa");
+				int atE = resultSet.getInt("ataque_especial");
+				int dfE = resultSet.getInt("defensa_especial");
+				int vl = resultSet.getInt("velocidad");
+				int st = resultSet.getInt("estamina");
+				int nv = resultSet.getInt("nivel");
+				String sexo = resultSet.getString("sexo");
+				int exp = resultSet.getInt("experiencia");
+				String desc = resultSet.getString("descripcion");
+				Movimiento[] mov = MovimientoCRUD.cargarMovimientosPokemon(id_pokemon);
+
+				if (tipo2 == null) {
+					TipoPokemon[] tip1 = { TipoPokemon.valueOf(tipo1) };
+					pk = new Pokemon(nom, tip1, mote, vt, at, df, atE, dfE, vl, st, nv, sexo, exp, mov, desc);
+				} else {
+					TipoPokemon[] tip1 = { TipoPokemon.valueOf(tipo1), TipoPokemon.valueOf(tipo2) };
+					pk = new Pokemon(nom, tip1, mote, vt, at, df, atE, dfE, vl, st, nv, sexo, exp, mov, desc);
+				}
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return pk;
 	}
 
 }

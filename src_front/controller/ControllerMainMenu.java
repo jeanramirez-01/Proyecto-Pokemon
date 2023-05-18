@@ -48,8 +48,6 @@ public class ControllerMainMenu {
 	@FXML
 	private Button mutebtn;
 
-	private static Entrenador jugador;
-
 	private static MediaPlayer musicaFondo;
 
 	private MediaPlayer buttonClickPlayer;
@@ -59,6 +57,8 @@ public class ControllerMainMenu {
 	private ImageView playIcon;
 
 	private ImageView pauseIcon;
+	
+	private static Entrenador jugador;
 
 	@FXML
 	void init() {

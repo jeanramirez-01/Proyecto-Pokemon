@@ -9,10 +9,6 @@ import java.util.LinkedList;
 
 public class PokedexCRUD {
 
-	public static void main(String[] args) {
-		insertStats();
-	}
-
 	/**
 	 * @return
 	 */
@@ -84,9 +80,11 @@ public class PokedexCRUD {
 	 */
 	public static Pokemon selectSinglePokemon(int id) {
 
-		String query = "Select P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2,\n" + "P.descripcion\n"
-				+ "from pokedex P\n" + "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
-				+ "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" + "where P.num_pokedex = " + id + ";";
+		String query = "Select P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2, P.descripcion\n"
+				+ "from pokedex P\n" 
+				+ "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
+				+ "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" 
+				+ "where P.num_pokedex = " + id + ";";
 
 		Pokemon single = null;
 		PreparedStatement preparedStatement = null;
@@ -114,7 +112,7 @@ public class PokedexCRUD {
 		return single;
 	}
 
-	public static void insertStats() {
+	private static void insertStats() {
 		String query = "update pokedex set vitalidad_base = ?, ataque_base = ?, defensa_base= ?, ataque_especial_base= ?, defensa_especial_base= ?, velocidad_base = ? where num_pokedex = ?;";
 
 		PreparedStatement preparedStatement = null;
@@ -122,10 +120,10 @@ public class PokedexCRUD {
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
 
-			LinkedList<Pokemon> pokedex = selectPokedex(); // Obtener la lista de pokémon de la Pokédex
+			LinkedList<Pokemon> pokedex = selectPokedex();
 
 			for (Pokemon pokemon : pokedex) {
-				pokemon.generarIVS(); // Generar los valores aleatorios de las estadísticas del pokémon
+				pokemon.generarIVS();
 				preparedStatement.setInt(1, pokemon.getVitalidadMaxima());
 				preparedStatement.setInt(2, pokemon.getAtaqueMaxima());
 				preparedStatement.setInt(3, pokemon.getDefensaMaxima());
@@ -133,12 +131,34 @@ public class PokedexCRUD {
 				preparedStatement.setInt(5, pokemon.getDefensaEspecialMaxima());
 				preparedStatement.setInt(6, pokemon.getVelocidadMaxima());
 				preparedStatement.setInt(7, pokemon.getIdPokemon());
-				preparedStatement.executeUpdate(); // Insertar los valores de las estadísticas en la tabla 'pokemon'
-				System.out.println("no ha explotao");
+				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static void cargarStats() {
+
+		String query = "SELECT vitalidad_base\n" + "from pokedex";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				int vida = resultSet.getInt("vitalidad_base");
+				if (vida != 0) {
+					return;
+				} else {
+					insertStats();
+				}
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 }

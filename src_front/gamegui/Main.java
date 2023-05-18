@@ -2,6 +2,7 @@ package gamegui;
 
 import java.io.File;
 import controller.ControllerLogin;
+import controllercrud.PokedexCRUD;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,6 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		PokedexCRUD.cargarStats();
 		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
 		Parent root = FXMLLoader.load(fxmlFile.toURI().toURL());
 		Scene scene = new Scene(root);

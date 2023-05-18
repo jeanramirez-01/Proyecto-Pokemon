@@ -12,14 +12,17 @@ public class Movimiento {
 		VITALIDAD, ATAQUE, DEFENSA, ATAQUE_ESPECIAL, DEFENSA_ESPECIAL, VELOCIDAD;
 	}
 
-	private TipoAtaque tipoAtaque;
 	private String nombre;
 	private TipoPokemon tipoMovimiento;
 	private int potencia;
+	private TipoAtaque tipoAtaque;
+
 	private Estado estado;
 	private int duracionEstado;
+
 	private Mejora mejora;
 	private int duracionMejora;
+	private int cantidadMejorada;
 	private int costoEstamina;
 
 	public Movimiento(TipoAtaque tipo) {
@@ -139,6 +142,10 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
-	
-	
+	public String toString1() {
+		return "Movimiento [nombre=" + nombre + ", tipoMovimiento=" + tipoMovimiento + ", potencia=" + potencia
+				+ ", tipoAtaque=" + tipoAtaque + "]";
+	}
+
+
 }

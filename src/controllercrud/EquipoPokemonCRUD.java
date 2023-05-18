@@ -25,7 +25,7 @@ public class EquipoPokemonCRUD {
 
 	public static Pokemon[] cargarEquipoPokemon(int id_entrenador) {
 
-		String query = "";
+		String query = "Select ";
 		Pokemon[] equipo = null;
 
 		return equipo;
