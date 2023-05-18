@@ -170,7 +170,7 @@ public class Pokemon {
 		this.tipo = tip1;
 		this.experienciaTotal = exp;
 		this.descripcion = desc;
-
+		recuperarTotal();
 	}
 
 	public int getIdPokemon() {
