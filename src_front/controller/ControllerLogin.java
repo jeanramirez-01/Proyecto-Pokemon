@@ -2,6 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import controllercrud.EntrenadorCRUD;
+import controllercrud.Logger;
 import controllercrud.LoginCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -71,6 +74,8 @@ public class ControllerLogin {
 
 		if (LoginCRUD.selectIniciarSesion(nombre, pass)) {
 			try {
+//				Logger.write("Se ha registrado el usuario " +nombre);
+//				Logger.close();
 
 				File fxmlFile = new File("src_front/view/Main.fxml");
 				FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
@@ -82,7 +87,7 @@ public class ControllerLogin {
 
 				ControllerMainMenu main = loader.getController();
 
-				Entrenador trainer = new Entrenador(nombre);
+				Entrenador trainer = EntrenadorCRUD.cargarEntrenador(nombre);
 
 				Singleton.getInstance(trainer);
 

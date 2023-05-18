@@ -2,60 +2,55 @@ package mecanicaspokemon;
 
 public class Estado {
 
-	public enum TiposEstados{
-		
-		PERSISTENTE,
-		TEMPORAL,
-		OTROS_ESTADOS;
-	}
-	
-	public enum Estados {
+	public enum TiposEstados {
 
-		PARALIZADO("Paralizado", TiposEstados.PERSISTENTE), 
-		QUEMADO("Quemado",TiposEstados.PERSISTENTE), 
-		ENVENENADO("Envenenador",TiposEstados.PERSISTENTE), 
-		GRAVEMENTE_ENVENENADO("Gravemente envenedado", TiposEstados.PERSISTENTE),
-		CONGELADO("Congelado", TiposEstados.PERSISTENTE),
-		DORMIDO("Dormido", TiposEstados.TEMPORAL),
-		CONFUSO("Confuso", TiposEstados.TEMPORAL),
-		DRENADORAS("Drenadoras", TiposEstados.TEMPORAL),
-		AMENDRENTADO("Amendrentado", TiposEstados.TEMPORAL),
-		DEBILITADO("Debilidado", TiposEstados.OTROS_ESTADOS),
-		NORMAL("Estado normal", TiposEstados.OTROS_ESTADOS); 
-
-		private String mensaje;
-		private TiposEstados tipoEstado;
-		
-		private Estados(String mensaje, TiposEstados tipoEstado) {
-			this.mensaje = mensaje;
-			this.tipoEstado = tipoEstado;
-		}
-
-		public String getMensaje() {
-			return mensaje;
-		}
-
-		public TiposEstados getTipoEstado() {
-			return tipoEstado;
-		}
-
-		
+		PERSISTENTE, TEMPORAL, OTRO_ESTADO;
 	}
 
-	private Estados estado;
-	
-	public Estado(Estados estado) {
+	public enum NombreEstado {
+
+		PARALIZADO, QUEMADO, ENVENENADO, GRAVEMENTE_ENVENENADO, CONGELADO, DORMIDO, CONFUSO, DRENADORAS, AMENDRENTADO,
+		DEBILITADO, NORMAL;
+
+	}
+
+	private int id_estado;
+	private NombreEstado nombre;
+	private TiposEstados tipoEstado;
+
+	public Estado(int id_estado, NombreEstado nombre, TiposEstados tipoEstado) {
 		super();
-		this.estado = estado;
+		this.id_estado = id_estado;
+		this.nombre = nombre;
+		this.tipoEstado = tipoEstado;
 	}
 
-	public Estados getEstado() {
-		return estado;
+	public Estado(NombreEstado debilitado) {
+		
 	}
 
-	public void setEstado(Estados estado) {
-		this.estado = estado;
+	public int getId_estado() {
+		return id_estado;
 	}
-	
-	
+
+	public void setId_estado(int id_estado) {
+		this.id_estado = id_estado;
+	}
+
+	public NombreEstado getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(NombreEstado nombre) {
+		this.nombre = nombre;
+	}
+
+	public TiposEstados getTipoEstado() {
+		return tipoEstado;
+	}
+
+	public void setTipoEstado(TiposEstados tipoEstado) {
+		this.tipoEstado = tipoEstado;
+	}
+
 }

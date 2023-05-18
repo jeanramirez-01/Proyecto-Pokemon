@@ -16,7 +16,8 @@ public class EquipoPokemonCRUD {
 	public static void insertPokemonInicialEnEquipo(int id_pokemon, String nombreEntrenador) {
 		PokemonCRUD.insertPokemonInicial(id_pokemon);
 		int id_entrenador = EntrenadorCRUD.selectIdEntrenador(nombreEntrenador);
-
+		
+		
 		String query = "INSERT INTO equipo_pokemon (id_entrenador, id_pokemon) VALUES (?,?)";
 		try {
 			id_pokemon = PokemonCRUD.selectIdPokemonRecienInsertado();
@@ -27,6 +28,7 @@ public class EquipoPokemonCRUD {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+		PcPokemonCRUD.crearCaja(id_entrenador, id_pokemon);
 	}
 
 	public static Equipo cargarEquipoPokemon(int id_entrenador) {

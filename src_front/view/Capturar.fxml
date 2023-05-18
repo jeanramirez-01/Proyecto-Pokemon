@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane maxHeight="584.0" maxWidth="788.0" minHeight="584.0" minWidth="788.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controller.ControllerCapturarPokemon">
+   <children>
+      <ImageView fitHeight="663.0" fitWidth="1038.0" layoutX="-125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../recursos/imagenes/escenarios/backgroung.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imagePokemonRandom" fitHeight="150.0" fitWidth="200.0" layoutX="598.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="spriteBackEntrenador" fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnCapturar" layoutX="566.0" layoutY="525.0" mnemonicParsing="false" onAction="#capturarPokemonSalvaje" text="Capturar" />
+      <Button fx:id="btnBolsa" layoutX="698.0" layoutY="449.0" mnemonicParsing="false" onAction="#mostrarBolsa" text="Bolsa" />
+      <Button fx:id="btnCambiarPokemonSalvaje" layoutX="527.0" layoutY="449.0" mnemonicParsing="false" onAction="#buscarPokemonSalvaje" text="Buscar pokemon nuevo" />
+      <Button fx:id="btnHuir" layoutX="701.0" layoutY="525.0" mnemonicParsing="false" onAction="#huirCombate" text="Huir" />
+   </children>
+</AnchorPane>

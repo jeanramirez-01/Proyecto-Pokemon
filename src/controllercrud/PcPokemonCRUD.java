@@ -9,12 +9,13 @@ import mecanicaspokemon.Pokemon;
 
 public class PcPokemonCRUD {
 
-	public static void crearCaja(int id) {
+	public static void crearCaja(int id_entrenador, int id_pokemon) {
 
-		String query = "Insert into pc_pokemon (id_entrenador) values (?);";
+		String query = "Insert into pc_pokemon (id_entrenador, id_pokemon) values (?,?);";
 		try {
 			PreparedStatement preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, id_entrenador);
+			preparedStatement.setInt(2, id_pokemon);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -25,9 +26,10 @@ public class PcPokemonCRUD {
 
 	public static LinkedList<Pokemon> cargarPcPokemon(int id_entrenador) {
 
-		String query = "Select id_pokemon\n" + "from pc_pokemon" + "where id_entrenador = " + id_entrenador + ";";
+		String query = "Select id_pokemon\n" 
+					 + "from pc_pokemon\n" 
+					 + "where id_entrenador = " + id_entrenador + " and activo = true;";
 		LinkedList<Pokemon> pcPokemon = new LinkedList<Pokemon>();
-		int i = 0;
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
@@ -35,7 +37,7 @@ public class PcPokemonCRUD {
 			while (resultSet.next()) {
 				int id_pokemon = resultSet.getInt("id_pokemon");
 				pcPokemon.add(PokemonCRUD.cargarPokemon(id_pokemon));
-				i++;
+				
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

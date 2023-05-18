@@ -4,7 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+
+import mecanicaspokemon.Bolsa;
 import mecanicaspokemon.Entrenador;
+import mecanicaspokemon.Equipo;
+import mecanicaspokemon.Pokemon;
 
 public class EntrenadorCRUD {
 
@@ -116,18 +120,31 @@ public class EntrenadorCRUD {
 	}
 
 	public static Entrenador cargarEntrenador(String nombre) {
-		String query = "Select E.nom_entrenador, E.edad, E.genero, E.pokecuartos,\n"
-					 + "B.id_objeto, B.cantidad_objetos,\n"
-					 + "Eq.id_pokemon,\n"
-					 + "Pc.id_pokemon\n"
-					 + "from entrenador E\n"
-					 + "join bolsa B on E.id_entrenador = B.id_entrenador\n"
-					 + "join equipo_pokemon Eq on E.id_entrenador = Eq.id_entrenador\n"
-					 + "join pc_pokemon Pc on E.id_entrenador = Pc.id_entrenador\n"
-					 + "where E.nom_entrenador = ?";
+		String query = "Select id_entrenador, nom_entrenador, edad, genero, pokecuartos\n" + "from entrenador\n"
+				+ "where nom_entrenador = '" + nombre + "';";
 		Entrenador trainer = null;
-		
-		
+
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id_entrenador");
+				String name = resultSet.getString("nom_entrenador");
+				int edad = resultSet.getInt("edad");
+				String sexo = resultSet.getString("genero");
+				int pokecuartos = resultSet.getInt("pokecuartos");
+				Equipo team = EquipoPokemonCRUD.cargarEquipoPokemon(selectIdEntrenador(nombre));
+				Bolsa bolsa = BolsaCRUD.cargarBolsa(selectIdEntrenador(nombre));
+				LinkedList<Pokemon> pc = PcPokemonCRUD.cargarPcPokemon(selectIdEntrenador(nombre));
+
+				trainer = new Entrenador(id, name, edad, sexo, pokecuartos, team, bolsa, pc);
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 		return trainer;
 	}
 }

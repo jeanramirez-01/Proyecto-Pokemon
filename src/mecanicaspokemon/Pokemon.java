@@ -2,7 +2,6 @@ package mecanicaspokemon;
 
 import java.util.Arrays;
 import java.util.Random;
-import mecanicaspokemon.Estado.Estados;
 import mecanicaspokemon.Movimiento.TipoAtaque;
 
 public class Pokemon {
@@ -58,36 +57,6 @@ public class Pokemon {
 		this.nombre = nombre;
 	}
 
-	// Constructor de la lista random
-//	public Pokemon(String nombre) {
-//
-//		generarIVS();
-//		this.nombre = nombre;
-//		this.tipo = new TipoPokemon[] { TipoPokemon.ROCA, TipoPokemon.TIERRA };
-//		this.vitalidadActual = 1000;
-//		this.estaminaMaxima = 150;
-//		this.nivel = 100;
-//		this.defensaMaxima = 450;
-//		this.sexo = 'M';
-//		this.defensaActual = defensaMaxima;
-//
-//	}
-
-	// Constructor de prueba para la clase main
-	public Pokemon(String nombre, Objeto objeto, char sexo) {
-
-		generarIVS();
-		this.vitalidadActual = vitalidadMaxima;
-		this.idPokemon = 150;
-		this.nombre = nombre;
-		this.nivel = 5;
-		this.objeto = objeto;
-		this.tipo = new TipoPokemon[] { TipoPokemon.FUEGO };
-		this.sexo = sexo;
-		this.estaminaMaxima = 150;
-		this.estaminaActual = estaminaMaxima;
-
-	}
 
 	public Pokemon(int id, String name, TipoPokemon[] tipoPokemon, String descripcion) {
 		this.idPokemon = id;
@@ -112,29 +81,6 @@ public class Pokemon {
 		this.velocidadMaxima = vlBS;
 	}
 
-	public Pokemon(String nombre, String mote, int vitalidadMaxima, int ataqueMaxima, int defensaMaxima,
-			int ataqueEspecialMaxima, int defensaEspecialMaxima, int velocidadMaxima, int estaminaMaxima, int nivel,
-			Movimiento[] movimientos, int fertilidad, char sexo, TipoPokemon[] tipo, int experienciaTotal,
-			String descripcion) {
-		super();
-		this.nombre = nombre;
-		this.mote = mote;
-		this.vitalidadMaxima = vitalidadMaxima;
-		this.ataqueMaxima = ataqueMaxima;
-		this.defensaMaxima = defensaMaxima;
-		this.ataqueEspecialMaxima = ataqueEspecialMaxima;
-		this.defensaEspecialMaxima = defensaEspecialMaxima;
-		this.velocidadMaxima = velocidadMaxima;
-		this.estaminaMaxima = estaminaMaxima;
-		this.nivel = nivel;
-		this.movimientos = movimientos;
-		this.fertilidad = fertilidad;
-		this.sexo = sexo;
-		this.tipo = tipo;
-		this.experienciaTotal = experienciaTotal;
-		this.descripcion = descripcion;
-	}
-
 	// Constructor para cargar las stats del pokemon
 	public Pokemon(String mote2, int vt, int at, int df, int atE, int dfE, int vl, int st, int nv, String sexo2,
 			int exp, Movimiento[] mov) {
@@ -152,9 +98,10 @@ public class Pokemon {
 		recuperarTotal();
 	}
 
-	public Pokemon(String nom, TipoPokemon[] tip1, String mote2, int vt, int at, int df, int atE, int dfE, int vl,
-			int st, int nv, String sexo2, int exp, Movimiento[] mov, String desc) {
-
+	//Constructor para cargar el pokemon en el equipo del entrenador
+	public Pokemon(int id, String nom, TipoPokemon[] tip1, String mote2, int vt, int at, int df, int atE, int dfE, int vl,
+			int st, int nv, String sexo2, Objeto obj, Estado est, int exp, Movimiento[] mov, String desc) {
+		this.idPokemon = id;
 		this.nombre = nom;
 		this.mote = mote2;
 		this.vitalidadMaxima = vt;
@@ -167,6 +114,8 @@ public class Pokemon {
 		this.nivel = nv;
 		this.movimientos = mov;
 		this.sexo = sexo2.charAt(0);
+		this.objeto = obj;
+		this.estado = est;
 		this.tipo = tip1;
 		this.experienciaTotal = exp;
 		this.descripcion = desc;
@@ -423,7 +372,7 @@ public class Pokemon {
 
 		if (tieneObjeto()) {
 
-			switch (this.objeto.getTipoObjeto()) {
+			switch (this.objeto.getNombre()) {
 			case PESA:
 
 				this.ataqueActual = (int) (this.ataqueActual + (this.ataqueActual * 0.20));
@@ -529,10 +478,8 @@ public class Pokemon {
 		boolean estadoAplicado = false;
 		int random = 0;
 
-		switch (this.estado.getEstado()) {
+		switch (this.estado.getNombre()) {
 		case PARALIZADO:
-
-			System.out.println(this.nombre + this.estado.getEstado().getMensaje());
 
 			boolean paralizado = false;
 			for (int i = 0; i < 1; i++) {
@@ -610,7 +557,7 @@ public class Pokemon {
 
 			if (descongelado) {
 				System.out.println(this.nombre + " se ha descongelado");
-				setEstado(new Estado(Estados.NORMAL));
+				setEstado(new Estado(Estado.NombreEstado.NORMAL));
 			} else {
 				System.out.println(this.nombre + " está congelado y no puede atacar");
 				break;
@@ -623,7 +570,7 @@ public class Pokemon {
 
 		}
 
-		switch (this.estado.getEstado()) {
+		switch (this.estado.getNombre()) {
 		case CONFUSO:
 
 			break;
@@ -713,7 +660,7 @@ public class Pokemon {
 
 			if (danio >= rival.getVitalidadActual()) {
 				rival.setVitalidadActual(0);
-				rival.setEstado(new Estado(Estados.DEBILITADO));
+				rival.setEstado(new Estado(Estado.NombreEstado.DEBILITADO));
 				System.out.println(rival.getNombre() + " se ha debilitado");
 			} else {
 				rival.setVitalidadActual(rival.getVitalidadActual() - danio);

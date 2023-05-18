@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import controllercrud.EntrenadorCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -57,13 +59,13 @@ public class ControllerMainMenu {
 	private ImageView playIcon;
 
 	private ImageView pauseIcon;
-	
+
 	private static Entrenador jugador;
 
 	@FXML
 	void init() {
 
-		Singleton singleton = Singleton.getInstance(null); 
+		Singleton singleton = Singleton.getInstance(null);
 		jugador = singleton.value;
 
 		System.out.println(jugador.getNombre());
@@ -293,11 +295,18 @@ public class ControllerMainMenu {
 	void mostrarCaptura(ActionEvent event) throws IOException {
 
 		buttonClickPlayer.play();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Capturar.fxml");
 		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 
+		ControllerCapturarPokemon captura = loader.getController();
+
+		Singleton.getInstance(jugador);
+
+		captura.init();
+		musicaFondo.stop();
+		
 		Parent rootCurrent = singOutbtn.getScene().getRoot();
 		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
 		fadeOut.setFromValue(1.0);

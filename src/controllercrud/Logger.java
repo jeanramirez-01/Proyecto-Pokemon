@@ -10,7 +10,7 @@ import java.util.Date;
 public class Logger {
 
 	private static BufferedWriter bufferedWriter;
-    private static String logPath = "src/files";
+    private static String logPath = "src/files/";
 
     public static BufferedWriter getOrCreateFileWriter() {
 

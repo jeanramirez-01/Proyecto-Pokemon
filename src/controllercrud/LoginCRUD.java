@@ -63,7 +63,6 @@ public class LoginCRUD {
 			preparedStatement.setInt(5, pokecuartos);
 			preparedStatement.executeUpdate();
 			BolsaCRUD.crearBolsa(EntrenadorCRUD.selectIdEntrenador(usuario));
-			PcPokemonCRUD.crearCaja(EntrenadorCRUD.selectIdEntrenador(usuario));
 
 		} catch (SQLException e) {
 			e.printStackTrace();

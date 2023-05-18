@@ -17,7 +17,7 @@ public class Sprite {
 		ImageView imgViewB = new ImageView(imgB);
 		
 		return imgViewB;
-	}
+	}	
 	
 	public static MediaPlayer playAudio(int id) {
 		

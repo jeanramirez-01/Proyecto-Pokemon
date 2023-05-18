@@ -5,47 +5,45 @@ import java.util.LinkedList;
 public class Entrenador {
 
 	private int idEntrenador;
-	private Equipo equipo;
 	private String nombre;
 	private int edad;
-	private String sexo;
+	private char sexo;
 	private int pokecuarto;
+	private Equipo equipo;
 	private Bolsa bolsa;
 	private LinkedList<Pokemon> caja;
-	private Pokedex pokedex;
-
-	public Entrenador(String nombre2) {
-		this.nombre = nombre2;
-		this.edad = 0;
-		this.sexo = "";
-		this.pokecuarto = 0;
-
-	}
-	
-	public Entrenador(String name, int edad, String sexo, int pokedolares) {
-		this.nombre = name;
-		this.edad = edad;
-		this.sexo = sexo;
-		this.pokecuarto = pokedolares;
-
-	}
-
-	public Entrenador(int id, Equipo equipo, String nombre, int pokedolares, Bolsa bolsa, LinkedList<Pokemon> caja,
-			Pokedex pokedex) {
-		super();
-		this.idEntrenador = id;
-		this.equipo = equipo;
-		this.nombre = nombre;
-		this.pokecuarto = pokedolares;
-		this.bolsa = bolsa;
-		this.caja = caja;
-		this.pokedex = pokedex;
-	}
 
 	public Entrenador() {
 		// TODO Auto-generated constructor stub
 	}
+	public Entrenador(String nombre2) {
+		this.nombre = nombre2;
+		this.edad = 0;
+		this.sexo = ' ';
+		this.pokecuarto = 0;
 
+	}
+
+	public Entrenador(String name, int edad, String sexo, int pokedolares) {
+		this.nombre = name;
+		this.edad = edad;
+		this.sexo = sexo.charAt(0);
+		this.pokecuarto = pokedolares;
+
+	}
+
+	public Entrenador(int id,String nombre, int edad, String sexo, int pokecuarto, Equipo equipo, Bolsa bolsa,
+			LinkedList<Pokemon> caja) {
+		super();
+		this.idEntrenador = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.sexo = sexo.charAt(0);
+		this.pokecuarto = pokecuarto;
+		this.equipo = equipo;
+		this.bolsa = bolsa;
+		this.caja = caja;
+	}
 	public int getIdEntrenador() {
 		return idEntrenador;
 	}
@@ -94,42 +92,7 @@ public class Entrenador {
 		this.caja = caja;
 	}
 
-	public Pokedex getPokedex() {
-		return pokedex;
-	}
-
-	public void setPokedex(Pokedex pokedex) {
-		this.pokedex = pokedex;
-	}
-
 	// Metodos de entrenador--------------------------------------------------------
-
-	/**
-	 *
-	 * @param indice
-	 */
-
-	public void menu(int indice) {
-
-		switch (indice) {
-		case 1:
-			pokedex.mostrarPokedex(); // Mostrar la pokedex
-			break;
-		case 2:
-			equipo.mostrarEquipo(); // Mostrar el equipo
-			break;
-		case 3:
-			bolsa.mostrarBolsa(); // Mostrar la bolsa
-			break;
-		case 4:
-			mostrarTarjetaEntrenador(); // Mostrar la tarjeta del entrenador
-			break;
-		case 5: // Salir
-			return;
-
-		}
-
-	}
 
 	/**
 	 * Metodo de aplicar el efecto del objeto de cada pokemon del equipo del
@@ -344,7 +307,7 @@ public class Entrenador {
 	/**
 	 * 
 	 */
-	private void mostrarTarjetaEntrenador() {
+	public void mostrarTarjetaEntrenador() {
 
 		System.out.println("N.º ID: " + idEntrenador);
 		System.out.println("NOMBRE: " + nombre);
@@ -372,25 +335,25 @@ public class Entrenador {
 	/**
 	 * 
 	 * 
-	 * @param entrenador
+	 * @param pkentrenador
 	 */
-	private void mostrarInfoPokemon(Pokemon entrenador) {
+	private void mostrarInfoPokemon(Pokemon pkentrenador) {
 
-		TipoPokemon[] tipo = entrenador.getTipo();
+		TipoPokemon[] tipo = pkentrenador.getTipo();
 
 		System.out.println();
 
 		if (tipo.length == 1) {
 			System.out.println("\nINFO. POKÉMON");
 			System.out.println(
-					"\nNv." + entrenador.getNivel() + " " + entrenador.getNombre() + " " + entrenador.getSexo());
-			System.out.println("N.º :" + entrenador.getIdPokemon());
-			System.out.println("NOMBRE: " + entrenador.getNombre());
+					"\nNv." + pkentrenador.getNivel() + " " + pkentrenador.getNombre() + " " + pkentrenador.getSexo());
+			System.out.println("N.º :" + pkentrenador.getIdPokemon());
+			System.out.println("NOMBRE: " + pkentrenador.getNombre());
 			System.out.println("TIPO: " + tipo[0]);
 			System.out.println("ENTRENADOR: " + this.nombre);
 			System.out.println("N.ºID " + this.idEntrenador);
-			if (entrenador.tieneObjeto()) {
-				System.out.println("OBJETO: " + entrenador.getObjeto().getTipoObjeto().getNombre());
+			if (pkentrenador.tieneObjeto()) {
+				System.out.println("OBJETO: " + pkentrenador.getObjeto().getNombre());
 			} else {
 				System.out.println("OBJETO: ");
 			}
@@ -398,14 +361,14 @@ public class Entrenador {
 		} else {
 			System.out.println("\nINFO. POKÉMON");
 			System.out.println(
-					"\nNv." + entrenador.getNivel() + " " + entrenador.getNombre() + " " + entrenador.getSexo());
-			System.out.println("N.º :" + entrenador.getIdPokemon());
-			System.out.println("NOMBRE: " + entrenador.getNombre());
+					"\nNv." + pkentrenador.getNivel() + " " + pkentrenador.getNombre() + " " + pkentrenador.getSexo());
+			System.out.println("N.º :" + pkentrenador.getIdPokemon());
+			System.out.println("NOMBRE: " + pkentrenador.getNombre());
 			System.out.println("TIPO: " + tipo[0] + "," + tipo[1]);
 			System.out.println("ENTRENADOR: " + this.nombre);
 			System.out.println("N.ºID " + this.idEntrenador);
-			if (entrenador.tieneObjeto()) {
-				System.out.println("OBJETO: " + entrenador.getObjeto().getTipoObjeto().getNombre());
+			if (pkentrenador.tieneObjeto()) {
+				System.out.println("OBJETO: " + pkentrenador.getObjeto().getNombre());
 			} else {
 				System.out.println("OBJETO: ");
 			}
