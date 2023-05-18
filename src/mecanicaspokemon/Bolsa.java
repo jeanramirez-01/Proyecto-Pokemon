@@ -2,29 +2,30 @@ package mecanicaspokemon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import mecanicaspokemon.Objeto.CategoriasBolsa;
 import mecanicaspokemon.Objeto.TipoObjeto;
 
 public class Bolsa {
 
-	private ArrayList<Objeto> listaObjetos;
+	private LinkedList<Objeto> listaObjetos;
 
 	public Bolsa() {
 		super();
-		this.listaObjetos = new ArrayList<Objeto>();
+		this.listaObjetos = new LinkedList<Objeto>();
 	}
 
-	public Bolsa(ArrayList<Objeto> listaObjetos) {
+	public Bolsa(LinkedList<Objeto> listaObjetos) {
 		super();
 		this.listaObjetos = listaObjetos;
 	}
 
-	public ArrayList<Objeto> getListaObjetos() {
+	public LinkedList<Objeto> getListaObjetos() {
 		return listaObjetos;
 	}
 
-	public void setListaObjetos(ArrayList<Objeto> listaObjetos) {
+	public void setListaObjetos(LinkedList<Objeto> listaObjetos) {
 		this.listaObjetos = listaObjetos;
 	}
 

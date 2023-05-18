@@ -65,7 +65,7 @@ public class Objeto {
 		public String getDescripcion() {
 			return descripcion;
 		}
-
+		
 		public int getPrecio() {
 			return precio;
 		}
