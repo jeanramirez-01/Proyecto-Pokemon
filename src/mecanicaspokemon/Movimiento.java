@@ -142,10 +142,25 @@ public class Movimiento {
 		this.costoEstamina = costoEstamina;
 	}
 
+	public TipoAtaque getTipoAtaque() {
+		return tipoAtaque;
+	}
+
+	public void setTipoAtaque(TipoAtaque tipoAtaque) {
+		this.tipoAtaque = tipoAtaque;
+	}
+
+	public int getCantidadMejorada() {
+		return cantidadMejorada;
+	}
+
+	public void setCantidadMejorada(int cantidadMejorada) {
+		this.cantidadMejorada = cantidadMejorada;
+	}
+
 	public String toString1() {
 		return "Movimiento [nombre=" + nombre + ", tipoMovimiento=" + tipoMovimiento + ", potencia=" + potencia
 				+ ", tipoAtaque=" + tipoAtaque + "]";
 	}
-
 
 }

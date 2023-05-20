@@ -380,7 +380,7 @@ public class Pokemon {
 	 * cambio de estadisticas
 	 */
 
-	public void aplicarEfectoObjeto() {
+	public boolean aplicarEfectoObjeto() {
 
 		if (tieneObjeto()) {
 
@@ -424,7 +424,7 @@ public class Pokemon {
 			}
 
 		}
-
+		return false;
 	}
 
 	/**
@@ -652,11 +652,7 @@ public class Pokemon {
 
 			experienciaRequerida = getExperienciaTotal();
 
-			System.out.println(this.nombre + " ha subido a nivel " + this.nivel);
 		}
-
-		System.out.println("Le queda a " + this.nombre + ", " + (experienciaRequerida - this.experienciaActual)
-				+ " puntos de experiencia para subir de nivel.");
 
 	}
 
@@ -690,27 +686,17 @@ public class Pokemon {
 	public void atacarPokemon(int indiceAtaque, Pokemon rival) {
 
 		if (this.estaminaActual < this.movimientos[indiceAtaque].getCostoEstamina()) {
-			System.out.println(this.nombre + " no tiene suficiente estamina para atacar");
 			return;
 		} else {
-			System.out.println("!" + this.nombre + " uso " + this.movimientos[indiceAtaque].getNombre() + "¡");
-
 			this.estaminaActual = this.estaminaActual - this.movimientos[indiceAtaque].getCostoEstamina();
-
 			int danio = formulaDanio(indiceAtaque, rival);
-
-			if (danio >= rival.getVitalidadActual()) {
+			if (danio == 0) {
+				return;
+			} else if (danio >= rival.getVitalidadActual()) {
 				rival.setVitalidadActual(0);
 				rival.setEstado(new Estado(Estado.NombreEstado.DEBILITADO));
-				System.out.println(rival.getNombre() + " se ha debilitado");
 			} else {
 				rival.setVitalidadActual(rival.getVitalidadActual() - danio);
-			}
-
-			if (danio == 0) {
-				System.out.println(rival.getNombre() + " no le afecta el ataque");
-			} else {
-				System.out.println("La vida de " + rival.getNombre() + " es de " + rival.getVitalidadActual());
 			}
 
 		}
@@ -816,85 +802,90 @@ public class Pokemon {
 	 * @param madre es el pokemon madre
 	 */
 
-	public void generarInfoCrianza(Pokemon padre, Pokemon madre) {
+	public boolean generarInfoCrianza(Pokemon padre, Pokemon madre) {
 
-		if (padre.getFertilidad() < 0 || madre.getFertilidad() < 0) {
-			System.out.println("Sus pokemon no se pueden reproducir mas");
-			return;
+		if (padre.getFertilidad() == 0 || madre.getFertilidad() == 0) {
+			return false;
 		}
 
 		if (padre.getSexo() == madre.getSexo()) {
-			System.out.println("No se pueden reproducir pokemon del mismo sexo.");
-			return;
+			return false;
 		}
 
 		int padreIndice = padre.getTipo()[0].getIndice();
 		int madreIndice = madre.getTipo()[0].getIndice();
 
-		double compatibilidad = Eficacias.EFICACIAS[padreIndice][madreIndice];
-		if (compatibilidad >= 2.0) {
-			System.out.println("No se puede criar entre " + padre.getNombre() + " y " + madre.getNombre()
-					+ " porque son incompatibles para la crianza.");
-			return;
-		}
-
-		String primeraMitadPadre = padre.getNombre().substring(0, padre.getNombre().length() / 2);
-		String primeraMitadMadre = madre.getNombre().substring(0, madre.getNombre().length() / 2);
-
-		Random rand = new Random();
-		int numeroAleatorio = rand.nextInt(10) + 1;
-
-		if (numeroAleatorio < 5) {
-			this.setTipo(padre.getTipo());
-			this.setSexo(padre.getSexo());
-			this.setIdPokemon(padre.getIdPokemon());
+		double compatibilidad1 = Eficacias.EFICACIAS[padreIndice][madreIndice];
+		double compatibilidad2 = Eficacias.EFICACIAS[madreIndice][padreIndice];
+		double compa = 0;
+		if (compatibilidad1 > compatibilidad2) {
+			compa = compatibilidad1;
 		} else {
-			this.setTipo(madre.getTipo());
-			this.setSexo(madre.getSexo());
-			this.setIdPokemon(madre.getIdPokemon());
+			compa = compatibilidad2;
 		}
+		if (compa >= 2.0) {
+			return false;
+		} else {
+			String primeraMitadPadre = padre.getNombre().substring(0, padre.getNombre().length() / 2);
+			String primeraMitadMadre = madre.getNombre().substring(0, madre.getNombre().length() / 2);
 
-		this.setMote(primeraMitadPadre + primeraMitadMadre);
-		this.setNombre(this.getMote());
-		this.setNivel(1);
+			Random rand = new Random();
+			int numeroAleatorio = rand.nextInt(10) + 1;
 
-		if (padre.getVitalidadMaxima() > madre.getVitalidadMaxima()) {
-			this.setVitalidadMaxima(padre.getVitalidadMaxima());
-			this.setVitalidadActual(padre.getVitalidadMaxima());
-		} else {
-			this.setVitalidadMaxima(madre.getVitalidadMaxima());
-			this.setVitalidadActual(madre.getVitalidadMaxima());
-		}
-		if (padre.getAtaqueMaxima() > madre.getAtaqueMaxima()) {
-			this.setAtaqueMaxima(padre.getAtaqueMaxima());
-		} else {
-			this.setAtaqueMaxima(madre.getAtaqueMaxima());
-		}
-		if (padre.getDefensaMaxima() > madre.getDefensaMaxima()) {
-			this.setDefensaMaxima(padre.getDefensaMaxima());
-		} else {
-			this.setDefensaMaxima(madre.getDefensaMaxima());
-		}
-		if (padre.getAtaqueEspecialMaxima() > madre.getAtaqueEspecialMaxima()) {
-			this.setAtaqueEspecialMaxima(padre.getAtaqueEspecialMaxima());
-		} else {
-			this.setAtaqueEspecialMaxima(madre.getAtaqueEspecialMaxima());
-		}
-		if (padre.getDefensaEspecialMaxima() > madre.getDefensaEspecialMaxima()) {
-			this.setDefensaEspecialMaxima(padre.getDefensaEspecialMaxima());
-		} else {
-			this.setDefensaEspecialMaxima(madre.getDefensaEspecialMaxima());
-		}
-		if (padre.getVelocidadMaxima() > madre.getVelocidadMaxima()) {
-			this.setVelocidadMaxima(padre.getVelocidadMaxima());
-		} else {
-			this.setVelocidadMaxima(madre.getVelocidadMaxima());
-		}
+			if (numeroAleatorio < 5) {
+				this.setTipo(padre.getTipo());
+				this.setSexo(padre.getSexo());
+				this.setIdPokemon(padre.getIdPokemon());
+			} else {
+				this.setTipo(madre.getTipo());
+				this.setSexo(madre.getSexo());
+				this.setIdPokemon(madre.getIdPokemon());
+			}
 
-		this.recuperarEstadisticas();
+			this.setMote(primeraMitadPadre + primeraMitadMadre);
+			this.setNombre(this.getMote());
+			this.setNivel(1);
 
-		padre.setFertilidad(padre.getFertilidad() - 1);
-		madre.setFertilidad(madre.getFertilidad() - 1);
+			if (padre.getVitalidadMaxima() > madre.getVitalidadMaxima()) {
+				this.setVitalidadMaxima(padre.getVitalidadMaxima());
+				this.setVitalidadActual(padre.getVitalidadMaxima());
+			} else {
+				this.setVitalidadMaxima(madre.getVitalidadMaxima());
+				this.setVitalidadActual(madre.getVitalidadMaxima());
+			}
+			if (padre.getAtaqueMaxima() > madre.getAtaqueMaxima()) {
+				this.setAtaqueMaxima(padre.getAtaqueMaxima());
+			} else {
+				this.setAtaqueMaxima(madre.getAtaqueMaxima());
+			}
+			if (padre.getDefensaMaxima() > madre.getDefensaMaxima()) {
+				this.setDefensaMaxima(padre.getDefensaMaxima());
+			} else {
+				this.setDefensaMaxima(madre.getDefensaMaxima());
+			}
+			if (padre.getAtaqueEspecialMaxima() > madre.getAtaqueEspecialMaxima()) {
+				this.setAtaqueEspecialMaxima(padre.getAtaqueEspecialMaxima());
+			} else {
+				this.setAtaqueEspecialMaxima(madre.getAtaqueEspecialMaxima());
+			}
+			if (padre.getDefensaEspecialMaxima() > madre.getDefensaEspecialMaxima()) {
+				this.setDefensaEspecialMaxima(padre.getDefensaEspecialMaxima());
+			} else {
+				this.setDefensaEspecialMaxima(madre.getDefensaEspecialMaxima());
+			}
+			if (padre.getVelocidadMaxima() > madre.getVelocidadMaxima()) {
+				this.setVelocidadMaxima(padre.getVelocidadMaxima());
+			} else {
+				this.setVelocidadMaxima(madre.getVelocidadMaxima());
+			}
+
+			this.recuperarEstadisticas();
+
+			padre.setFertilidad(padre.getFertilidad() - 1);
+			madre.setFertilidad(madre.getFertilidad() - 1);
+
+			return true;
+		}
 
 	}
 
@@ -930,7 +921,7 @@ public class Pokemon {
 	 * @return nos devuelve el ataque en base a la s estadisticas de los dos pokemon
 	 */
 
-	private int formulaDanio(int indiceMovimiento, Pokemon rival) {
+	public int formulaDanio(int indiceMovimiento, Pokemon rival) {
 
 		Random random = new Random();
 
@@ -994,7 +985,7 @@ public class Pokemon {
 	 * @return nos devuelve el valor de la eficacia en double
 	 */
 
-	public static double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
+	public double sacarEficacia(TipoPokemon tipoMovimientoAtacante, TipoPokemon[] tipoObjetivo) {
 
 		int indiceAtacante = tipoMovimientoAtacante.getIndice();
 		int indiceObjetivo = 0;

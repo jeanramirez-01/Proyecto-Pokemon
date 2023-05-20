@@ -4,10 +4,6 @@ public class Equipo {
 
 	private Pokemon[] equipoEntrenador;
 
-	public Equipo() {
-		super();
-		this.equipoEntrenador = new Pokemon[6];
-	}
 
 	public Equipo(Pokemon[] equipoEntrenador) {
 		super();
@@ -64,6 +60,23 @@ public class Equipo {
 		return false;
 	}
 
+	/**
+	 * 
+	 * Metodo de comprobar si el equipo del entrenador se puede añadir algun pokemon
+	 * @return
+	 */
+	public boolean comprobarEquipoPokemon() {
+
+		for (int i = 0; i < equipoEntrenador.length; i++) {
+
+			if (equipoEntrenador[i] == null && equipoEntrenador.length < 6) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 * Metodo de mover el equipo del entrenador con opcion del entrenador.

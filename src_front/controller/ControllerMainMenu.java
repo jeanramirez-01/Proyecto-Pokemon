@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -65,8 +64,6 @@ public class ControllerMainMenu {
 		Singleton singleton = Singleton.getInstanceTrainer(null);
 		jugador = singleton.value;
 
-		System.out.println(jugador.getNombre());
-
 		File playIconFile = new File("recursos/imagenes/imagenes_main_menu/soundImage.png");
 		Image playImage = new Image(playIconFile.toURI().toString());
 		playIcon = new ImageView(playImage);
@@ -106,7 +103,7 @@ public class ControllerMainMenu {
 
 		Logger.write("El usuario " + jugador.getNombre() + " ha cerrado sesion\n");
 		Singleton.liberarMemoriaTrainer();
-		
+
 		Parent rootCurrent = singOutbtn.getScene().getRoot();
 		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
 		fadeOut.setFromValue(1.0);

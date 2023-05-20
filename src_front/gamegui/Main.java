@@ -16,7 +16,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		PokedexCRUD.cargarStats();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+		File fxmlFile = new File("src_front/view/Login.fxml");
 		Parent root = FXMLLoader.load(fxmlFile.toURI().toURL());
 		Scene scene = new Scene(root);
 		File file1 = new File("recursos/imagenes/imagenes_login/iconoVentana.png");

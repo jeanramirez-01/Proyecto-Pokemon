@@ -526,16 +526,16 @@ update pokedex set descripcion = 'Dicen que permanece en silencio en el fondo de
 update pokedex set descripcion = 'Cuenta la leyenda que este Pokémon vuela por el cielo con sus magníficas alas de siete colores.' where num_pokedex = 250;
 update pokedex set descripcion = 'Este Pokémon vaga por el tiempo. La hierba y los árboles crecen por los campos por donde pasa.' where num_pokedex = 251;
 
-insert into objeto (nom_objeto, descripcion) values ('Jovani Vazquez', 'Te otorga el poder del mango, para poder dominar puerto rico');
-insert into objeto (nom_objeto, precio, descripcion, categoria_objeto, ataque, defensa, velocidad) values ('PESA',5000,'Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%', 'OBJETO',  0.20, 0.20, 0.20);
-insert into objeto (nom_objeto, precio, descripcion, categoria_objeto, defensa, defensa_especial, velocidad)values  ('PLUMA',5000,'Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.', 'OBJETO', 0.20,  0.20, 0.30);
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto, defensa, defensa_especial, velocidad, ataque) values ('CHALECO',5000,'Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.',  'OBJETO', 0.20,  0.2, 0.15, 0.15);
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto, estamina, velocidad) values ('BASTON',5000,'Aumenta la generacion de estamina un 20%, pero disminuye en un 15% la velocidad.', 'OBJETO', 0.2, 0.15);
-INSERT INTO objeto (nom_objeto, precio, descripcion, categoria_objeto, estamina,defensa_especial) VALUES ('PILAS', '5000', 'Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.', 'OBJETO' ,0.3, 0.5);
+insert into objeto (nom_objeto, descripcion) values ('JOVANI_VAZQUEZ', 'Te otorga el poder del mango, para poder dominar puerto rico');
+insert into objeto (nom_objeto, precio, descripcion, categoria_objeto) values ('PESA',5000,'Aumenta el ataque y la defensa un 20%, pero disminuye su velocidad un 20%', 'OBJETO');
+insert into objeto (nom_objeto, precio, descripcion, categoria_objeto)values  ('PLUMA',5000,'Aumenta la velocidad un 30%, pero disminuye la defensa y la defensa especial en un 20%.', 'OBJETO');
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('CHALECO',5000,'Aumenta la defensa y la defensa especial un 20%, pero disminuye la velocidad y el ataque un 15%.',  'OBJETO');
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('BASTON',5000,'Aumenta la generacion de estamina un 20%, pero disminuye en un 15% la velocidad.', 'OBJETO');
+INSERT INTO objeto (nom_objeto, precio, descripcion, categoria_objeto) VALUES ('PILAS', '5000', 'Recupera la estamina actual en un 50% de la estamina maxima, pero disminuye la defensa especial un 30%.', 'OBJETO');
 
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto, vitalidad) values ('POCION',300,'Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.',  'BOTIQUIN', 20 );
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto, vitalidad) values ('SUPERPOCION',700,'Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.',  'BOTIQUIN', 50);
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto, vitalidad) values ('HIPERPOCION',1500,'Medicina en spray, que cura heridas y restaura 200 PS de un POKÉMON.',  'BOTIQUIN', 200);
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('POCION',300,'Medicina en spray, que cura heridas y restaura 20 PS de un POKÉMON.',  'BOTIQUIN');
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('SUPERPOCION',700,'Medicina en spray, que cura heridas y restaura 50 PS de un POKÉMON.',  'BOTIQUIN');
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('HIPERPOCION',1500,'Medicina en spray, que cura heridas y restaura 200 PS de un POKÉMON.',  'BOTIQUIN');
 
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('ANTIDOTO',100,'Medicina en spray, que cura a un POKÉMON envenenado.',  'BOTIQUIN');
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('ANTIPARALIZADOR',200,'Medicina en spray, que cura a un POKÉMON paralizado.',  'BOTIQUIN');
@@ -543,10 +543,11 @@ insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('D
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('ANTIQUEMAR',250,'Medicina en spray, que cura a un POKÉMON quemado.',  'BOTIQUIN');
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('ANTIHIELO',250,'Medicina en spray, que descongela a un POKÉMON.',  'BOTIQUIN');
 
-insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('POKE BALL',200,'Sirve para atrapar POKÉMON salvajes. Parece una cápsula.',  'POKEBALL');
+insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('POKE_BALL',200,'Sirve para atrapar POKÉMON salvajes. Parece una cápsula.',  'POKEBALL');
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('SUPERBALL',600,'Es buena. Tiene más índice de éxito que la POKÉ BALL.',  'POKEBALL');
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('ULTRABALL',1200,'Es muy buena. Tiene más índice que la SUPERBALL.',  'POKEBALL');
 insert into objeto(nom_objeto, precio, descripcion, categoria_objeto) values ('MASTERBALL',500000,'Es la mejor. Atrapa siempre al pokémon. No falla.',  'POKEBALL');
+
 
 insert into movimiento (nombre, id_tipo_movimiento) 
 values 
@@ -800,6 +801,8 @@ values
 ('Púas', 15),
 ('Bomba lodo', 10),
 ('Aerochorro', 10);
+
+insert into movimientos_ataques (id_movimiento, potencia, tipo_ataque) values (96,40, 'FISICO');
 
 insert into estado (nombre, tipo_estado)
 values

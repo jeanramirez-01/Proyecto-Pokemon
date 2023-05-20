@@ -1,3 +1,5 @@
+create database if not exists pokemonoroyplata;
+
 /* BASE DE DATOS DE POKEMON */
 /* TABLA POKEMON */
 
@@ -34,19 +36,13 @@ CREATE table IF NOT EXISTS pokedex (
 
 /* Tabla objeto */
 CREATE TABLE IF NOT exists objeto (
+
     id_objeto INT PRIMARY key auto_increment,
     nom_objeto VARCHAR(255) NOT NULL,
-    precio INT NOT null default 0,
+    precio INT,
     descripcion VARCHAR(255) NOT NULL,
-    categoria_objeto enum('OBJETO', 'BOTIQUIN', 'POKEBALL') not null default ('OBJETO'),
-    /*stats que mejora o no*/
-    vitalidad double,
-    ataque double,
-    defensa double,
-    ataque_especial double,
-    defensa_especial double,
-    estamina double,
-    velocidad double
+    categoria_objeto enum('OBJETO', 'BOTIQUIN', 'POKEBALL')
+    
 );
 
 CREATE TABLE IF NOT exists entrenador (
@@ -62,13 +58,12 @@ CREATE TABLE IF NOT exists entrenador (
 
 /* Tabla bolsa */
 CREATE TABLE IF NOT exists bolsa (
-	id_bolsa int auto_increment,
     id_entrenador INT,
     id_objeto INT default 15,
     cantidad_objetos INT not null default 5,
     FOREIGN KEY (id_entrenador) REFERENCES entrenador(id_entrenador),
     FOREIGN KEY (id_objeto) REFERENCES objeto(id_objeto),
-    primary key (id_bolsa, id_entrenador)
+    primary key (id_entrenador, id_objeto)
 );
 
 create table IF NOT exists estado(
@@ -126,23 +121,22 @@ create table if not exists pokemon_movimiento(
 
 CREATE TABLE IF NOT EXISTS equipo_pokemon (
 
-	id_equipo_pokemon int auto_increment,
     id_entrenador INT,
     id_pokemon INT,
     FOREIGN KEY (id_entrenador) REFERENCES entrenador(id_entrenador),
     FOREIGN KEY (id_pokemon) REFERENCES pokemon(id_pokemon),
-    PRIMARY KEY (id_equipo_pokemon, id_entrenador)
+    PRIMARY KEY (id_entrenador, id_pokemon)
     
 );
 
 create table if not exists pc_pokemon (
 	
-	id_pc_pokemon int auto_increment,
     id_entrenador INT,
     id_pokemon INT,
+    activo boolean not null default false,
     foreign key (id_pokemon) references pokemon(id_pokemon),
     foreign key (id_entrenador) references entrenador(id_entrenador),
-    primary key (id_pc_pokemon, id_entrenador)
+    primary key (id_entrenador, id_pokemon)
 );
 
 create table if not exists tienda (
@@ -157,6 +151,7 @@ create table if not exists movimientos_ataques(
 	id_ataque int primary key auto_increment,
 	id_movimiento int,
 	potencia int,
+	tipo_ataque enum ('FISICO', 'ESPECIAL'),
 	foreign key (id_movimiento) references movimiento(id_movimiento)
 	
 );	
@@ -176,7 +171,7 @@ create table IF NOT exists movimientos_mejoras(
 	id_mejoras int primary key auto_increment,
 	id_movimiento int, 
 	estadistica_mejorada enum('VITALIDAD', 'ATAQUE', 'DEFENSA', 'ATAQUE_ESPECIAL', 'DEFENSA_ESPECIAL', 'VELOCIDAD'),
-    cantidad_mejora double,
+    cantidad_mejora int,
     num_turnos INT,
     foreign key (id_movimiento) references movimiento(id_movimiento)
 );

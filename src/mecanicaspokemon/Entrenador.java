@@ -137,6 +137,7 @@ public class Entrenador {
 
 			if (this.equipo.getEquipoEntrenador()[i] != null) {
 				this.equipo.getEquipoEntrenador()[i].aplicarEfectoObjeto();
+
 			}
 		}
 
@@ -155,6 +156,7 @@ public class Entrenador {
 		for (int i = 0; i < equipo.getEquipoEntrenador().length; i++) {
 			if (this.equipo.getEquipoEntrenador()[i] != null) {
 				this.equipo.getEquipoEntrenador()[i].recuperarTotal();
+
 			}
 		}
 
@@ -173,14 +175,13 @@ public class Entrenador {
 	 *                             realizar
 	 */
 
-	public void entrenarPokemon(int indicePokemon, Entrenamiento tipoEntrenamiento, int numEntramientoVeces) {
+	public boolean entrenarPokemon(int indicePokemon, Entrenamiento tipoEntrenamiento, int numEntramientoVeces) {
 
 		int costoEntrenamiento = 0;
 		int puntosAumento = 5;
 
 		if (this.equipo.getEquipoEntrenador()[indicePokemon].tieneObjeto()) {
-			System.out.println("No puedes entrenar a este Pokémon porque tiene un objeto equipado.");
-			return;
+			return false;
 		}
 
 		// Bucle para repetir el numero de entrenamientos quiere el entrenador
@@ -189,13 +190,13 @@ public class Entrenador {
 			case PESADO:
 				// Verificamos que el pokemon tiene el nivel suficiente para el entrenamiento
 				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 20) {
-					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
-					return;
+
+					return false;
 				} else {
 					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 20;
 					if (getPokedolares() < costoEntrenamiento) {
-						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
-						return;
+
+						return false;
 					} else {
 						this.equipo.getEquipoEntrenador()[indicePokemon].setDefensaMaxima(
 								this.equipo.getEquipoEntrenador()[indicePokemon].getDefensaMaxima() + puntosAumento);
@@ -207,18 +208,19 @@ public class Entrenador {
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 
 						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
-						break;
+						return true;
+
 					}
 				}
 			case FURIOSO:
 				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 40) {
-					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
-					return;
+
+					return false;
 				} else {
 					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 20;
 					if (getPokedolares() < costoEntrenamiento) {
-						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
-						return;
+
+						return false;
 					} else {
 						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueMaxima(
 								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueMaxima() + puntosAumento);
@@ -229,18 +231,18 @@ public class Entrenador {
 								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
-						break;
+						return true;
 					}
 				}
 			case FUNCIONAL:
 				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 60) {
-					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
-					return;
+
+					return false;
 				} else {
 					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 40;
 					if (getPokedolares() < costoEntrenamiento) {
-						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
-						return;
+
+						return false;
 					} else {
 						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueMaxima(
 								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueMaxima() + puntosAumento);
@@ -252,18 +254,18 @@ public class Entrenador {
 								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
-						break;
+						return true;
 					}
 				}
 			case ONIRICO:
 				if (this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() < 60) {
-					System.out.println("No se puede realizar el entrenamiento, tu pokemon todavia no esta preparado");
-					return;
+
+					return false;
 				} else {
 					costoEntrenamiento = this.equipo.getEquipoEntrenador()[indicePokemon].getNivel() * 40;
 					if (getPokedolares() < costoEntrenamiento) {
-						System.out.println("No tienes suficientes Pokédolares para entrenar a este Pokémon.");
-						return;
+
+						return false;
 					} else {
 						this.equipo.getEquipoEntrenador()[indicePokemon].setAtaqueEspecialMaxima(
 								this.equipo.getEquipoEntrenador()[indicePokemon].getAtaqueEspecialMaxima()
@@ -277,19 +279,15 @@ public class Entrenador {
 								this.equipo.getEquipoEntrenador()[indicePokemon].getVelocidadMaxima() + puntosAumento);
 						setPokedolares(getPokedolares() - costoEntrenamiento);
 						this.equipo.getEquipoEntrenador()[indicePokemon].recuperarEstadisticas();
-						break;
+						return true;
 					}
 				}
-			default:
-				System.out.println("Tipo de entrenamiento inválido.");
-				return;
+
 			}
+
 		}
 
-		System.out.println("Has gastado " + costoEntrenamiento * numEntramientoVeces + " Pokédolares para entrenar a "
-				+ this.equipo.getEquipoEntrenador()[indicePokemon].getNombre() + ".");
-		System.out.println(
-				this.equipo.getEquipoEntrenador()[indicePokemon].getNombre() + " ha aumentado sus estadísticas.");
+		return false;
 	}
 
 	/**
@@ -409,15 +407,16 @@ public class Entrenador {
 
 		crianza.generarInfoCrianza(padre, madre);
 
-		if (equipo.agregarPokemon(crianza)) {
-			System.out.println(crianza.getNombre() + " se ha añadido al equipo.");
+		if (equipo.comprobarEquipoPokemon()) {
+			for (int i = 0; i < equipo.getEquipoEntrenador().length; i++) {
+				equipo.getEquipoEntrenador()[i] = crianza;
+			}
 		} else {
 			// Si el equipo del entrenador está lleno, agrega el Pokémon a la caja
 			for (int j = 0; j < caja.size(); j++) {
 				if (caja.get(j) == null) {
 					caja.add(crianza);
-					System.out.println("Su equipo está lleno, entonces se ha guardado el Pokémon " + crianza.getMote()
-							+ " al PC.");
+
 					return;
 				}
 			}
@@ -484,7 +483,8 @@ public class Entrenador {
 	 * metodo por parametro al metodo y genera por consola la info basica del
 	 * pokemon
 	 * 
-	 * @param pkentrenador el pokemon que selecciona el entrenador para generar la info basica
+	 * @param pkentrenador el pokemon que selecciona el entrenador para generar la
+	 *                     info basica
 	 */
 	private void mostrarInfoPokemon(Pokemon pkentrenador) {
 
