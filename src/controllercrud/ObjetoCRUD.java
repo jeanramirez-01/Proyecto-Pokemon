@@ -9,9 +9,6 @@ import mecanicaspokemon.Objeto.NombreObjeto;
 
 public class ObjetoCRUD {
 
-	public static void main(String[] args) {
-		System.out.println(cargarOjeto(15).toString());
-	}
 
 	public static Objeto cargarOjeto(int id_objeto) {
 

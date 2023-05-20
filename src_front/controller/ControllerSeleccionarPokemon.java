@@ -2,8 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import controllercrud.EntrenadorCRUD;
 import controllercrud.EquipoPokemonCRUD;
+import controllercrud.Logger;
+import controllercrud.PokedexCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +19,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import mecanicaspokemon.Pokemon;
 
 public class ControllerSeleccionarPokemon {
 
@@ -48,13 +50,13 @@ public class ControllerSeleccionarPokemon {
 	private int currentPokemonIndex = 0;
 
 	private static MediaPlayer buttonClickPlayer;
-	
+
 	private String nombreJugador;
 
 	void initialize(String nombre) {
-		
+
 		this.nombreJugador = nombre;
-		
+
 		btnBulbasaur.setGraphic(Sprite.mostrarSprite(1));
 
 		btnCharmander.setGraphic(Sprite.mostrarSprite(4));
@@ -124,15 +126,17 @@ public class ControllerSeleccionarPokemon {
 
 	@FXML
 	void seleccionarPokemon(ActionEvent event) throws IOException {
-		
+
 		efectoBoton().play();
 		if (currentPokemonIndex == 0) {
 			Alert alert = new Alert(AlertType.ERROR, "No ha elegido ningun pokemon.");
 			alert.showAndWait();
 			return;
 		} else {
+			Pokemon p = PokedexCRUD.selectSinglePokemon(currentPokemonIndex);
 			EquipoPokemonCRUD.insertPokemonInicialEnEquipo(getSelectIndicePokemonInicial(), nombreJugador);
 
+			Logger.write("El usuario " + nombreJugador + " ha elegido de pokemon inicial a " + p.getNombre()+ "\n");
 			File fxmlFile = new File("src_front/view/Login.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 			Parent root = loader.load();

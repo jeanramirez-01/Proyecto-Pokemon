@@ -11,13 +11,12 @@
          <image>
             <Image url="@../../recursos/imagenes/imagenes_main_menu/foto_main.gif" />
          </image></ImageView>
-        <Button fx:id="exitbtn" layoutX="654.0" layoutY="521.0" mnemonicParsing="false" onAction="#salir" prefHeight="40.0" prefWidth="120.0" text="Salir" />
       <Button fx:id="teambtn" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" onAction="#mostrarEquipo" prefHeight="40.0" prefWidth="120.0" text="Equipo" />
       <Button fx:id="pokedexbtn" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" onAction="#mostrarPokedex" prefHeight="40.0" prefWidth="120.0" text="Pokedex" />
       <Button fx:id="bagbtn" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" onAction="#mostrarBolsa" prefHeight="40.0" prefWidth="120.0" text="Bolsa" />
       <Button fx:id="pcPokemonbtn" layoutX="654.0" layoutY="221.0" mnemonicParsing="false" onAction="#mostrarCaja" prefHeight="40.0" prefWidth="120.0" text="Pc pokemon" />
       <Button fx:id="shopbtn" layoutX="654.0" layoutY="272.0" mnemonicParsing="false" onAction="#mostrarTienda" prefHeight="40.0" prefWidth="120.0" text="Tienda" />
-      <Button fx:id="singOutbtn" layoutX="14.0" layoutY="521.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="120.0" text="Cerrar Sesion" />
+      <Button fx:id="singOutbtn" layoutX="334.0" layoutY="521.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="120.0" text="Cerrar Sesion" />
       <Button fx:id="capturabtn" layoutX="654.0" layoutY="329.0" mnemonicParsing="false" onAction="#mostrarCaptura" prefHeight="40.0" prefWidth="120.0" text="Capturar" />
       <Button fx:id="mutebtn" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#muteSong" />
     </children>

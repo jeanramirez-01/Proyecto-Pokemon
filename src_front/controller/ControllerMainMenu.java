@@ -3,7 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 
-import controllercrud.EntrenadorCRUD;
+import controllercrud.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,9 +25,6 @@ public class ControllerMainMenu {
 
 	@FXML
 	private Button bagbtn;
-
-	@FXML
-	private Button exitbtn;
 
 	@FXML
 	private Button pcPokemonbtn;
@@ -65,7 +62,7 @@ public class ControllerMainMenu {
 	@FXML
 	void init() {
 
-		Singleton singleton = Singleton.getInstance(null);
+		Singleton singleton = Singleton.getInstanceTrainer(null);
 		jugador = singleton.value;
 
 		System.out.println(jugador.getNombre());
@@ -107,6 +104,9 @@ public class ControllerMainMenu {
 		Scene scene = new Scene(root);
 		musicaFondo.stop();
 
+		Logger.write("El usuario " + jugador.getNombre() + " ha cerrado sesion\n");
+		Singleton.liberarMemoriaTrainer();
+		
 		Parent rootCurrent = singOutbtn.getScene().getRoot();
 		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
 		fadeOut.setFromValue(1.0);
@@ -130,29 +130,29 @@ public class ControllerMainMenu {
 	void mostrarBolsa(ActionEvent event) throws IOException {
 
 		buttonClickPlayer.play();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
-		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-
-		Parent rootCurrent = singOutbtn.getScene().getRoot();
-		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-
-				Stage stage = (Stage) singOutbtn.getScene().getWindow();
-				stage.setScene(scene);
-
-				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
-				fadeIn.setFromValue(0.0);
-				fadeIn.setToValue(1.0);
-				fadeIn.play();
-			}
-		});
-		fadeOut.play();
+//		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+//		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+//		Parent root = loader.load();
+//		Scene scene = new Scene(root);
+//
+//		Parent rootCurrent = singOutbtn.getScene().getRoot();
+//		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+//		fadeOut.setFromValue(1.0);
+//		fadeOut.setToValue(0.0);
+//		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//
+//				Stage stage = (Stage) singOutbtn.getScene().getWindow();
+//				stage.setScene(scene);
+//
+//				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+//				fadeIn.setFromValue(0.0);
+//				fadeIn.setToValue(1.0);
+//				fadeIn.play();
+//			}
+//		});
+//		fadeOut.play();
 
 	}
 
@@ -160,29 +160,29 @@ public class ControllerMainMenu {
 	void mostrarCaja(ActionEvent event) throws IOException {
 
 		buttonClickPlayer.play();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
-		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-
-		Parent rootCurrent = singOutbtn.getScene().getRoot();
-		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-
-				Stage stage = (Stage) singOutbtn.getScene().getWindow();
-				stage.setScene(scene);
-
-				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
-				fadeIn.setFromValue(0.0);
-				fadeIn.setToValue(1.0);
-				fadeIn.play();
-			}
-		});
-		fadeOut.play();
+//		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+//		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+//		Parent root = loader.load();
+//		Scene scene = new Scene(root);
+//
+//		Parent rootCurrent = singOutbtn.getScene().getRoot();
+//		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+//		fadeOut.setFromValue(1.0);
+//		fadeOut.setToValue(0.0);
+//		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//
+//				Stage stage = (Stage) singOutbtn.getScene().getWindow();
+//				stage.setScene(scene);
+//
+//				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+//				fadeIn.setFromValue(0.0);
+//				fadeIn.setToValue(1.0);
+//				fadeIn.play();
+//			}
+//		});
+//		fadeOut.play();
 
 	}
 
@@ -195,7 +195,7 @@ public class ControllerMainMenu {
 //		Parent root = loader.load();
 //		Scene scene = new Scene(root);
 
-		System.out.println(jugador.getNombre());
+//		System.out.println(jugador.getNombre());
 
 //		// Obtiene la raíz de la escena actual y asigna la transición
 //		Parent rootCurrent = singOutbtn.getScene().getRoot();
@@ -224,31 +224,31 @@ public class ControllerMainMenu {
 	void mostrarPokedex(ActionEvent event) throws IOException {
 
 		buttonClickPlayer.play();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
-		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-
-		// Obtiene la raíz de la escena actual y asigna la transición
-		Parent rootCurrent = singOutbtn.getScene().getRoot();
-		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// Cuando la transición de desvanecimiento termina, asigna la nueva escena
-				Stage stage = (Stage) singOutbtn.getScene().getWindow();
-				stage.setScene(scene);
-
-				// Crea la transición de aparición para la nueva escena
-				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
-				fadeIn.setFromValue(0.0);
-				fadeIn.setToValue(1.0);
-				fadeIn.play();
-			}
-		});
-		fadeOut.play();
+//		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+//		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+//		Parent root = loader.load();
+//		Scene scene = new Scene(root);
+//
+//		// Obtiene la raíz de la escena actual y asigna la transición
+//		Parent rootCurrent = singOutbtn.getScene().getRoot();
+//		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+//		fadeOut.setFromValue(1.0);
+//		fadeOut.setToValue(0.0);
+//		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// Cuando la transición de desvanecimiento termina, asigna la nueva escena
+//				Stage stage = (Stage) singOutbtn.getScene().getWindow();
+//				stage.setScene(scene);
+//
+//				// Crea la transición de aparición para la nueva escena
+//				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+//				fadeIn.setFromValue(0.0);
+//				fadeIn.setToValue(1.0);
+//				fadeIn.play();
+//			}
+//		});
+//		fadeOut.play();
 
 	}
 
@@ -256,39 +256,32 @@ public class ControllerMainMenu {
 	void mostrarTienda(ActionEvent event) throws IOException {
 
 		buttonClickPlayer.play();
-		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
-		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
+//		File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/Login.fxml");
+//		FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
+//		Parent root = loader.load();
+//		Scene scene = new Scene(root);
+//
+//		// Obtiene la raíz de la escena actual y asigna la transición
+//		Parent rootCurrent = singOutbtn.getScene().getRoot();
+//		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
+//		fadeOut.setFromValue(1.0);
+//		fadeOut.setToValue(0.0);
+//		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// Cuando la transición de desvanecimiento termina, asigna la nueva escena
+//				Stage stage = (Stage) singOutbtn.getScene().getWindow();
+//				stage.setScene(scene);
+//
+//				// Crea la transición de aparición para la nueva escena
+//				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
+//				fadeIn.setFromValue(0.0);
+//				fadeIn.setToValue(1.0);
+//				fadeIn.play();
+//			}
+//		});
+//		fadeOut.play();
 
-		// Obtiene la raíz de la escena actual y asigna la transición
-		Parent rootCurrent = singOutbtn.getScene().getRoot();
-		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// Cuando la transición de desvanecimiento termina, asigna la nueva escena
-				Stage stage = (Stage) singOutbtn.getScene().getWindow();
-				stage.setScene(scene);
-
-				// Crea la transición de aparición para la nueva escena
-				FadeTransition fadeIn = new FadeTransition(Duration.millis(500), root);
-				fadeIn.setFromValue(0.0);
-				fadeIn.setToValue(1.0);
-				fadeIn.play();
-			}
-		});
-		fadeOut.play();
-
-	}
-
-	@FXML
-	void salir(ActionEvent event) {
-
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
 	}
 
 	@FXML
@@ -300,13 +293,13 @@ public class ControllerMainMenu {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 
+		Logger.write("El usuario " + jugador.getNombre() + " accedio a la vista de la captura\n");
 		ControllerCapturarPokemon captura = loader.getController();
-
-		Singleton.getInstance(jugador);
-
 		captura.init();
+
+		Singleton.getInstanceTrainer(jugador);
 		musicaFondo.stop();
-		
+
 		Parent rootCurrent = singOutbtn.getScene().getRoot();
 		FadeTransition fadeOut = new FadeTransition(Duration.millis(500), rootCurrent);
 		fadeOut.setFromValue(1.0);

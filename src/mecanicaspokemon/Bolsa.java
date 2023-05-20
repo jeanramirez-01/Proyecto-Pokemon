@@ -99,7 +99,7 @@ public class Bolsa {
 	 * @param objeto que pasa el juga
 	 */
 	public void tirarObjeto(Objeto objeto) {
-
+		
 		listaObjetos.remove(objeto);
 
 	}

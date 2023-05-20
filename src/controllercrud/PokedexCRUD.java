@@ -75,16 +75,14 @@ public class PokedexCRUD {
 	}
 
 	/**
-	 * @param id
+	 * @param num_pokedex
 	 * @return
 	 */
-	public static Pokemon selectSinglePokemon(int id) {
+	public static Pokemon selectSinglePokemon(int num_pokedex) {
 
 		String query = "Select P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2, P.descripcion\n"
-				+ "from pokedex P\n" 
-				+ "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
-				+ "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" 
-				+ "where P.num_pokedex = " + id + ";";
+				+ "from pokedex P\n" + "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
+				+ "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" + "where P.num_pokedex = " + num_pokedex + ";";
 
 		Pokemon single = null;
 		PreparedStatement preparedStatement = null;
@@ -99,10 +97,10 @@ public class PokedexCRUD {
 
 				if (tipo2 == null) {
 					TipoPokemon[] tipo = { TipoPokemon.valueOf(tipo1) };
-					single = new Pokemon(id, name, tipo, descripcion);
+					single = new Pokemon(num_pokedex, name, tipo, descripcion);
 				} else {
 					TipoPokemon[] tipo = { TipoPokemon.valueOf(tipo1), TipoPokemon.valueOf(tipo2) };
-					single = new Pokemon(id, name, tipo, descripcion);
+					single = new Pokemon(num_pokedex, name, tipo, descripcion);
 				}
 			}
 		} catch (SQLException e) {
@@ -112,6 +110,41 @@ public class PokedexCRUD {
 		return single;
 	}
 
+	public static Pokemon selectSinglePokemonAleatorio(int num_pokedex) {
+
+		String query = "Select P.nom_pokemon, T1.nombre as tipo1, T2.nombre as tipo2, P.descripcion, P.vitalidad_base\n"
+					 + "from pokedex P\n" 
+					 + "JOIN tipo T1 ON T1.id_tipo = P.tipo_primario\n"
+					 + "left JOIN tipo T2 ON T2.id_tipo = P.tipo_secundario\n" 
+					 + "where P.num_pokedex = " + num_pokedex + ";";
+
+		Pokemon single = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = MySQLConnection.getConnection().prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				String name = resultSet.getString("nom_pokemon");
+				String tipo1 = resultSet.getString("tipo1");
+				String tipo2 = resultSet.getString("tipo2");
+				String descripcion = resultSet.getString("descripcion");
+				int vt = resultSet.getInt("vitalidad_base");
+
+				if (tipo2 == null) {
+					TipoPokemon[] tipo = { TipoPokemon.valueOf(tipo1) };
+					single = new Pokemon(num_pokedex, name, tipo, descripcion, vt);
+				} else {
+					TipoPokemon[] tipo = { TipoPokemon.valueOf(tipo1), TipoPokemon.valueOf(tipo2) };
+					single = new Pokemon(num_pokedex, name, tipo, descripcion, vt);
+				}
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return single;
+	}
+	
 	private static void insertStats() {
 		String query = "update pokedex set vitalidad_base = ?, ataque_base = ?, defensa_base= ?, ataque_especial_base= ?, defensa_especial_base= ?, velocidad_base = ? where num_pokedex = ?;";
 

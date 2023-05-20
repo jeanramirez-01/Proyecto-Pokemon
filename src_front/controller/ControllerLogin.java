@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -74,8 +73,7 @@ public class ControllerLogin {
 
 		if (LoginCRUD.selectIniciarSesion(nombre, pass)) {
 			try {
-//				Logger.write("Se ha registrado el usuario " +nombre);
-//				Logger.close();
+				Logger.write("Ha iniciado sesion el usuario " + nombre+ "\n");
 
 				File fxmlFile = new File("src_front/view/Main.fxml");
 				FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
@@ -89,7 +87,7 @@ public class ControllerLogin {
 
 				Entrenador trainer = EntrenadorCRUD.cargarEntrenador(nombre);
 
-				Singleton.getInstance(trainer);
+				Singleton.getInstanceTrainer(trainer);
 
 				main.init();
 
@@ -166,9 +164,10 @@ public class ControllerLogin {
 
 	@FXML
 	void salir(ActionEvent event) {
-
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
+		Logger.write("Se ha cerrado el programa");
+		Logger.close();
+		Stage currentStage = (Stage) exitButton.getScene().getWindow();
+		currentStage.close();
 
 	}
 

@@ -1,8 +1,7 @@
 package mecanicaspokemon;
 
 public class Equipo {
-	
-	
+
 	private Pokemon[] equipoEntrenador;
 
 	public Equipo() {
@@ -25,7 +24,9 @@ public class Equipo {
 
 	/**
 	 * 
-	 * 
+	 * Metodo de mostrar el nombre, nivel, sexo, vitalidad actual, vitalidad maxima,
+	 * estamina actual y estamina maxima de cada uno de los pokemon del equipo del
+	 * entrenador
 	 */
 	public void mostrarEquipo() {
 
@@ -43,6 +44,10 @@ public class Equipo {
 	}
 
 	/**
+	 * Metodo de agregar pokemon al equipo en la que de parametro le pasamos un
+	 * pokemon y recorremos todo el equipo y en el caso que encontremos un espacio
+	 * en el equipo que sea nulo y que el tamaño del equipo sea menor a 6, entonces
+	 * el pokemon se agregara al equipo
 	 * 
 	 * @param pokemon
 	 */
@@ -50,7 +55,7 @@ public class Equipo {
 
 		for (int i = 0; i < equipoEntrenador.length; i++) {
 
-			if (equipoEntrenador[i] == null) {
+			if (equipoEntrenador[i] == null && equipoEntrenador.length < 6) {
 				equipoEntrenador[i] = pokemon;
 				return true;
 			}
@@ -94,6 +99,8 @@ public class Equipo {
 	}
 
 	/**
+	 * Metodo que genera la informacion basica de un pokemon del entrenador
+	 * 
 	 * @param pokemonIndice
 	 */
 	public void mostrarHabilPokemon(Pokemon pokemonIndice) {
@@ -128,7 +135,10 @@ public class Equipo {
 	}
 
 	/**
-	 * @param pokemonIndice
+	 * Metodo de mostrar los movimientos conocidos del pokemon que le pasemos por
+	 * parametro de algun pokemon del equipo
+	 * 
+	 * @param pokemonIndice que le pasaria el entrenador
 	 */
 	public void mostrarMovConocidos(Pokemon pokemonIndice) {
 		Movimiento[] tipo2 = pokemonIndice.getMovimientos();

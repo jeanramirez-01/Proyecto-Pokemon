@@ -36,6 +36,10 @@ public class Objeto {
 		this.categoria = categoria;
 	}
 
+	public Objeto(NombreObjeto pokeball) {
+		this.nombre = pokeball;
+	}
+
 	public NombreObjeto getNombre() {
 		return nombre;
 	}

@@ -34,7 +34,6 @@ public class Pokemon {
 	private int experienciaTotal;
 	private String descripcion;
 
-	// Constructor por defecto
 	public Pokemon() {
 
 		this.nombre = "Pikachu";
@@ -57,18 +56,28 @@ public class Pokemon {
 		this.nombre = nombre;
 	}
 
-
 	public Pokemon(int id, String name, TipoPokemon[] tipoPokemon, String descripcion) {
 		this.idPokemon = id;
 		this.nombre = name;
 		this.tipo = tipoPokemon;
 		this.descripcion = descripcion;
+
+	}
+
+	public Pokemon(int id, String name, TipoPokemon[] tipoPokemon, String descripcion, int vt) {
+		this.idPokemon = id;
+		this.nombre = name;
+		this.tipo = tipoPokemon;
+		this.descripcion = descripcion;
+		this.vitalidadMaxima = vt;
+		recuperarTotal();
 	}
 
 	public Pokemon(String name, TipoPokemon[] tipo, String descripcion) {
 		this.nombre = name;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
+
 	}
 
 	public Pokemon(int num_pokedex, int vtBS, int atBS, int dfBS, int atEBS, int dfEBS, int vlBS) {
@@ -98,9 +107,9 @@ public class Pokemon {
 		recuperarTotal();
 	}
 
-	//Constructor para cargar el pokemon en el equipo del entrenador
-	public Pokemon(int id, String nom, TipoPokemon[] tip1, String mote2, int vt, int at, int df, int atE, int dfE, int vl,
-			int st, int nv, String sexo2, Objeto obj, Estado est, int exp, Movimiento[] mov, String desc) {
+	// Constructor para cargar el pokemon en el equipo del entrenador
+	public Pokemon(int id, String nom, TipoPokemon[] tip1, String mote2, int vt, int at, int df, int atE, int dfE,
+			int vl, int st, int nv, String sexo2, Objeto obj, Estado est, int exp, Movimiento[] mov, String desc) {
 		this.idPokemon = id;
 		this.nombre = nom;
 		this.mote = mote2;
@@ -340,6 +349,9 @@ public class Pokemon {
 
 	// Metodos de pokemon-----------------------------------------------------------
 
+	/**
+	 * Metodo de mostrar la la info mas basica del pokemon
+	 */
 	public void mostrarStats() {
 
 		System.out.println("INFO. POKÉMON");
@@ -416,8 +428,11 @@ public class Pokemon {
 	}
 
 	/**
-	 * Ejemplo de metodo en el cual pone el estado del pokemon dependiendo del
-	 * estado del movimiento del pokemon. En este caso primero declaramos
+	 * Ejemplo de lo que hubiera sido un metodo de poner estado al pokemon al
+	 * momento de atacar, pero al cambiar la clase de estado entonces el metodo ya
+	 * no funciona y entonces por eso esta comentado entero el metodo. Si hubiera
+	 * tenido tiempo y compañero lo hubiera echo
+	 * 
 	 */
 
 //	public void ponerEstado() {
@@ -470,7 +485,11 @@ public class Pokemon {
 //	}
 
 	/**
-	 *
+	 * Metodo de aplicar el estado al pokemon cada turno dependiendo del tipo de
+	 * estado. Esto esta sin acabar dado que si hubiera tenido tiempo y compañero lo
+	 * habria terminado. En terminos generales lo que deberia hacer es que en el
+	 * switch coge el estado del pokemon y si en el caso que hubiera tenido alguno
+	 * de los estados disponibles en la clase enum
 	 */
 
 	public void aplicarEstado() {
@@ -642,8 +661,30 @@ public class Pokemon {
 	}
 
 	/**
-	 * @param indiceAtaque
-	 * @param rival
+	 * Metodo de atacar a un pokemon en el cual le pasamos dos parametros, el indice
+	 * del movimiento disponible del pokemon y el pokemon al que se le dirije el
+	 * ataque. El metodo en si mismo funciona en terminos generales pero no funciona
+	 * el poner estado aqui, dado que si hubiera tenido tiempo y compañero lo
+	 * hubiera echo.
+	 * 
+	 * En lo general lo primero que hace es que comprueba la estamina actual del
+	 * pokemon que si es menor al coste de estamina del movimiento entonces no podra
+	 * atacar, pero si no, le resta a la estamina actual el costo de la estamina del
+	 * movimiento. Procedemos en el metodo y entonces invocamos al metodo de la
+	 * formula de daño y guardaremos el daño realizado en una variable danio,
+	 * entonces en el caso que si el daño de la formula es mayor que la vitalidad
+	 * actual del pokemon rival entonces pone la vitalidad actual del pokemon rival
+	 * a 0, de estado del pokemon se pone a debilitado, pero si no se cumple la
+	 * condicion entonces el calculo de la formula del daño se le restara a la
+	 * vitalidad actual del pokemon rival.
+	 * 
+	 * Tenemos de ultima condicion que si el calculo de la formula de daño es igual
+	 * a 0, entonces significa que el ataque no le afecta al rival
+	 * 
+	 * @param indiceAtaque hace referencia a uno de los movimientos disponibles del
+	 *                     pokemon dentro del array de movimientos
+	 * 
+	 * @param rival        es el pokemon al que se le ataca
 	 */
 
 	public void atacarPokemon(int indiceAtaque, Pokemon rival) {
@@ -677,7 +718,9 @@ public class Pokemon {
 	}
 
 	/**
-	 * Metodo de curar la vitalidad actual y estamina actual
+	 * Metodo de curar la vitalidad actual y estamina actual, ademas de restaurar
+	 * todas las estadisticas del pokemon por el metodo recuperarEstadisticas()
+	 * 
 	 */
 
 	public void recuperarTotal() {
@@ -700,7 +743,8 @@ public class Pokemon {
 	}
 
 	/**
-	 *
+	 * Metodo de recuperar estadisticas que devuelve las estadisticas actuales del
+	 * pokemon a las estadisticas maxima
 	 */
 	public void recuperarEstadisticas() {
 
@@ -713,6 +757,10 @@ public class Pokemon {
 
 	}
 
+	/**
+	 * Lo que hubiera sido el metodo de aprender movimiento si hubiera tenido tiempo
+	 * y compañero para hacerlo
+	 */
 	public void aprenderMovimiento() {
 
 	}
@@ -736,8 +784,36 @@ public class Pokemon {
 	}
 
 	/**
-	 * @param padre
-	 * @param madre
+	 * Metodo de generar la info y las estadisticas del pokemon al momento de criar
+	 * entre dos pokemon.
+	 * 
+	 * Lo primero tenemos dos parametros que seran los pokemon padres que le pasara
+	 * el entrenador.
+	 * 
+	 * -Lo primero que se comprueba en el metodo es la fertilidad que tenga
+	 * disponibles para la crianza
+	 * 
+	 * -Lo segundo que se comprueba es que si el genero del pokemon del padre y la
+	 * madre son iguales entonces no se puede criar un pokemon
+	 * 
+	 * -Lo tercero es que sacamos es el indice del pokemon padre y madre y luego
+	 * comprobamos la compatibilidad de los padres mediante la matriz de eficacias
+	 * en la clase eficacias que si la compatibilidad es igual o mayor a 2, entonces
+	 * no el pokemon no se puede criar
+	 * 
+	 * -Luego de las comprobaciones primero sacamos lo que sera el nombre y el mote
+	 * del pokemon de crianza, que sera la mitad del nombre del padre y de la madre.
+	 * Luego generamos un numero aleatorio 0 a 10 y que si el numero generado es
+	 * menor a 5, entonces el sexo del hijo sera del padre y si no sera de la madre.
+	 * Luego se le setea el mote y el nombre del hijo y ahora, al momento de poner
+	 * las estadisticas se le aplicaran las estadisitcas que sean mejores de cada
+	 * padre y al final del todo se le restara un punto de fertilidad a los padres.
+	 * 
+	 * Falta la parte de aprender movimiento de los padres por falta de tiempo y
+	 * compañero
+	 * 
+	 * @param padre es el pokemon padre
+	 * @param madre es el pokemon madre
 	 */
 
 	public void generarInfoCrianza(Pokemon padre, Pokemon madre) {
@@ -756,7 +832,7 @@ public class Pokemon {
 		int madreIndice = madre.getTipo()[0].getIndice();
 
 		double compatibilidad = Eficacias.EFICACIAS[padreIndice][madreIndice];
-		if (compatibilidad == 2.0) {
+		if (compatibilidad >= 2.0) {
 			System.out.println("No se puede criar entre " + padre.getNombre() + " y " + madre.getNombre()
 					+ " porque son incompatibles para la crianza.");
 			return;
@@ -905,10 +981,16 @@ public class Pokemon {
 	 * los pokemon, para que luego llamemos a una matriz donde se guarda la tabla de
 	 * tipos pokemon, en el cual le pasamos el indice del atacante y del indice del
 	 * objetivo para guardar el valor del matriz en una variable de tipo double y
-	 * despues devolverla con un return
+	 * despues devolverla con un return. En el caso que si el pokemon objetivo tiene
+	 * dos tipos entonces coge los dos tipos y llama a sus respectivos indices de la
+	 * clase tipo pokemon, y cada indice se guarda en dos variables para entonces
+	 * crear dos variables en la cual llamaremos a la matriz de las eficacias para
+	 * sacar la eficacia de cada tipo y el valor de la formula sera la
+	 * multiplicacion de ambas eficacias y se devolvera el valor en el return
 	 *
 	 * @param tipoMovimientoAtacante es el tipo del pokemon atacante
 	 * @param tipoObjetivo           es el tipo del pokemon objetivo
+	 * 
 	 * @return nos devuelve el valor de la eficacia en double
 	 */
 
@@ -931,19 +1013,6 @@ public class Pokemon {
 		}
 
 		return formula;
-	}
-
-	public String toStringInfo() {
-		return "Pokemon [idPokemon=" + idPokemon + ", nombre=" + nombre + ", tipo=" + Arrays.toString(tipo)
-				+ ", descripcion=" + descripcion + "]";
-	}
-
-	public String toStringStats() {
-		return "Pokemon [mote= " + mote + ", vitalidad = " + vitalidadMaxima + ", ataque = " + ataqueMaxima
-				+ ", defensa = " + defensaMaxima + ", ataque Especial = " + ataqueEspecialMaxima
-				+ ", defensa Especial =" + defensaEspecialMaxima + ", velocidad Maxima = " + velocidadMaxima
-				+ ", estamina = " + estaminaMaxima + ", nivel = " + nivel + ", sexo = " + sexo + ", experiencia = "
-				+ experienciaTotal + "]";
 	}
 
 	@Override

@@ -120,8 +120,9 @@ public class EntrenadorCRUD {
 	}
 
 	public static Entrenador cargarEntrenador(String nombre) {
-		String query = "Select id_entrenador, nom_entrenador, edad, genero, pokecuartos\n" + "from entrenador\n"
-				+ "where nom_entrenador = '" + nombre + "';";
+		String query = "Select id_entrenador, nom_entrenador, edad, genero, pokecuartos\n" 
+					 + "from entrenador\n"
+					 + "where nom_entrenador = '" + nombre + "';";
 		Entrenador trainer = null;
 
 		PreparedStatement preparedStatement = null;

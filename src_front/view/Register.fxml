@@ -18,13 +18,13 @@
       <ImageView fx:id="imagenEntrenadorSeleccion" fitHeight="384.0" fitWidth="190.0" layoutX="565.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="passwordCreateField" layoutX="116.0" layoutY="143.0" prefHeight="26.0" prefWidth="220.0" />
       <TextField fx:id="userCreateField" layoutX="115.0" layoutY="95.0" prefHeight="26.0" prefWidth="220.0" />
-      <Button fx:id="buttonRegisterAllDate" layoutX="326.0" layoutY="484.0" mnemonicParsing="false" onAction="#registerButton" text="Registrarse" />
+      <Button fx:id="buttonRegisterAllDate" layoutX="465.0" layoutY="484.0" mnemonicParsing="false" onAction="#registerButton" text="Registrarse" />
       <TextField fx:id="ageCreateField" layoutX="116.0" layoutY="191.0" prefHeight="26.0" prefWidth="52.0" />
       <Label layoutX="60.0" layoutY="99.0" text="Usuario:" />
       <Label layoutX="42.0" layoutY="147.0" text="Contraseña:" />
       <Label layoutX="74.0" layoutY="196.0" text="Edad:" />
       <Label layoutX="61.0" layoutY="246.0" text="Genero:" />
-      <ImageView fx:id="helicopteroImage" fitHeight="249.0" fitWidth="405.0" layoutX="362.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="helicopteroImage" fitHeight="249.0" fitWidth="405.0" layoutX="432.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
       <ButtonBar layoutX="95.0" layoutY="235.0" prefHeight="40.0" prefWidth="369.0">
         <buttons>
             <Button fx:id="buttonMale" mnemonicParsing="false" onAction="#comebackMan" text="Chico" />
@@ -32,7 +32,6 @@
           <Button fx:id="buttonHelicopter" mnemonicParsing="false" onAction="#comebackHelicopter" prefHeight="40.0" prefWidth="128.0" text="Helicoptero" />
         </buttons>
       </ButtonBar>
-      <Button fx:id="backButton" layoutX="476.0" layoutY="484.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
-      <Button fx:id="exitButton" layoutX="625.0" layoutY="484.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
+      <Button fx:id="backButton" layoutX="619.0" layoutY="484.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
    </children>
 </AnchorPane>

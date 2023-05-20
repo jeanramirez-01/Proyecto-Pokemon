@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import controllercrud.EntrenadorCRUD;
+import controllercrud.Logger;
 import controllercrud.LoginCRUD;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -22,7 +23,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 
 public class ControllerRegister {
 
@@ -57,9 +57,6 @@ public class ControllerRegister {
 	private Parent myAnchorPane;
 
 	@FXML
-	private Button exitButton;
-
-	@FXML
 	private Button backButton;
 
 	private MediaPlayer mediaPlayer;
@@ -86,7 +83,7 @@ public class ControllerRegister {
 		buttonClickPlayer.play();
 
 		imagenEntrenadorSeleccion.setImage(null);
-		File iconFile = new File("recursos/imagenes/imagenes_register/helicoptero.png");
+		File iconFile = new File("recursos/imagenes/imagenes_register/helicoptero.gif");
 		Image image = new Image(iconFile.toURI().toString());
 		helicopteroImage.setImage(image);
 
@@ -165,6 +162,8 @@ public class ControllerRegister {
 		} else {
 			LoginCRUD.crearUsuario(nombre, pass, age, getSelectedGender());
 
+			Logger.write("Se ha registrado un usuario con la siguientes credenciales: nombre: " + nombre + ", edad: "
+					+ age + ", genero: " + getSelectedGender() + "\n");
 			File fxmlFile = new File(System.getProperty("user.dir") + "/src_front/view/SeleccionPokemon.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
 			Parent root = loader.load();
@@ -195,15 +194,6 @@ public class ControllerRegister {
 			});
 			fadeOut.play();
 		}
-
-	}
-
-	@FXML
-	void exit(ActionEvent event) {
-
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
-		buttonClickPlayer.play();
 
 	}
 

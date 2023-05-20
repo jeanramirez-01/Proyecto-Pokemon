@@ -10,22 +10,30 @@ import javafx.scene.media.MediaPlayer;
 
 public class Sprite {
 
-	public static ImageView mostrarSprite(int id) {
+	public static ImageView mostrarSprite(int num_pokedex) {
 
-		File iconFileGifB = new File(PokemonCRUD.selectRutaSprite(id));
+		File iconFileGifB = new File(PokemonCRUD.selectRutaSprite(num_pokedex));
 		Image imgB = new Image(iconFileGifB.toURI().toString());
 		ImageView imgViewB = new ImageView(imgB);
-		
+
 		return imgViewB;
-	}	
-	
-	public static MediaPlayer playAudio(int id) {
-		
-		File file = new File(PokemonCRUD.selectRutaSonidoPokemon(id));
+	}
+
+	public static Image mostrarSpriteImagen(int numPokedex) {
+
+		File iconFileGifB = new File(PokemonCRUD.selectRutaSprite(numPokedex));
+		Image imgB = new Image(iconFileGifB.toURI().toString());
+
+		return imgB;
+	}
+
+	public static MediaPlayer playAudio(int num_pokedex) {
+
+		File file = new File(PokemonCRUD.selectRutaSonidoPokemon(num_pokedex));
 		Media sound = new Media(file.toURI().toString());
 		MediaPlayer mediaPlaye = new MediaPlayer(sound);
 		mediaPlaye.setVolume(1);
 		return mediaPlaye;
 	}
-	
+
 }

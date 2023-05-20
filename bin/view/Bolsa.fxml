@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="532.0" prefHeight="400.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerBolsa">
+   <children>
+      <ImageView fitHeight="410.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../recursos/imagenes/imagenes_captura/bolsa.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnPokeball" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#esPokeball" prefHeight="62.0" prefWidth="237.0" />
+      <Button fx:id="btnUltraball" layoutX="14.0" layoutY="171.0" mnemonicParsing="false" onAction="#esUltraBall" prefHeight="62.0" prefWidth="237.0" />
+      <Button fx:id="btnSuperball" layoutX="281.0" layoutY="89.0" mnemonicParsing="false" onAction="#esSuperball" prefHeight="62.0" prefWidth="237.0" />
+      <Button fx:id="btnMasterball" layoutX="281.0" layoutY="171.0" mnemonicParsing="false" onAction="#esMasterball" prefHeight="62.0" prefWidth="237.0" />
+      <Button fx:id="btnSalir" layoutX="400.0" layoutY="346.0" mnemonicParsing="false" onAction="#salir" prefHeight="49.0" prefWidth="129.0" text="Salir" />
+      <Label fx:id="eleccionPokeball" layoutX="14.0" layoutY="337.0" />
+   </children>
+</AnchorPane>

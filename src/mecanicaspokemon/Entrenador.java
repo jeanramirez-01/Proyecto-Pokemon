@@ -1,6 +1,7 @@
 package mecanicaspokemon;
 
 import java.util.LinkedList;
+import mecanicaspokemon.Objeto.NombreObjeto;
 
 public class Entrenador {
 
@@ -14,8 +15,13 @@ public class Entrenador {
 	private LinkedList<Pokemon> caja;
 
 	public Entrenador() {
-		// TODO Auto-generated constructor stub
+		this.nombre = "";
+		this.edad = 0;
+		this.sexo = ' ';
+		this.pokecuarto = 0;
+
 	}
+
 	public Entrenador(String nombre2) {
 		this.nombre = nombre2;
 		this.edad = 0;
@@ -32,7 +38,7 @@ public class Entrenador {
 
 	}
 
-	public Entrenador(int id,String nombre, int edad, String sexo, int pokecuarto, Equipo equipo, Bolsa bolsa,
+	public Entrenador(int id, String nombre, int edad, String sexo, int pokecuarto, Equipo equipo, Bolsa bolsa,
 			LinkedList<Pokemon> caja) {
 		super();
 		this.idEntrenador = id;
@@ -44,6 +50,7 @@ public class Entrenador {
 		this.bolsa = bolsa;
 		this.caja = caja;
 	}
+
 	public int getIdEntrenador() {
 		return idEntrenador;
 	}
@@ -66,6 +73,30 @@ public class Entrenador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public char getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	public int getPokecuarto() {
+		return pokecuarto;
+	}
+
+	public void setPokecuarto(int pokecuarto) {
+		this.pokecuarto = pokecuarto;
 	}
 
 	public int getPokedolares() {
@@ -112,6 +143,10 @@ public class Entrenador {
 	}
 
 	/**
+	 * 
+	 * Metodo de curar el equipo pokemon del entrenador en la que recorre todo el
+	 * equipo dependiendo del tamaño del equipo en la que llama al metodo
+	 * recuperarTotal de pokemon
 	 * 
 	 */
 
@@ -258,17 +293,115 @@ public class Entrenador {
 	}
 
 	/**
+	 * Metodo de captura booleano en la que le pasamos dos parametros, el pokemon
+	 * salvaje que se genera en la vista de captura y la pokeball que elige el
+	 * entrenador. Lo primero generamos un numero random 0 a 255, luego lo primero
+	 * que comprobamos es que si en el caso que la pokeball que utilize es la
+	 * MASTERBALL, entonces el metodo devuelve true y se captura el pokemon; si no,
+	 * se genera la siguiente excepcion en la que si el numero random que se genera
+	 * al principio del metodo es menor o igual que la formula de captura entonces
+	 * devuelve true y se captura el pokemon. Finalizando si no cuenta ninguna de
+	 * las opciones del metodo entonces devuelve false.
+	 * 
+	 * @param aleatorio es el pokemon salvaje que se genera en la vista de captura
+	 * @param pokeball  es la pokeball que escoge el entrenador al momento de abrir
+	 *                  la bolsa en la vista de la captura
+	 * 
+	 * @return true si se captura o false si no
 	 * 
 	 */
-	public void capturar() {
-		int indice = 0;
-		bolsa.quitarObjeto(equipo.getEquipoEntrenador()[indice]);
+	public boolean capturar(Pokemon aleatorio, Objeto pokeball) {
+		int random1 = (int) (Math.random() * 255) + 1;
+
+		if (pokeball.getNombre() == NombreObjeto.MASTERBALL) {
+			return true;
+		} else {
+			if (random1 <= formulaCaptura(pokeball, aleatorio)) {
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 	/**
+	 * Metodo de la formula de captura, en la cual tenemos dos parametros como en el
+	 * metodo de la captura general, en la que le pasamos el pokemon salvaje y la
+	 * pokeball que utiliza el entrenador.
 	 * 
-	 * @param padre
-	 * @param madre
+	 * Creo un variable formula que sera el valor que retorne el metodo al finalizar
+	 * 
+	 * Luego creo un switch que el parametro es el nombre de la pokeball, dado que
+	 * los nombres de los objetos en la clase objeto esta declarado como un enum.´
+	 * 
+	 * Entonces en el caso de la pokeball que utilize el entrenador se generara un
+	 * numero aleatorio de 0 a 255 que sera el ratio de captura de la pokeballa para
+	 * la formula general. La formula general es:
+	 * 
+	 * numRatioPokemon sera diferente en base a la pokeball que sea. Su valor sera
+	 * 12 si es una pokeball, 8 si es una superball y 4 si es una ultraball.
+	 * 
+	 * formula = (PsMax.Pokemon * ratioPokeballCaptura * 4) / (PsActuales.Pokemon *
+	 * numRatioPokemon)
+	 * 
+	 * Terminando la formula, si en el caso que el valor de la formula sea mayor a
+	 * 255, entonces la formula pasara a ser 255 siempre
+	 * 
+	 * @param pokeball  que utiliza el entrenador para la captura
+	 * @param aleatorio que es el pokemon salvaje que se genera en al vista de
+	 *                  captura
+	 * 
+	 * @return el valor de la formula de captura
+	 */
+	private int formulaCaptura(Objeto pokeball, Pokemon aleatorio) {
+
+		int formula = 0;
+
+		switch (pokeball.getNombre()) {
+		case POKE_BALL:
+			final int ratioPokeball = (int) (Math.random() * 255) + 1;
+			formula = (aleatorio.getVitalidadMaxima() * ratioPokeball * 4) / (aleatorio.getVitalidadActual() * 12);
+			if (formula > 255) {
+				formula = 255;
+			}
+			break;
+		case SUPERBALL:
+			final int ratioSuperball = (int) (Math.random() * 200) + 1;
+			formula = (aleatorio.getVitalidadMaxima() * ratioSuperball * 4) / (aleatorio.getVitalidadActual() * 8);
+			if (formula > 255) {
+				formula = 255;
+			}
+			break;
+		case ULTRABALL:
+			final int ratioUltraball = (int) (Math.random() * 150) + 1;
+			formula = (aleatorio.getVitalidadMaxima() * ratioUltraball * 4) / (aleatorio.getVitalidadActual() * 4);
+			if (formula > 255) {
+				formula = 255;
+			}
+			break;
+		default:
+
+			break;
+		}
+
+		return formula;
+
+	}
+
+	/**
+	 * Metodo de la crianza pokemon en la que de parametros tenemos el pokemon padre
+	 * y pokemon madre, en este caso estaba orientado para realizar una vista de
+	 * crianza pero por falta de tiempo y compañero no se ha podido realizar. El
+	 * metodo consiste en el que creamos un pokemon por defecto que sera el hijo de
+	 * los padres en la que invocamos al metodo de generar la info de la crianza en
+	 * la clase pokemon. Ahora luego de generar todas las estadisticas del pokemon
+	 * tenemos una condicion en la que invocamos el metodo de agregar pokemon de la
+	 * clase equipo pokemon que es un metodo booleano que si en el caso que en el
+	 * equipo hay espacio, entonces se agregara al equipo del entrenador si no se
+	 * agregara a la caja al primer espacio que encuentre null
+	 * 
+	 * @param padre pokemon
+	 * @param madre pokemon
 	 */
 	public void crianzaPokemon(Pokemon padre, Pokemon madre) {
 
@@ -292,6 +425,13 @@ public class Entrenador {
 
 	}
 
+	/**
+	 * Metodo de mostrar los pokemon disponibles dentro de la caja que le pertenece
+	 * al entrenador, donde recorremos la caja y sacamos los espacios de la caja que
+	 * no sean nulos. Mastar invocamos al metodo de mostrarStats que genera la
+	 * informacion general del pokemon
+	 * 
+	 */
 	public void mostrarPc() {
 
 		for (int i = 0; i < caja.size(); i++) {
@@ -305,6 +445,7 @@ public class Entrenador {
 	}
 
 	/**
+	 * Metodo de mostrar la informacion general del entrenador
 	 * 
 	 */
 	public void mostrarTarjetaEntrenador() {
@@ -314,7 +455,10 @@ public class Entrenador {
 
 		System.out.println("\nDINERO: " + pokecuarto + " ¥");
 
-		System.out.println("\nPOKÉDEX: " /* + pokedex.getPokemonCapturados() */);
+		System.out.println("\nPOKÉDEX: " /*
+											 * + pokedex.getPokemonCapturados() si hubiera tenido tiempo y compañero lo
+											 * hubiera echo
+											 */);
 
 		System.out.println("\nT. JUEGO: ");
 		System.out.println("COMIENZO AVENTURA: ");
@@ -322,6 +466,9 @@ public class Entrenador {
 	}
 
 	/**
+	 * 
+	 * Metodo para mostrar la info general del pokemon
+	 * 
 	 * @param pk
 	 */
 	public void mostrarStats(Pokemon pk) {
@@ -333,9 +480,11 @@ public class Entrenador {
 	}
 
 	/**
+	 * Metodo de la info basica de un pokemon del entrenador, que se le pasa al
+	 * metodo por parametro al metodo y genera por consola la info basica del
+	 * pokemon
 	 * 
-	 * 
-	 * @param pkentrenador
+	 * @param pkentrenador el pokemon que selecciona el entrenador para generar la info basica
 	 */
 	private void mostrarInfoPokemon(Pokemon pkentrenador) {
 
